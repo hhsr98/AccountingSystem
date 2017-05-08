@@ -1,25 +1,30 @@
+//HSR 20170508
 #ifndef __UNIT_H
 #define __UNIT_H
 
+#include<iostream>
+using namespace std;
 #define kg_kg 1
-#define g_kg 0.001
-#define chJing_kg 0.5
-#define chLiang_kg 0.05
-#define pound_kg 0.454
+#define g_kg 1000
+#define chJing_kg 2
+#define chLiang_kg 20
+#define pound_kg 2.205
+
+#define m_m 1
+#define cm_m 100
+#define km_m 0.001
+#define inch_m 39.4
+
+#define l_l 1
+#define ml_l 1000
+#define ukGallon_l 0.22
+#define usGallon_l 0.263
 
 class Unit
 {
-    const Dimension _dimension;
-    aUnit _unit;
 public:
-    Unit();
-    Unit(aUnit unit);
-    void setUnit(aUnit unit);
-    aUnit getUnit() const;
-    Dimension getDimension() const;
-    double convertTo(aUnit target_unit);
-
-    enum Dimension
+//常见量纲枚举
+     enum Dimension
     {
         Length=0x0,
         Weight=0x1,
@@ -27,6 +32,7 @@ public:
         Capacity=0x3,
         Discrete=0x4
     };
+//常见单位枚举，3位16进制数，最高位为对应量纲枚举的值
     enum aUnit
     {
         kilogram=0x100,
@@ -48,6 +54,28 @@ public:
         piece=0x401,
         no_unit=0x400
     };
+
+    Unit();
+
+    Unit(aUnit unit);
+
+//单位设置函数，直接设置单位，无返回值，不同量纲单位也可设置，请慎重使用
+    void setUnit(aUnit unit);
+
+    aUnit getUnit() const;
+
+    Dimension getDimension() const;
+
+//单位转换函数，只有同量纲单位才能成功转换，返回值为 新单位/旧单位（即原数值直接乘以返回值），转换不成功返回常数1
+    double convertTo(aUnit target_unit);
+
+    friend ostream& operator<< (ostream &os,const Unit &a);
+
+private:
+    Dimension _dimension;//量纲
+    aUnit _unit;//单位
+    static bool is_init;//是否初始化转换矩阵
+    static void mat_init();
 };
 
 #endif // __UNIT_H
