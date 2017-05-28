@@ -1,4 +1,4 @@
-#include"list.h"
+#include"../inc/list.h"
 using namespace std;
 SingleMoney List::Sum() {
 	int i;

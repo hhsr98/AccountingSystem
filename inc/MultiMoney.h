@@ -1,6 +1,6 @@
 #ifndef MULTIMONEY_H
 #define MULTIMONEY_H
-#include".../inc/SingleMoney.h"
+#include"SingleMoney.h"
 #include<iostream>
 #define N 200
 using namespace std;

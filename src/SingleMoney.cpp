@@ -1,5 +1,5 @@
 //SingleMoney.cpp
-#include"SingleMoney.h"
+#include"../inc/SingleMoney.h"
 #include<iostream>
 
 SingleMoney::SingleMoney(double single_money, string currency_type_now)

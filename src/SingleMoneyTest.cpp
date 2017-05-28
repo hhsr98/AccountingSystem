@@ -1,7 +1,7 @@
 //²âÊÔÎÄ¼ş£»
 #include<iostream>
 #include<string>
-#include".../inc/SingleMoney.h"
+#include"../inc/SingleMoney.h"
 using namespace std;
 
 int main()

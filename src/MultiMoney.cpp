@@ -1,4 +1,4 @@
-#include"MultiMoney.h"
+#include"../inc/MultiMoney.h"
 using namespace std;
 MultiMoney::MultiMoney()
 {

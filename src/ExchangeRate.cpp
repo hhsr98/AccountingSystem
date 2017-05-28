@@ -1,4 +1,4 @@
-#include".../inc/ExchangeRate.h"
+#include"../inc/ExchangeRate.h"
 using namespace std;
 
 ExchangeRate::ExchangeRate()

@@ -2,7 +2,7 @@
 #ifndef SingleMoney_H
 #define SingleMoney_H
 #include<string>
-#include".../inc/ExchangeRate.h"
+#include"ExchangeRate.h"
 using namespace std;
 
 

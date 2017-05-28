@@ -1,9 +1,12 @@
 //HSR 20170508
 #include "../inc/Unit.h"
-
+#include <algorithm>
+#include <iostream>
+#include <cstring>
+#include <cstdio>
 #define dim(a) (Dimension)(a>>8)
 #define bitpos(b) (b<<8)
-
+using namespace std;
 double mat[10][100];
 string UnitName[0x500];
 bool Unit::is_init=false;
@@ -81,7 +84,8 @@ double Unit::convertTo(aUnit target_unit)
     _unit=target_unit;
     return temp;
 }
-ostream& operator<< (ostream &os,const Unit &a)
+ostream& operator<<(ostream&os,const Unit &a)
 {
-    os<<UnitName[a._unit];
+    os << UnitName[a._unit].c_str()<< endl;
+	return os;
 }
