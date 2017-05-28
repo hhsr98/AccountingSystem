@@ -1,5 +1,7 @@
 #include "../inc/date.h"
 #include "../inc/Unit.h"
+#include "../inc/Shop.h"
+#include "../inc/Analize.h"
 #include <algorithm>
 #include <iostream>
 #include <cstring>
@@ -13,8 +15,8 @@ int main()
 	cout << a << endl;
 	cout << b << endl;
 	cout << (a - b) << endl;
-
-	double mass=1;
+	system("pause");
+	/*double mass=1;
 	Unit mass_unit(Unit::kilogram);
     cout<<mass<<mass_unit<<'=';
     mass*=mass_unit.convertTo(Unit::ch_Liang);
@@ -32,7 +34,7 @@ int main()
     volume*=mass_unit.convertTo(Unit::us_gallon);
     cout<<volume<<mass_unit<<endl;
     volume*=mass_unit.convertTo(Unit::kilometer);
-    cout<<volume<<mass_unit<<endl;
+    cout<<volume<<mass_unit<<endl;*/
 
 
 }
