@@ -15,7 +15,7 @@ public:
 	Filter();
 	virtual bool doFilter(Request* request)=0;
 	virtual ~Filter();
-	void FilterIt(Request* request);
+	Request* FilterIt(Request* request);
 };
 
 class dateFilter:public Filter {

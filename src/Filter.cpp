@@ -14,13 +14,14 @@ Filter::~Filter() {
 
 }
 
-void Filter::FilterIt(Request* request) {
+Request* Filter::FilterIt(Request* request) {
 	if(doFilter(request)) {
 		if (filtertype!=NULL)
 		{
 			this->filtertype->FilterIt(request);
 		}
 	}
+	return request;
 }
 
 dateFilter::dateFilter( Filter* _filtertype,Date _start_time,Date _end_time):Filter(_filtertype),start_time(_start_time),end_time(_end_time){

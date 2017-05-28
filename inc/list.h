@@ -5,6 +5,7 @@
 #include <cstring>
 #include<iostream>
 #include<vector>
+class Filter;
 class List {
 private:
 	vector<Commodity*> vec_commodity;//除去小票扫描账单外，其他账单都是商品直接生成，及账单最多套一层子帐单
@@ -13,9 +14,10 @@ private:
 	int num_commodity;
 	int num_sublist;
 public:
-	List();
+	List(Filter* filter);
 	SingleMoney Sum();
-	const Commodity* get_Commodity(int i) const;//返回第i个商品
-	const Commodity* get_SublistCommodity(int i,int j) const;//返回第i个子帐单中第j个商品
+	const vector<Commodity*> get_CommodityList ()const;
+	const vector<List*>get_Sublist()const;
 };
+
 #endif
