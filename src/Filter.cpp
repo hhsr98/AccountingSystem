@@ -14,14 +14,16 @@ Filter::~Filter() {
 
 }
 
-Request* Filter::FilterIt(Request* request) {
-	if(doFilter(request)) {
+bool Filter::FilterIt(Commodity* com) {
+	if(doFilter(com)) {
 		if (filtertype!=NULL)
 		{
-			this->filtertype->FilterIt(request);
+			this->filtertype->FilterIt(com);
 		}
 	}
-	return request;
+	else
+		return false;
+	return true;
 }
 
 dateFilter::dateFilter( Filter* _filtertype,Date _start_time,Date _end_time):Filter(_filtertype),start_time(_start_time),end_time(_end_time){
@@ -57,28 +59,24 @@ const Shop* placeFilter::get_shop()const {
 	return(this->ptr_shop);
 }
 
-bool dateFilter::doFilter(Request* request) {
-	if (request->getDate()<end_time&&request->getDate()>start_time)
+bool dateFilter::doFilter(Commodity* com) {
+	if (com->Date()<end_time&&com->Date()>start_time)
 	{
-		request->accept();
 		return true;
 	}
 	else
 	{
-		request->reject();
 		return false;
 	}
 }
 
-bool priceFilter::doFilter(Request* request) {
-	if(request->getMoney()>start_price&&request->getMoney()<end_price)
+bool priceFilter::doFilter(Commodity* com) {
+	if(com->TotalPrice()>start_price&&com->TotalPrice()<end_price)
 	{
-		request->accept();
 		return true;
 	}
 	else
 	{
-		request->reject();
 		return false;
 	}
 }

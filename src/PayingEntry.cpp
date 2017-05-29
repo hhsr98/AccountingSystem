@@ -1,7 +1,7 @@
 #include"../inc/PayingEntry.h"
 #include<iostream>
 using namespace std;
-PayingEntry::PayingEntry(Commodity* com,int num):_com(com), person_num(num){
+PayingEntry::PayingEntry(Commodity* com,int num,bool judge):_com(com), person_num(num),judge(judge){
 	set_map();
 }
 
@@ -11,23 +11,26 @@ PayingEntry::PayingEntry(Commodity* com,int num):_com(com), person_num(num){
 
 void PayingEntry::set_static(string name) {
 	map<string,double>::iterator iter_r;
-	bool judge=true;
+	bool judge1=true;
 	for(iter_r=person_topay.begin();iter_r!=person_topay.end();iter_r++) {//判断是否已经储存该名字
 		if (string(iter_r->first)==string(name))
 		{
-			judge=false;
-			break;
+			judge1=false;
 		}	
+			break;
 	}
-	if(judge) {
+	if(judge1) {
 		person_topay[name];
 		num++;//涉及的总人数加一
 	}
 }
 
+
 void PayingEntry::set_map() { //设置付款的人以及金额
+
 	string str1;
 	double price;
+	//cout<<"请输入5个人名"<<endl;
 	while(cin>>str1>>price) { //输入人名以及对应的付款
 		person_rate[str1];
 		person_price[str1]=price;
@@ -38,9 +41,19 @@ void PayingEntry::set_map() { //设置付款的人以及金额
 
     map<string,double>::iterator iter;
 	for(iter=person_rate.begin();iter!=person_rate.end();iter++) {
+		if(!judge)
 		iter->second=setRate(iter->first);
+		else
+		iter->second=is_set(iter->first);
 	}
 }
+
+double PayingEntry::is_set(string name) {//手动输入
+	double rate;
+	cin>>rate;
+	return rate;
+}
+
 
 double PayingEntry::setRate(string name) { //输入人名，返回该人对应的比例
 	double average=total_num/person_num;//每个人应付的数目
@@ -80,4 +93,8 @@ const map<string,double> PayingEntry::get_person_topay() const {
 
 const int PayingEntry::get_total_person_num()const {
 	return num;
+}
+
+const bool PayingEntry::get_judge()const {
+	return judge;
 }

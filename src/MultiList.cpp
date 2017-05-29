@@ -3,15 +3,14 @@ MultiList::MultiList(string name):List_name(name),num_entry(0){
 
 }
 
-void MultiList::add_entry(Commodity* com,int num) {//添加新的付款条目，将其地址存放在vec_entry中
+void MultiList::add_entry(PayingEntry* payingentry) {//添加新的付款条目，将其地址存放在vec_entry中
 	num_entry++;
-	SmartPtr<PayingEntry>ptr=new PayingEntry(com,num);
-	vec_entry.push_back(ptr);
+	vec_entry.push_back(payingentry);
 } 
 
 
 void MultiList::set_topay() {//设置存放多人账单中涉及的所有人的应付金额的map
-	vector<SmartPtr<PayingEntry>>::iterator iter;
+	vector<PayingEntry*>::iterator iter;
 	person_topay=(*(vec_entry[0])).get_person_topay();
 	person_topaycopy=person_topay;//拷贝PayingEntry中的静态变量
 	num_person=(*(vec_entry[0])).get_total_person_num();//拷贝PayingEntry中的静态变量
@@ -31,27 +30,30 @@ double MultiList::get_topay(string name) {//获得每个人需要支付多少
 
 void MultiList::show_topay() {//输出如何转账的方案
 	map<string,double>::iterator iter,iter_swap;
+	vector<string>temp;
 	for(iter=person_topay.begin();iter!=person_topay.end();iter++) {//遍历map
-		if(iter->second>0)//当大于0的时候，则将所付金额数转给后面第一个所付金额非零的人
+		if(iter->second!=0)
 		{
-			iter_swap=iter++;
+			temp.push_back(iter->first);
+			 iter_swap=iter;
+			 iter_swap++;
 			while((iter_swap)->second==0)
+			{
 				iter_swap++;
-			cout<<iter->first<<"支付给"<<iter_swap->first<<iter->second<<endl;
-			iter_swap->second+=iter->second;
-			iter->second=0;
-		}
-		if(iter->second<0)//当小于零时，从前面第一个所付金额非零的人出转入所缺的金额数
-		{
-				iter_swap=iter--;
-				while(iter_swap->second==0)
-					iter_swap--;
-				cout<<iter_swap->first<<"支付给"<<iter->first<<iter->second<<endl;
+			}
+				temp.push_back(iter_swap->first);
 				iter_swap->second+=iter->second;
+				how_to_pay.insert ( std::pair<vector<string>,double>(temp,iter->second) );
 				iter->second=0;
+				vector <string>().swap(temp);
+				iter_swap=iter;
+				 iter_swap++;
+				if((iter_swap->second<0.0000001&&iter_swap->second>-0.0000001))
+					break;
 		}
-
 	}
-
 }
 
+const map<vector<string>,double> MultiList::get_how_to_pay()const {
+	return how_to_pay;
+}
