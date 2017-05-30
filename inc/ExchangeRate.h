@@ -4,14 +4,14 @@
 
 #include<iostream>
 #include<string>
-#define N 200
+const int _N=200;
 using namespace std;
 
 class ExchangeRate
 {
 	friend class SingleMoney;
-	static double* Rate[N];
-	static string* CurrencyType[N];
+	static double* Rate[_N];
+	static string* CurrencyType[_N];
 	static int num;//汇率套数；
 	static int choice;//选择的汇率套数；
 public:

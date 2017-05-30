@@ -105,7 +105,7 @@ bool SingleMoney::operator>=(SingleMoney& m)
 
 double SingleMoney::findRate(string name)
 {
-	for (int i = 0; i < N; i++)
+	for (int i = 0; i < _N; i++)
 	{
 		if (name == ExchangeRate::CurrencyType[ExchangeRate::choice][i])
 		{

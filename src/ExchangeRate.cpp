@@ -1,12 +1,11 @@
 #include"../inc/ExchangeRate.h"
 using namespace std;
-
 ExchangeRate::ExchangeRate()
 {
 	num++;
-	Rate[1] = new double[N]{ 100,88.792,689.770,514.677,853.253,6.212,517.418,730.456,0.609,19.947,22.541 };
-	CurrencyType[1] = new string[N]{ "CNY", "HKD", "USD", "CAD", "GBP", "JPY", "AUD", "EUR", "KRW", "THB", "TWD" };
-	for (int i = 11; i < N; i++)//init;
+	Rate[1] = new double[_N]{ 100,88.792,689.770,514.677,853.253,6.212,517.418,730.456,0.609,19.947,22.541 };
+	CurrencyType[1] = new string[_N]{ "CNY", "HKD", "USD", "CAD", "GBP", "JPY", "AUD", "EUR", "KRW", "THB", "TWD" };
+	for (int i = 11; i < _N; i++)//init;
 	{
 		Rate[1][i] = 0;
 		CurrencyType[1][i] = "0";
@@ -16,9 +15,9 @@ ExchangeRate::ExchangeRate()
 void ExchangeRate::addExchangeRate()
 {
 	num++;
-	Rate[num] = new double[N];
-	CurrencyType[num] = new string[N];
-	for (int i = 0; i < N; i++)//init;
+	Rate[num] = new double[_N];
+	CurrencyType[num] = new string[_N];
+	for (int i = 0; i < _N; i++)//init;
 	{
 		Rate[num][i] = 0;
 		CurrencyType[num][i] = "0";
@@ -44,7 +43,7 @@ void ExchangeRate::deleteExchangeRate(int i)
 	{
 		for (int j = i; j < num; j++)
 		{
-			for (int k = 0; k < N; k++)
+			for (int k = 0; k < _N; k++)
 			{
 				if (CurrencyType[j][k] != "0" || CurrencyType[j + 1][k] != "0")
 				{
@@ -80,7 +79,7 @@ void ExchangeRate::resetExchangeRate(int i,int j)
 
 void ExchangeRate::resetExchangeRate(int i, string s)
 {
-	for (int j = 0; j < N; j++)
+	for (int j = 0; j < _N; j++)
 	{
 		if (CurrencyType[i][j] == s)
 		{
@@ -95,7 +94,7 @@ void ExchangeRate::resetExchangeRate(int i, string s)
 
 void ExchangeRate::addExchangeRate(int i)
 {
-	for (int j = 0; j < N; j++)
+	for (int j = 0; j < _N; j++)
 	{
 		if (Rate[i][j] == 0)
 		{
@@ -115,7 +114,7 @@ void ExchangeRate::showExchangeRate(int i)
 		cout << "汇率访问操作出错！" << endl;
 		return;
 	}
-	for (int j = 0; j < N; j++)
+	for (int j = 0; j < _N; j++)
 	{
 		if (CurrencyType[i][j] != "0")
 			cout << CurrencyType[i][j] << ":" << Rate[i][j] << endl;
@@ -130,7 +129,7 @@ void ExchangeRate::showExchangeRate()
 
 ExchangeRate::~ExchangeRate()
 {
-	for (int i = 1; i < N; i++)
+	for (int i = 1; i < _N; i++)
 	{
 		if(Rate[i]!=NULL)
 		delete[] Rate[i];
@@ -146,8 +145,8 @@ void ExchangeRate::select(int n)
 
 int ExchangeRate::num = 0;
 
-double* ExchangeRate::Rate[N] = { NULL };
+double* ExchangeRate::Rate[_N] = { NULL };
 
-string* ExchangeRate::CurrencyType[N] = { NULL };
+string* ExchangeRate::CurrencyType[_N] = { NULL };
 
 int ExchangeRate::choice = 1;
