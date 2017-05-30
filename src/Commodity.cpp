@@ -6,3 +6,11 @@ Commodity::Commodity(int id):_CommodityName(),_UnitPrice(),\
 {
 
 }
+void Commodity::setCommodityName(std::string _name)
+{
+    _CommodityName=_name;
+}
+std::string Commodity::CommodityName() const
+{
+    return _CommodityName;
+}

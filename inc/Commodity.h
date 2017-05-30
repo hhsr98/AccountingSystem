@@ -29,11 +29,10 @@ public:
 
     int CommodityID()
     {return _CommodityID;}
-    void setCommodityName(std::string &_name)
-    {_CommodityName=_name;}
 
-    const std::string& CommodityName() const
-    {return _CommodityName;}
+    void setCommodityName(std::string _name);
+
+    std::string CommodityName() const;
 
     void setShop(Shop *_shop)
     {pShop=_shop;}
