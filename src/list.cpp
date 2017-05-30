@@ -21,9 +21,8 @@ const vector<List*>List::get_Sublist()const {
 List::List(Filter* filter):_sum(0,"NAN") {
 	/* for(int i;i!=all_num;i++)//遍历商品信息
 	{
-	Request _request(&commodity[i]);
-	if (_filter->FilterIt(&_request)._isReject())
-		//this->vec_commodity.push_back(&commodity[i]);
+	if (_filter->FilterIt(&Commdity[i]))
+		this->vec_commodity.push_back(&commodity[i]);
 	}*/
 	Sum();
 }
