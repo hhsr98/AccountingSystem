@@ -3,16 +3,14 @@
 #define SingleMoney_H
 #include<string>
 #include"ExchangeRate.h"
-using namespace std;
-
 
 class SingleMoney
 {
 	friend class MultiMoney;
-	string CurrencyTypeNow;//当前货币种类；
+	std::string CurrencyTypeNow;//当前货币种类；
 	double SingleMoneyAmount;//当前货币金额；
 public:
-	SingleMoney(double single_money, string currency_type_now);
+	SingleMoney(double single_money, std::string currency_type_now);
 
 	SingleMoney() = default;
 
@@ -44,11 +42,11 @@ public:
 
 	//void addCurrencyTypeAmount();//用户添加货币种类；
 
-	double findRate(string name);//找到相应货币种类的对人民币汇率；
+	double findRate(std::string name);//找到相应货币种类的对人民币汇率；
 
-	double converseCurrency(string DstCurrency);//将货币兑换为目标类型；
+	double converseCurrency(std::string DstCurrency);//将货币兑换为目标类型；
 
-	SingleMoney& converseCurrencyPermanent(string DstCurrency);//将货币永久转换为目标类型；
+	SingleMoney& converseCurrencyPermanent(std::string DstCurrency);//将货币永久转换为目标类型；
 
 	void showSingleMoney();//输出展示当前金额与种类；
 

@@ -1,7 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #pragma once
 #include <iostream>
-using namespace std;
 const int monthDay[13]{0,31,28,31,30,31,30,31,31,30,31,30,31 };
 bool checkyear(int x);// check if x is leap year
 int getYearDay(int y);// return the number of day in year y
@@ -18,8 +17,8 @@ public:
 	virtual bool operator <=(const Date &a) const;
 	virtual bool operator >(const Date &a) const;
 	virtual bool operator >=(const Date &a) const;
-	friend ostream& operator<< (ostream&out, const Date &x);
-	friend istream& operator>> (istream&in, Date &x);
+	friend std::ostream& operator<< (std::ostream&out, const Date &x);
+	friend std::istream& operator>> (std::istream&in, Date &x);
 };
 class TimeLen :public Date {
 	void init();
@@ -27,8 +26,8 @@ public:
 	TimeLen() {}
 	TimeLen(int y, int m=0, int d=0, int h=0);
 	TimeLen(long long t);
-	friend ostream& operator<< (ostream&out, const TimeLen &x);
-	friend istream& operator>> (istream&in, TimeLen &x);
+	friend std::ostream& operator<< (std::ostream&out, const TimeLen &x);
+	friend std::istream& operator>> (std::istream&in, TimeLen &x);
 };
 Date operator -(const Date &a, const TimeLen &b);
 Date operator +(const Date &a, const Date &b);

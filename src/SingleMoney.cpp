@@ -1,7 +1,10 @@
 //SingleMoney.cpp
 #include"../inc/SingleMoney.h"
 #include<iostream>
-
+using std::string;
+using std::cout;
+using std::cin;
+using std::endl;
 SingleMoney::SingleMoney(double single_money, string currency_type_now)
 	:SingleMoneyAmount(single_money), CurrencyTypeNow(currency_type_now)
 {

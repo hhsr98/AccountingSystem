@@ -2,8 +2,7 @@
 #define MULTIMONEY_H
 #include"SingleMoney.h"
 #include<iostream>
-#define N 200
-using namespace std;
+const int N=200;
 
 class MultiMoney
 {
@@ -14,7 +13,7 @@ public:
 
 	//SingleMoney converseSingleMoney();
 
-	void converseSingleMoney(string type);//所有币种转化为指定单币种；
+	void converseSingleMoney(std::string type);//所有币种转化为指定单币种；
 
 	void show();//展示输出；
 
@@ -37,9 +36,9 @@ public:
 
 	MultiMoney& operator/=(double x);
 
-	SingleMoney sumPart(string DstCurrency);//对某种货币求和;
+	SingleMoney sumPart(std::string DstCurrency);//对某种货币求和;
 
-	SingleMoney sum(string DstCurrency);//对总体求和为某币种;
+	SingleMoney sum(std::string DstCurrency);//对总体求和为某币种;
 
 	~MultiMoney() = default;
 

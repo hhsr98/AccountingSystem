@@ -5,13 +5,12 @@
 #include<iostream>
 #include<string>
 const int _N=200;
-using namespace std;
 
 class ExchangeRate
 {
 	friend class SingleMoney;
 	static double* Rate[_N];
-	static string* CurrencyType[_N];
+	static std::string* CurrencyType[_N];
 	static int num;//汇率套数；
 	static int choice;//选择的汇率套数；
 public:
@@ -24,7 +23,7 @@ public:
 
 	void resetExchangeRate(int i,int j);//重设第i套汇率的第i项；
 
-	void resetExchangeRate(int i, string s);
+	void resetExchangeRate(int i, std::string s);
 
 	void addExchangeRate(int i);//在第i套汇率中新添一项；
 

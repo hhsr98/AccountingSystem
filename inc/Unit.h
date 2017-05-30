@@ -3,7 +3,7 @@
 #define __UNIT_H
 
 #include<iostream>
-using namespace std;
+#include<string>
 #define kg_kg 1
 #define g_kg 1000
 #define chJing_kg 2
@@ -69,7 +69,7 @@ public:
 //单位转换函数，只有同量纲单位才能成功转换，返回值为 新单位/旧单位（即原数值直接乘以返回值），转换不成功返回常数1
     double convertTo(aUnit target_unit);
 
-    friend ostream& operator<< (ostream &os,const Unit &a);
+    friend std::ostream& operator<< (std::ostream &os,const Unit &a);
 
 private:
     Dimension _dimension;//量纲

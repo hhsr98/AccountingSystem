@@ -6,14 +6,14 @@
 #include "Shop.h"
 #include "date.h"
 #include "SingleMoney.h"
-#include "../inc/SingleMoney.h"
 #include "Remark.h"
 #include<iostream>
 #include<string>
 
 class Commodity
 {
-    string _CommodityName;
+    const int _CommodityID;
+    std::string _CommodityName;
     SingleMoney _UnitPrice;
     Unit _Unit;
     Shop *pShop;
@@ -23,14 +23,16 @@ class Commodity
     Remark *pRemark;
 public:
 
-    Commodity();
+    Commodity(int id=-1);
 
     ~Commodity()=default;
 
-    void setCommodityName(string &_name)
+    int CommodityID()
+    {return _CommodityID;}
+    void setCommodityName(std::string &_name)
     {_CommodityName=_name;}
 
-    const string& CommodityName() const
+    const std::string& CommodityName() const
     {return _CommodityName;}
 
     void setShop(Shop *_shop)

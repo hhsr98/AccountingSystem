@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #pragma once
 //#include <json/json.h>
+#include<string>
 class Shop {
 	double longitude, latitude;
 	enum OnlineShop{
@@ -11,29 +12,29 @@ class Shop {
 		Other
 	};
 	bool isOnline;
-	string Country, Province, City, District, Shopname;
-	void getPlace(string C,string P,string CI,string D) {
+	std::string Country, Province, City, District, Shopname;
+	void getPlace(std::string C,std::string P,std::string CI,std::string D) {/*
 		system("python location.py");
-		FILE *fp = fopen('locate.txt', 'r');
+		FILE *fp = fopen("locate.txt", "r");
 		static char s[50];
-		if(C.length()) 
+		if(C.length())
 			Country = C;
-		else 
-			fscanf()
-		else 
+		else
+			fscanf();
+		else
 		Province = P;
 		District = D;
 		City = CI;
 		latitude = 0.0;
-		longitude = 0.0;
+		longitude = 0.0;*/
 	}
 public:
 	//Shop() { getPlace(); }
-	Shop(string s, string C = string(),string P = string(), string CI =string(), string D = string()) {
+	Shop(std::string s, std::string C = std::string(),std::string P = std::string(), std::string CI =std::string(),std::string D = std::string()) {
 		getPlace(C,P,CI, D);
 		Shopname = s;
 	}
-	string getShopName() {
+	std::string getShopName() {
 		return Shopname;
 	}
 };
