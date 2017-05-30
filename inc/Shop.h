@@ -12,13 +12,25 @@ class Shop {
 	};
 	bool isOnline;
 	string Country, Province, City, District, Shopname;
-	void getPlace() {
+	void getPlace(string C,string P,string CI,string D) {
+		system("python location.py");
+		FILE *fp = fopen('locate.txt', 'r');
+		static char s[50];
+		if(C.length()) 
+			Country = C;
+		else 
+			fscanf()
+		else 
+		Province = P;
+		District = D;
+		City = CI;
 		latitude = 0.0;
 		longitude = 0.0;
 	}
 public:
 	//Shop() { getPlace(); }
-	Shop(string s) {
+	Shop(string s, string C = string(),string P = string(), string CI =string(), string D = string()) {
+		getPlace(C,P,CI, D);
 		Shopname = s;
 	}
 	string getShopName() {

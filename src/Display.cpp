@@ -33,13 +33,13 @@ void CmdImp::show(Commodity* m)
 void CmdImp::show(const List* list)
 {
 	int i = 0;
-	while (list->get_Commodity(i)!= NULL)
+	while (i < list->get_CommodityList().size())
 	{
-		show(list->get_Commodity(i));
+		show(list->get_CommodityList()[i]);
 		i++;
 	}
 	int j = 0;
-	while (list->get_Sublist(j) != NULL)
+	while (list->get_Sublist().size() != 0)
 	{
 		cout << "Sublist" << j + 1 << endl;
 		j++;
@@ -69,20 +69,21 @@ void CmdImp::display(vector<List*> list)
 	cin >> n;
 	while (n > '0' && int(n)-'0' <= list.size())
 	{
-		if (list[int(n)-'0']->get_Sublist(0) != NULL)//判断是否有子账单；
+		int x = list[int(n) - '0']->get_Sublist().size();
+		if (x != 0)//判断是否有子账单；
 		{
 			vector<char> operate;//记录一系列操作;
 			char opr = '1';
 			cout << "请输入要查看的子账单编号：";
 			cin >> opr;
-			while (int(opr)-'0' <= sublist_num || opr>'0')
+			while (int(opr)-'0' <= x || opr>'0')
 			{
 				vector<char>::iterator it1;
 				operate.push_back(opr);
 				int num = 0;//操作计数;
-				for (char i = '1'; int(i) - '0' <= sublist_num; i++)
+				for (char i = '1'; int(i) - '0' <= x; i++)
 				{
-					for (it1 = operate.begin; it1 != operate.end; it1++)
+					for (it1 = operate.begin(); it1 != operate.end(); it1++)
 					{
 						if (*it1 == i)
 						{
@@ -91,7 +92,7 @@ void CmdImp::display(vector<List*> list)
 					}
 					if (num % 2)//对同一子账单操作奇数次则显示它;
 					{
-						show(list[int(opr)-'0']->get_Sublist(int(opr) - '0'));
+						show(list[int(opr)-'0']->get_Sublist()[int(opr)-'0']);
 					}
 				}
 				cout << "请输入要查看的子账单编号：";

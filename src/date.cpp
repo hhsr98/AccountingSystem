@@ -70,20 +70,20 @@ Date::Date(long long t)
 			break;
 		}
 }
-bool Date::operator <(const Date &a)
+bool Date::operator <(const Date &a) const
 {
 	cout << tothour << " " << a.tothour << endl;
 	return tothour < a.tothour;
 }
-bool Date::operator <=(const Date &a)
+bool Date::operator <=(const Date &a) const 
 {
 	return tothour <= a.tothour;
 }
-bool Date::operator >(const Date &a)
+bool Date::operator >(const Date &a) const
 {
 	return tothour > a.tothour;
 }
-bool Date::operator >=(const Date &a)
+bool Date::operator >=(const Date &a) const
 {
 	return tothour >= a.tothour;
 }
