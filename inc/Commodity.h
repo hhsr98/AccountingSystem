@@ -82,10 +82,10 @@ public:
     const Unit& Unit() const
     {return _Unit;}
 
-    SingleMoney TotalPrice()
+    SingleMoney TotalPrice() const
     {return _UnitPrice*_Quantity;}
 
-    SingleMoney OriginalUnitPrice()
+    SingleMoney OriginalUnitPrice() const
     {return _UnitPrice/(1-_Discount);}
 
     void setRemark(Remark *_remark)
