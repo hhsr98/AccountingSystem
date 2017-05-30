@@ -86,6 +86,6 @@ double Unit::convertTo(aUnit target_unit)
 }
 ostream& operator<<(ostream&os,const Unit &a)
 {
-    os << UnitName[a._unit].c_str()<< endl;
+    os << UnitName[a._unit].c_str();
 	return os;
 }

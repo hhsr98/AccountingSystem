@@ -136,3 +136,8 @@ void SingleMoney::showSingleMoney()
 {
 	cout << SingleMoneyAmount << " " << CurrencyTypeNow << endl;
 }
+std::ostream& operator<<(std::ostream& os,const SingleMoney& money)
+{
+    os<<money.SingleMoneyAmount<<' '<<money.CurrencyTypeNow;
+    return os;
+}

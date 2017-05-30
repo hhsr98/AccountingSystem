@@ -50,6 +50,8 @@ public:
 
 	void showSingleMoney();//输出展示当前金额与种类；
 
+	friend std::ostream& operator<<(std::ostream& os,const SingleMoney& money);
+
 };
 #endif
 

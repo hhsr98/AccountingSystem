@@ -91,5 +91,7 @@ public:
     void setRemark(Remark *_remark)
     {pRemark=_remark;}
 
+    friend std::ostream& operator<< (std::ostream &os,const Commodity& com);
+
 };
 #endif // __COMMODITY_H
