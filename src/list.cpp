@@ -1,5 +1,6 @@
 #include"../inc/list.h"
 using namespace std;
+
 SingleMoney List::Sum() {
 	int i;
 	for (i=0;i!=num_commodity;i++) 
@@ -8,13 +9,21 @@ SingleMoney List::Sum() {
 		this->_sum=this->_sum+vec_sublist[i]->_sum;
 	return (this->_sum);
 }
-const Commodity* List::get_Commodity(int i) const {
-	return (vec_commodity[i]);
+
+const vector<Commodity*> List::get_CommodityList ()const	{
+	return this->vec_commodity;
 }
-const Commodity* List::get_SublistCommodity(int i,int j) const {
-	return(vec_sublist[i]->get_Commodity(j));
+
+const vector<List*>List::get_Sublist()const {
+	return this->vec_sublist;
 }
-List::List():_sum(0,"NAN") {
-	//void setList();
+
+List::List(Filter* filter):_sum(0,"NAN") {
+	/* for(int i;i!=all_num;i++)//遍历商品信息
+	{
+	Request _request(&commodity[i]);
+	if (_filter->FilterIt(&_request)._isReject())
+		//this->vec_commodity.push_back(&commodity[i]);
+	}*/
 	Sum();
 }

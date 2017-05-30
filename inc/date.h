@@ -14,10 +14,10 @@ public:
 	Date();
 	Date(int y, int m=1,int d=1,int h=0);
 	Date(long long t);
-	virtual bool operator <(const Date &a);
-	virtual bool operator <=(const Date &a);
-	virtual bool operator >(const Date &a);
-	virtual bool operator >=(const Date &a);
+	virtual bool operator <(const Date &a) const;
+	virtual bool operator <=(const Date &a) const;
+	virtual bool operator >(const Date &a) const;
+	virtual bool operator >=(const Date &a) const;
 	friend ostream& operator<< (ostream&out, const Date &x);
 	friend istream& operator>> (istream&in, Date &x);
 };

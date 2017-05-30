@@ -6,7 +6,7 @@
 #include "Shop.h"
 #include "date.h"
 #include "SingleMoney.h"
-#include "../src/SingleMoney.cpp"
+#include "../inc/SingleMoney.h"
 #include "Remark.h"
 #include<iostream>
 #include<string>
@@ -81,10 +81,10 @@ public:
     const Unit& Unit() const
     {return _Unit;}
 
-    SingleMoney TotalPrice() 
+    SingleMoney TotalPrice()
     {return _UnitPrice*_Quantity;}
 
-    SingleMoney OriginalUnitPrice() 
+    SingleMoney OriginalUnitPrice()
     {return _UnitPrice/(1-_Discount);}
 
     void setRemark(Remark *_remark)
