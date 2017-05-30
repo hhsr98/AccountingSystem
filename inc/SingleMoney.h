@@ -14,15 +14,15 @@ public:
 
 	SingleMoney() = default;
 
-	SingleMoney operator+(SingleMoney& m);//重载多币种相加，返回结果为当前货币类型；
+	SingleMoney operator+(SingleMoney& m) const;//重载多币种相加，返回结果为当前货币类型；
 
-	SingleMoney operator-(SingleMoney& m);//相减；
+	SingleMoney operator-(SingleMoney& m) const;//相减；
 
-	SingleMoney operator*(double x);//右乘；
+	SingleMoney operator*(double x) const ;//右乘；
 
 	friend SingleMoney operator*(double x, SingleMoney& m);//左乘，但是没实现四则运算，只有连加减；
 
-	SingleMoney operator/(double x);//相除；
+	SingleMoney operator/(double x) const ;//相除；
 
 	SingleMoney operator+=(SingleMoney& m);//+=;
 
@@ -32,13 +32,13 @@ public:
 
 	SingleMoney operator/=(double x); // /=;
 
-	bool operator<(SingleMoney& m);
+	bool operator<(SingleMoney& m) const ;
 
-	bool operator>(SingleMoney& m);
+	bool operator>(SingleMoney& m) const;
 
-	bool operator<=(SingleMoney& m);
+	bool operator<=(SingleMoney& m) const ;
 
-	bool operator>=(SingleMoney& m);
+	bool operator>=(SingleMoney& m)const ;
 
 	//void addCurrencyTypeAmount();//用户添加货币种类；
 
@@ -49,6 +49,8 @@ public:
 	SingleMoney& converseCurrencyPermanent(std::string DstCurrency);//将货币永久转换为目标类型；
 
 	void showSingleMoney();//输出展示当前金额与种类；
+
+	friend std::ostream& operator<<(std::ostream& os,const SingleMoney& money);
 
 };
 #endif

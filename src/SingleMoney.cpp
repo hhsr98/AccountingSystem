@@ -11,26 +11,26 @@ SingleMoney::SingleMoney(double single_money, string currency_type_now)
 }
 
 
-SingleMoney SingleMoney:: operator+(SingleMoney& m)
+SingleMoney SingleMoney:: operator+(SingleMoney& m) const
 {
 	double x = this->SingleMoneyAmount + m.converseCurrency(CurrencyTypeNow);
 	SingleMoney temp(x, this->CurrencyTypeNow);
 	return temp;
 }
 
-SingleMoney SingleMoney::operator-(SingleMoney& m)
+SingleMoney SingleMoney::operator-(SingleMoney& m) const
 {
 	double x = this->SingleMoneyAmount - m.converseCurrency(CurrencyTypeNow);
 	SingleMoney temp(x, this->CurrencyTypeNow);
 	return temp;
 }
 
-SingleMoney SingleMoney::operator*(double x)
+SingleMoney SingleMoney::operator*(double x) const
 {
 	return SingleMoney(x*this->SingleMoneyAmount, this->CurrencyTypeNow);
 }
 
-SingleMoney SingleMoney::operator/(double x)
+SingleMoney SingleMoney::operator/(double x) const
 {
 	if (x <= 0)
 	{
@@ -75,22 +75,22 @@ SingleMoney operator*(double x, SingleMoney& m)
 	return m*x;
 }
 
-bool SingleMoney::operator<(SingleMoney& m)
+bool SingleMoney::operator<(SingleMoney& m) const
 {
 	return this->SingleMoneyAmount < m.converseCurrency(this->CurrencyTypeNow);
 }
 
-bool SingleMoney::operator>(SingleMoney& m)
+bool SingleMoney::operator>(SingleMoney& m) const
 {
 	return this->SingleMoneyAmount > m.converseCurrency(this->CurrencyTypeNow);
 }
 
-bool SingleMoney::operator<=(SingleMoney& m)
+bool SingleMoney::operator<=(SingleMoney& m) const
 {
 	return this->SingleMoneyAmount <= m.converseCurrency(this->CurrencyTypeNow);
 }
 
-bool SingleMoney::operator>=(SingleMoney& m)
+bool SingleMoney::operator>=(SingleMoney& m) const
 {
 	return this->SingleMoneyAmount >= m.converseCurrency(this->CurrencyTypeNow);
 }
@@ -135,4 +135,9 @@ SingleMoney& SingleMoney::converseCurrencyPermanent(string DstCurrency)
 void SingleMoney::showSingleMoney()
 {
 	cout << SingleMoneyAmount << " " << CurrencyTypeNow << endl;
+}
+std::ostream& operator<<(std::ostream& os,const SingleMoney& money)
+{
+    os<<money.SingleMoneyAmount<<' '<<money.CurrencyTypeNow;
+    return os;
 }

@@ -29,11 +29,10 @@ public:
 
     int CommodityID()
     {return _CommodityID;}
-    void setCommodityName(std::string &_name)
-    {_CommodityName=_name;}
 
-    const std::string& CommodityName() const
-    {return _CommodityName;}
+    void setCommodityName(std::string _name);
+
+    std::string CommodityName() const;
 
     void setShop(Shop *_shop)
     {pShop=_shop;}
@@ -83,14 +82,16 @@ public:
     const Unit& Unit() const
     {return _Unit;}
 
-    SingleMoney TotalPrice()
+    SingleMoney TotalPrice() const
     {return _UnitPrice*_Quantity;}
 
-    SingleMoney OriginalUnitPrice()
+    SingleMoney OriginalUnitPrice() const
     {return _UnitPrice/(1-_Discount);}
 
     void setRemark(Remark *_remark)
     {pRemark=_remark;}
+
+    friend std::ostream& operator<< (std::ostream &os,const Commodity& com);
 
 };
 #endif // __COMMODITY_H
