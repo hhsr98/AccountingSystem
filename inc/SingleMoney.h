@@ -14,6 +14,15 @@ public:
 
 	SingleMoney() = default;
 
+	std::string Currency() const
+	{
+	    return CurrencyTypeNow;
+	}
+	double Money() const
+	{
+	    return SingleMoneyAmount;
+	}
+
 	SingleMoney operator+(SingleMoney& m) const;//重载多币种相加，返回结果为当前货币类型；
 
 	SingleMoney operator-(SingleMoney& m) const;//相减；

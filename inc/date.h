@@ -13,6 +13,10 @@ public:
 	Date();
 	Date(int y, int m=1,int d=1,int h=0);
 	Date(long long t);
+	long long toHour() const
+	{
+	    return tothour;
+	}
 	virtual bool operator <(const Date &a) const;
 	virtual bool operator <=(const Date &a) const;
 	virtual bool operator >(const Date &a) const;
