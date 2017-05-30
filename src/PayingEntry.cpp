@@ -36,7 +36,8 @@ void PayingEntry::set_map() { //设置付款的人以及金额
 		person_price[str1]=price;
 		set_static(str1);
 	}
-
+	cin.clear();	// 重置 cin 输入状态
+	cin.sync();	// 清除 cin 缓冲区未读取信息
 	total_num=set_total_sum();
 
     map<string,double>::iterator iter;
@@ -48,12 +49,13 @@ void PayingEntry::set_map() { //设置付款的人以及金额
 	}
 }
 
-double PayingEntry::is_set(string name) {//手动输入
-	double rate;
-	cin>>rate;
-	return rate;
+double PayingEntry::is_set(string name) {//手动输入每人应付金额计算rate
+	//cout<<"输入"<<name<<"应付的金额"<<endl;
+	double price;
+	cin>>price;
+	price=price-person_price[name];
+	return price/total_num;
 }
-
 
 double PayingEntry::setRate(string name) { //输入人名，返回该人对应的比例
 	double average=total_num/person_num;//每个人应付的数目
