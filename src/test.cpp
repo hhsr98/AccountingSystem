@@ -1,15 +1,22 @@
 #include "../inc/date.h"
 #include "../inc/Unit.h"
 #include "../inc/Shop.h"
+<<<<<<< HEAD
 //#include "../inc/Analize.h"
 #include"../inc/User.h"
 #include"../inc/Display.h"
+=======
+#include "../inc/Analize.h"
+#include "../inc/Shop.h"
+>>>>>>> 40f3313747fb26b1e4c5ed73c0e6b3cbd12cc0af
 #include <algorithm>
 #include <iostream>
 #include <cstring>
 #include <cstdio>
 #include <time.h>
+#include <sstream>
 using namespace std;
+AnalizeByDate* a;
 int main()
 {
 	ExchangeRate exchange_rate;

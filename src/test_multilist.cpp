@@ -1,4 +1,4 @@
-#include<iostream>
+/*#include<iostream>
 #include<map>
 #include<cstring>
 #include "../inc/Commodity.h"
@@ -49,4 +49,4 @@ int main() {
 
 	system("pause");
 	return 0;
-}
+}*/

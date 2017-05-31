@@ -8,11 +8,15 @@ int getMonthDay(int x,int y);// return the number of day in year x,month y
 class Date {
 	void init();
 public:
-	long long tothour;//how many hour from 0-0-0-0 to year-month-day-hour
+	long long tothour;
 	int year, month, day, hour;
 	Date();
 	Date(int y, int m=1,int d=1,int h=0);
 	Date(long long t);
+	long long toHour() const
+	{
+	    return tothour;
+	}
 	virtual bool operator <(const Date &a) const;
 	virtual bool operator <=(const Date &a) const;
 	virtual bool operator >(const Date &a) const;
@@ -33,3 +37,5 @@ Date operator -(const Date &a, const TimeLen &b);
 Date operator +(const Date &a, const Date &b);
 Date operator +(const Date &a, const TimeLen &b);
 TimeLen operator -(const Date &a, const Date &b);
+bool operator ==(const Date &a, const Date &b);
+bool operator ==(const TimeLen &a, const TimeLen &b);
