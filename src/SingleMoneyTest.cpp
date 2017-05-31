@@ -2,9 +2,7 @@
 #include<iostream>
 #include<string>
 #include"../inc/SingleMoney.h"
-using namespace std;
-
-int main()
+/*int main()
 {
 	SingleMoney a(234, "CNY"), c(123, "USD"), e(224.23, "JPY"), f(2222, "CAD");
 	SingleMoney d = a + c;
@@ -17,4 +15,4 @@ int main()
 	cout << (a < c) << endl;
 	//system("pause");
 	return 0;
-}
+}*/

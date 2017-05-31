@@ -5,7 +5,9 @@
 #include <cstring>
 #include<iostream>
 #include<vector>
+
 class Filter;
+class Commodity;
 class List {
 private:
 	std::vector<Commodity*> vec_commodity;//除去小票扫描账单外，其他账单都是商品直接生成，及账单最多套一层子帐单

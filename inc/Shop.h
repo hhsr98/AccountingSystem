@@ -29,7 +29,7 @@ class Shop {
 		longitude = 0.0;*/
 	}
 public:
-	//Shop() { getPlace(); }
+	Shop() {}
 	Shop(std::string s, std::string C = std::string(),std::string P = std::string(), std::string CI =std::string(),std::string D = std::string()) {
 		getPlace(C,P,CI, D);
 		Shopname = s;
