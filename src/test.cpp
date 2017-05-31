@@ -2,19 +2,23 @@
 #include "../inc/Unit.h"
 #include "../inc/Shop.h"
 #include "../inc/Analize.h"
+#include "../inc/Shop.h"
 #include <algorithm>
 #include <iostream>
 #include <cstring>
 #include <cstdio>
 #include <time.h>
+#include <sstream>
 using namespace std;
+AnalizeByDate* a;
 int main()
 {
-	Date a;
-	TimeLen b(0, 3, 29, 15);
-	cout << a << endl;
-	cout << b << endl;
-	cout << (a - b) << endl;
+	Date t = Date(1, 1, 0, 0);
+	stringstream ss;
+	ss << t.year <<" "<< t.month;
+	string s = ss.str();
+	cout << s << endl;
+	//cout << a.getperc() << endl;
 	system("pause");
 	/*double mass=1;
 	Unit mass_unit(Unit::kilogram);
@@ -35,6 +39,4 @@ int main()
     cout<<volume<<mass_unit<<endl;
     volume*=mass_unit.convertTo(Unit::kilometer);
     cout<<volume<<mass_unit<<endl;*/
-
-
 }

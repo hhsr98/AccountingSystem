@@ -1,32 +1,39 @@
 #define _CRT_SECURE_NO_WARNINGS
 #pragma once
 //#include <json/json.h>
-#include<string>
+#include <string>
+#include <iostream>
 class Shop {
 	double longitude, latitude;
-	enum OnlineShop{
+	bool isOnline;
+	std::string Country, Province, City, District, Shopname;
+	enum OnlineShop {
 		JingDong,
 		Taobao,
 		Amazon,
 		eBuy,
 		Other
 	};
-	bool isOnline;
-	std::string Country, Province, City, District, Shopname;
-	void getPlace(std::string C,std::string P,std::string CI,std::string D) {/*
-		system("python location.py");
+	void getPlace(std::string C,std::string P,std::string CI,std::string D) {
+		system("python D:\\location.py");
 		FILE *fp = fopen("locate.txt", "r");
 		static char s[50];
-		if(C.length())
-			Country = C;
+		fscanf(fp, "%lf%lf", &latitude, &longitude);
+		if (C.length()) Country = C;
+		else Country = "China";
+		if (P.length()) Province = P;
 		else
-			fscanf();
+		{
+			fscanf(fp, "%s", s);
+			Province = s;
+		}
+		if (D.length()) District = D;
 		else
-		Province = P;
-		District = D;
-		City = CI;
-		latitude = 0.0;
-		longitude = 0.0;*/
+		{
+			fscanf(fp, "%s", s);
+			District = s;
+		}
+		//std::cout << Country << " " << Province << " " << City << " " << District ;
 	}
 public:
 	//Shop() { getPlace(); }

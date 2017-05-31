@@ -1,5 +1,5 @@
 //²âÊÔÎÄ¼ş£»
-#include<iostream>
+/*#include<iostream>
 #include<string>
 #include"../inc/SingleMoney.h"
 using namespace std;
@@ -17,4 +17,4 @@ int main()
 	cout << (a < c) << endl;
 	//system("pause");
 	return 0;
-}
+}*/
