@@ -62,14 +62,34 @@ namespace db_connector
                 if(com->is_modified())
                 {
                     int id=com->CommodityID();
-                    (*db)(update(tab_commodity).set(tab_commodity.tCommodityName=com->CommodityName(),\
-                                          tab_commodity.tUnitPrice=com->UnitPrice().Money(),\
-                                          tab_commodity.tCurrency=com->UnitPrice().Currency(),\
-                                          tab_commodity.tUnit=(int)(com->Unit().getUnit()),\
-                                          tab_commodity.tQuantity=com->Quantity(),\
-                                          tab_commodity.tDiscount=com->Discount(),\
-                                          tab_commodity.tDate=com->Date().toHour()\
-                                        ).where(tab_commodity.tCommodityID.in(id)));
+                    if(CommodityMap.find(id)!=CommodityMap.end())
+                    {
+                        (*db)(update(tab_commodity).set(tab_commodity.tCommodityName=com->CommodityName(),\
+                                              tab_commodity.tUnitPrice=com->UnitPrice().Money(),\
+                                              tab_commodity.tCurrency=com->UnitPrice().Currency(),\
+                                              tab_commodity.tUnit=(int)(com->Unit().getUnit()),\
+                                              tab_commodity.tQuantity=com->Quantity(),\
+                                              tab_commodity.tDiscount=com->Discount(),\
+                                              tab_commodity.tDate=com->Date().toHour()\
+                                            ).where(tab_commodity.tCommodityID.in(id)));
+                        com->set_unmodified();
+                    }
+                    else
+                    {
+                        com->setCommodityID();
+                        (*db)(insert_into(tab_commodity).set(tab_commodity.tCommodityID=com->CommodityID(),\
+                                                        tab_commodity.tCommodityName=com->CommodityName(),\
+                                                        tab_commodity.tUnitPrice=com->UnitPrice().Money(),\
+                                                        tab_commodity.tCurrency=com->UnitPrice().Currency(),\
+                                                        tab_commodity.tUnit=(int)(com->Unit().getUnit()),\
+                                                        tab_commodity.tQuantity=com->Quantity(),\
+                                                        tab_commodity.tDiscount=com->Discount(),\
+                                                        tab_commodity.tDate=com->Date().toHour()\
+                                                        ));
+                        com->set_unmodified();
+                        CommodityMap[com->CommodityID()]=com;
+
+                    }
                 }
             }
 

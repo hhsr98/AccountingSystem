@@ -1,9 +1,11 @@
 #include "../inc/Commodity.h"
 
+int Commodity::maxCommodityID=-1;
 Commodity::Commodity(int id):_CommodityName(),_UnitPrice(),\
     _Unit(),pShop(nullptr),_Quantity(0),_Discount(0),_Date(),\
     pRemark(nullptr),_CommodityID(id),modified(false)
 {
+    maxCommodityID=id>maxCommodityID?id:maxCommodityID;
 
 }
 void Commodity::setCommodityName(std::string _name)
@@ -22,7 +24,7 @@ std::ostream& operator<<(std::ostream &os, const Commodity &com)
     os<<"Price:\t\t"<<com._UnitPrice<<'/'<<com._Unit<<std::endl;
     os<<"TotalPrice:\t"<<com.TotalPrice()<<std::endl;
     os<<"Quantity:\t"<<com._Quantity<<com._Unit<<std::endl;
-    os<<"OriginalPrice:\t"<<com.OriginalUnitPrice()<<com._Unit<<std::endl;
+    os<<"OriginalPrice:\t"<<com.OriginalUnitPrice()<<'/'<<com._Unit<<std::endl;
     os<<"Discount:\t"<<com._Discount<<std::endl;
     os<<"Date:\t\t"<<com._Date<<std::endl;
     return os;

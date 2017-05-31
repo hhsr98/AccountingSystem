@@ -9,11 +9,12 @@
 #include "Remark.h"
 #include<iostream>
 #include<string>
-
 class Commodity
 {
+    static int maxCommodityID;
+
     bool modified;
-    const int _CommodityID;
+    int _CommodityID;
     std::string _CommodityName;
     SingleMoney _UnitPrice;
     Unit _Unit;
@@ -22,6 +23,7 @@ class Commodity
     double _Discount;
     Date _Date;
     Remark *pRemark;
+
 public:
 
     Commodity(int id=-1);
@@ -34,8 +36,11 @@ public:
     bool is_modified()
     {return modified;}
 
-    int CommodityID()
+    int CommodityID() const
     {return _CommodityID;}
+
+    void setCommodityID()
+    {maxCommodityID++;_CommodityID=maxCommodityID;}
 
     void setCommodityName(std::string _name);
 
