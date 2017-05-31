@@ -17,11 +17,11 @@ using namespace std;
 class DisplayImp
 {
 protected:
-	Commodity* _commodity;
-	List* _list;
+	/*Commodity* _commodity;
+	List* _list;*/
 public:
-	DisplayImp(Commodity* commodity) :_commodity(commodity) {}
-	DisplayImp(List* list) :_list(list) {}
+	/*DisplayImp(Commodity* commodity) :_commodity(commodity) {}
+	DisplayImp(List* list) :_list(list) {}*/
 	virtual void show(const Commodity* m) = 0;
 	virtual void show(const List* m) = 0;
 	virtual void show(Commodity* m) = 0;
@@ -41,8 +41,8 @@ public:
 class CmdImp :public DisplayImp
 {
 public:
-	CmdImp(Commodity* commodity) :DisplayImp(commodity) {}
-	CmdImp(List* list) :DisplayImp(list) {};
+	/*CmdImp(Commodity* commodity) :DisplayImp(commodity) {}
+	CmdImp(List* list) :DisplayImp(list) {};*/
 
 	void show(const Commodity* m);
 	void show(Commodity* m);
