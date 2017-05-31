@@ -1,6 +1,7 @@
 #include "../inc/date.h"
 #include "../inc/Unit.h"
 #include "../inc/Shop.h"
+<<<<<<< HEAD
 
 //#include "../inc/Analize.h"
 #include"../inc/User.h"
@@ -9,6 +10,16 @@
 #include "../inc/Analize.h"
 #include "../inc/Shop.h"
 
+=======
+<<<<<<< HEAD
+//#include "../inc/Analize.h"
+#include"../inc/User.h"
+#include"../inc/Display.h"
+=======
+#include "../inc/Analize.h"
+#include "../inc/Shop.h"
+>>>>>>> 40f3313747fb26b1e4c5ed73c0e6b3cbd12cc0af
+>>>>>>> 70de74d1dd4c02ba53c1b82a4d6bb489bc104262
 #include <algorithm>
 #include <iostream>
 #include <cstring>
@@ -19,6 +30,7 @@ using namespace std;
 AnalizeByDate* a;
 int main()
 {
+<<<<<<< HEAD
    /* db_connector::AbstractDbConnector *a=new db_connector::sqlpp11::sqlite3::DbConnector("DataBase.db");
     auto pp=a->selectCommodityAll();
     pp=a->selectCommodityAll();
@@ -41,6 +53,8 @@ int main()
     pp->push_back(comm);
     a->saveCommodity(*pp);*/
 
+=======
+>>>>>>> 70de74d1dd4c02ba53c1b82a4d6bb489bc104262
 	ExchangeRate exchange_rate;
 	string opr;
 	User* user = new User;

@@ -165,3 +165,11 @@ TimeLen operator -(const Date &a, const Date &b)
 {
 	return TimeLen(a.tothour - b.tothour);
 }
+bool operator ==(const Date&a, const Date &b)
+{
+	return a.tothour == b.tothour;
+}
+bool operator ==(const TimeLen &a, const TimeLen &b)
+{
+	return a.tothour == b.tothour;
+}
