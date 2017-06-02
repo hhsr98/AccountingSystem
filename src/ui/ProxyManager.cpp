@@ -18,30 +18,30 @@ void ProxyManager::deleteProxy()
     }
 
 }
-int ProxyManager::process(std::string order)
+ProxyManager::state ProxyManager::process(std::string order)
 {
     if(!proxy_stack.empty())
     {
         AbstractProxy *new_proxy;
-        int re=proxy_stack.back()->manipulate(order,new_proxy);
+        AbstractProxy::state re=proxy_stack.back()->manipulate(order,new_proxy);
         switch(re)
         {
-        case 0x0:
-            return 0x0;
+        case AbstractProxy::done:
+            return success;
             break;
-        case 0x1:
+        case AbstractProxy::new_proxy:
             addProxy(new_proxy);
-            return 0x0;
+            return success;
             break;
-        case 0x2:
+        case AbstractProxy::go_back:
             deleteProxy();
-            return 0x0;
+            return success;
             break;
-        case 0x3:
-            return 0x1;
+        case AbstractProxy::fail:
+            return fail;
             break;
-        case 0x4:
-            return 0x2;
+        case AbstractProxy::quit:
+            return quit;
             break;
         }
     }

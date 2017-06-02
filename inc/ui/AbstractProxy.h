@@ -23,7 +23,17 @@ public:
     //        0x2-成功执行了操作，并申请将本身销毁
     //        0x3-操作失败
     //        0x4-退出整个系统
-    virtual int manipulate(std::string order,AbstractProxy *&new_proxy )=0;
+    enum state
+    {
+        done=0x0,
+        new_proxy,
+        go_back,
+        fail,
+        quit
+    };
+    virtual state manipulate(std::string order,AbstractProxy *&new_proxy )=0;
+
+
 };
 
 #endif // __ABSTRACTPROXY_H

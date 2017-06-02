@@ -37,13 +37,17 @@
 #include<db_connector/sqlpp11_connector/sqlite3_connector/Sqlite3DbConnector.h>
 
 #include <Commodity.h>
+
+#include "ui/ProxyManager.h"
+#include "ui/Console/CommodityProxy_Console.h"
 SQLPP_ALIAS_PROVIDER(left);
 SQLPP_ALIAS_PROVIDER(pragma);
 SQLPP_ALIAS_PROVIDER(sub);
 
-namespace sql = sqlpp::sqlite3;/*
+namespace sql = sqlpp::sqlite3;
 int main()
 {
+    system("CHCP 65001");
     db_connector::AbstractDbConnector *a=new db_connector::sqlpp11::sqlite3::DbConnector("DataBase.db");
     auto pp=a->selectCommodityAll();
     pp=a->selectCommodityAll();
@@ -65,6 +69,23 @@ int main()
     comm->setDate(ndate);
     pp->push_back(comm);
     a->saveCommodity(*pp);
+
+//以下为用户交互部分
+    std::cout<<"afafafewa"<<std::endl;
+    ProxyManager manager;
+    CommodityProxy_Console cc(comm);
+    manager.addProxy(&cc);
+    manager.addProxy(&cc);
+    std::string temp;
+    ProxyManager::state re;
+    while(1)
+    {
+        getline(std::cin,temp);
+        re=manager.process(temp);
+        if(re==ProxyManager::quit) break;
+        if(re==ProxyManager::success) std::cout<<"successfully done\n";
+        else if(re==ProxyManager::fail) std::cout<<"fail\n";
+    }
   /*sql::connection db(config);
   db.execute(R"(CREATE TABLE tab_sample (
 		alpha INTEGER PRIMARY KEY,
@@ -246,7 +267,7 @@ int main()
   for (const auto& row : db(select(subQuery.alpha).from(tab.inner_join(subQuery).unconditionally()).unconditionally()))
   {
     std::cerr << row.alpha;
-  }
+  }*/
 
   return 0;
-}*/
+}

@@ -23,7 +23,13 @@ public:
     //返回值：0x0 指令执行成功
     //        0x1 指令执行失败
     //        0x2 退出整个系统
-    int process(std::string order);
+    enum state
+    {
+        success=0x0,
+        fail,
+        quit
+    };
+    state process(std::string order);
 
 };
 #endif // __PROXYMANAGER_H

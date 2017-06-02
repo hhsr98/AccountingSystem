@@ -10,7 +10,7 @@ protected:
     Commodity *com;
 public:
     CommodityProxy(Commodity *_com):com(_com){}
-    int manipulate(std::string order,AbstractProxy *&new_proxy );
+    AbstractProxy::state manipulate(std::string order,AbstractProxy *&new_proxy );
 };
 
 
