@@ -23,9 +23,9 @@ public:
 	    return SingleMoneyAmount;
 	}
 
-	SingleMoney operator+(SingleMoney& m) const;//重载多币种相加，返回结果为当前货币类型；
+	SingleMoney operator+(const SingleMoney& m) const;//重载多币种相加，返回结果为当前货币类型；
 
-	SingleMoney operator-(SingleMoney& m) const;//相减；
+	SingleMoney operator-(const SingleMoney& m) const;//相减；
 
 	SingleMoney operator*(double x) const ;//右乘；
 
@@ -33,27 +33,24 @@ public:
 
 	SingleMoney operator/(double x) const ;//相除；
 
-	SingleMoney operator+=(SingleMoney& m);//+=;
+	SingleMoney operator+=(const SingleMoney& m);//+=;
 
-	SingleMoney operator-=(SingleMoney& m);//-=;
+	SingleMoney operator-=(const SingleMoney& m);//-=;
 
 	SingleMoney operator*=(double x); //*= ;
 
 	SingleMoney operator/=(double x); // /=;
 
-	bool operator<(SingleMoney& m) const ;
-
-	bool operator>(SingleMoney& m) const;
-
-	bool operator<=(SingleMoney& m) const ;
-
-	bool operator>=(SingleMoney& m)const ;
+	friend bool operator<(const SingleMoney& m,const SingleMoney& n);
+	friend bool operator>(const SingleMoney& m,const SingleMoney& n);
+	friend bool operator<=(const SingleMoney& m,const SingleMoney& n);
+	friend bool operator>=(const SingleMoney& m,const SingleMoney& n);
 
 	//void addCurrencyTypeAmount();//用户添加货币种类；
 
-	double findRate(std::string name);//找到相应货币种类的对人民币汇率；
+	double findRate(std::string name)const;//找到相应货币种类的对人民币汇率；
 
-	double converseCurrency(std::string DstCurrency);//将货币兑换为目标类型；
+	double converseCurrency(std::string DstCurrency)const ;//将货币兑换为目标类型；
 
 	SingleMoney& converseCurrencyPermanent(std::string DstCurrency);//将货币永久转换为目标类型；
 
@@ -62,5 +59,9 @@ public:
 	friend std::ostream& operator<<(std::ostream& os,const SingleMoney& money);
 
 };
+bool operator<(const SingleMoney& m,const SingleMoney& n);
+bool operator>(const SingleMoney& m,const SingleMoney& n);
+bool operator<=(const SingleMoney& m,const SingleMoney& n);
+bool operator>=(const SingleMoney& m,const SingleMoney& n);
 #endif
 

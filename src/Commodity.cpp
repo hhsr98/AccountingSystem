@@ -19,7 +19,7 @@ std::string Commodity::CommodityName() const
 }
 std::ostream& operator<<(std::ostream &os, const Commodity &com)
 {
-    os<<"CommodityID:\t"<<com._CommodityID<<std::endl;
+    //os<<"CommodityID:\t"<<com._CommodityID<<std::endl;
     os<<"CommodityName:\t"<<com._CommodityName<<std::endl;
     os<<"Price:\t\t"<<com._UnitPrice<<'/'<<com._Unit<<std::endl;
     os<<"TotalPrice:\t"<<com.TotalPrice()<<std::endl;

@@ -11,14 +11,14 @@ SingleMoney::SingleMoney(double single_money, string currency_type_now)
 }
 
 
-SingleMoney SingleMoney:: operator+(SingleMoney& m) const
+SingleMoney SingleMoney:: operator+(const SingleMoney& m) const
 {
 	double x = this->SingleMoneyAmount + m.converseCurrency(CurrencyTypeNow);
 	SingleMoney temp(x, this->CurrencyTypeNow);
 	return temp;
 }
 
-SingleMoney SingleMoney::operator-(SingleMoney& m) const
+SingleMoney SingleMoney::operator-(const SingleMoney& m) const
 {
 	double x = this->SingleMoneyAmount - m.converseCurrency(CurrencyTypeNow);
 	SingleMoney temp(x, this->CurrencyTypeNow);
@@ -40,13 +40,13 @@ SingleMoney SingleMoney::operator/(double x) const
 	return SingleMoney(this->SingleMoneyAmount / x, this->CurrencyTypeNow);
 }
 
-SingleMoney SingleMoney::operator+=(SingleMoney& m)
+SingleMoney SingleMoney::operator+=(const SingleMoney& m)
 {
 	*this = *this + m;
 	return *this;
 }
 
-SingleMoney SingleMoney::operator-=(SingleMoney& m)
+SingleMoney SingleMoney::operator-=(const SingleMoney& m)
 {
 	*this = *this - m;
 	return *this;
@@ -75,24 +75,21 @@ SingleMoney operator*(double x, SingleMoney& m)
 	return m*x;
 }
 
-bool SingleMoney::operator<(SingleMoney& m) const
+bool operator<(const SingleMoney& m,const SingleMoney& n)
 {
-	return this->SingleMoneyAmount < m.converseCurrency(this->CurrencyTypeNow);
+    return m.SingleMoneyAmount < n.converseCurrency(m.CurrencyTypeNow);
 }
-
-bool SingleMoney::operator>(SingleMoney& m) const
+bool operator>(const SingleMoney& m,const SingleMoney& n)
 {
-	return this->SingleMoneyAmount > m.converseCurrency(this->CurrencyTypeNow);
+    return m.SingleMoneyAmount > n.converseCurrency(m.CurrencyTypeNow);
 }
-
-bool SingleMoney::operator<=(SingleMoney& m) const
+bool operator<= (const SingleMoney& m,const SingleMoney& n)
 {
-	return this->SingleMoneyAmount <= m.converseCurrency(this->CurrencyTypeNow);
+    return m.SingleMoneyAmount <= n.converseCurrency(m.CurrencyTypeNow);
 }
-
-bool SingleMoney::operator>=(SingleMoney& m) const
+bool operator>= (const SingleMoney& m,const SingleMoney& n)
 {
-	return this->SingleMoneyAmount >= m.converseCurrency(this->CurrencyTypeNow);
+    return m.SingleMoneyAmount >= n.converseCurrency(m.CurrencyTypeNow);
 }
 
 /*void SingleMoney::addCurrencyTypeAmount()//一次加一种；
@@ -106,7 +103,7 @@ bool SingleMoney::operator>=(SingleMoney& m) const
 	CurrencyType[CurrencyTypeAmount - 1] = CurrencyName;
 }*/
 
-double SingleMoney::findRate(string name)
+double SingleMoney::findRate(string name) const
 {
 	for (int i = 0; i < _N; i++)
 	{
@@ -118,7 +115,7 @@ double SingleMoney::findRate(string name)
 	return 0;
 }
 
-double SingleMoney::converseCurrency(string DstCurrency)
+double SingleMoney::converseCurrency(string DstCurrency) const
 {
 	double n;
 	n = SingleMoneyAmount * findRate(CurrencyTypeNow) / findRate(DstCurrency);

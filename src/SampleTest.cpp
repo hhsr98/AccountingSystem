@@ -48,6 +48,7 @@ namespace sql = sqlpp::sqlite3;
 int main()
 {
     system("CHCP 65001");
+    ExchangeRate ee;
     db_connector::AbstractDbConnector *a=new db_connector::sqlpp11::sqlite3::DbConnector("DataBase.db");
     auto pp=a->selectCommodityAll();
     pp=a->selectCommodityAll();
@@ -55,23 +56,13 @@ int main()
     for(auto ss:(*pp))
     {
         std::cout<<(*ss)<<std::endl;
-        ss->setDate(ndate);
+        //ss->setDate(ndate);
     }
 
-    std::cout<<std::endl<<std::endl<<std::endl;
-    Commodity *comm=new Commodity();
-    comm->setCommodityName("rice");
-    SingleMoney money(8,"CNY");
-    comm->setUnitPrice(money);
-    Unit u(Unit::ch_Jing);
-    comm->setUnit(u);
-    comm->setQuantity(20);
-    comm->setDate(ndate);
-    pp->push_back(comm);
-    a->saveCommodity(*pp);
 
 //以下为用户交互部分
-    std::cout<<"afafafewa"<<std::endl;
+    std::cout<<std::endl<<std::endl;
+    Commodity *comm=pp->back();
     ProxyManager manager;
     CommodityProxy_Console cc(comm);
     manager.addProxy(&cc);
@@ -86,6 +77,7 @@ int main()
         if(re==ProxyManager::success) std::cout<<"successfully done\n";
         else if(re==ProxyManager::fail) std::cout<<"fail\n";
     }
+    a->saveCommodity(comm);
   /*sql::connection db(config);
   db.execute(R"(CREATE TABLE tab_sample (
 		alpha INTEGER PRIMARY KEY,

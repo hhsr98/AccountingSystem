@@ -1,28 +1,26 @@
 #include"../inc/list.h"
 using namespace std;
 
-SingleMoney List::Sum() {
+List::List(const Filter *f):criteria(f),vec_commodity(),vec_sublist()
+{
+
+}
+SingleMoney List::Sum() const
+{
 	int i;
-	for (i=0;i!=num_commodity;i++) 
-		this->_sum=this->vec_commodity[i]->TotalPrice()+this->_sum;
-	for(i=0;i!=num_sublist;i++)
-		this->_sum=this->_sum+vec_sublist[i]->_sum;
-	return (this->_sum);
+	SingleMoney _sum;
+	for (const auto a:vec_commodity)
+		_sum+=a->TotalPrice();
+	for(const auto a:vec_sublist)
+		_sum+=a->Sum();
+    return _sum;
 }
 
-const vector<Commodity*> List::get_CommodityList ()const	{
+vector<Commodity*> List::get_CommodityList ()const	{
 	return this->vec_commodity;
 }
 
-const vector<List*>List::get_Sublist()const {
+vector<List*>List::get_Sublist()const {
 	return this->vec_sublist;
 }
 
-List::List(Filter* filter):_sum(0,"NAN") {
-	/* for(int i;i!=all_num;i++)//遍历商品信息
-	{
-	if (_filter->FilterIt(&Commdity[i]))
-		this->vec_commodity.push_back(&commodity[i]);
-	}*/
-	Sum();
-}

@@ -67,7 +67,7 @@ public:
     void setUnitPrice(SingleMoney &_total_price,double _quantity=1)
     {modified=true;_UnitPrice=_total_price/_quantity;}
 
-    const SingleMoney& UnitPrice() const
+    const SingleMoney UnitPrice() const
     {return _UnitPrice;}
 
     bool setDiscount(double discount)
