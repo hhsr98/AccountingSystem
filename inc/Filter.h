@@ -75,6 +75,7 @@ public:
 	    return end_price;
 	}
 };
+
 class TotalPriceFilter:public Filter
 {
 	SingleMoney start_price,end_price;
@@ -95,6 +96,7 @@ public:
 	    return end_price;
 	}
 };
+
 /*
 class placeFilter:public Filter {
 private:

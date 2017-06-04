@@ -40,6 +40,7 @@
 
 #include "ui/ProxyManager.h"
 #include "ui/Console/CommodityProxy_Console.h"
+#include "ui/Console/ListProxy_Console.h"
 SQLPP_ALIAS_PROVIDER(left);
 SQLPP_ALIAS_PROVIDER(pragma);
 SQLPP_ALIAS_PROVIDER(sub);
@@ -58,7 +59,14 @@ int main()
         std::cout<<(*ss)<<std::endl;
         //ss->setDate(ndate);
     }
-
+    //Filter *fil=new dateFilter(Date(2015,1,10,2),Date(2017,8,1,0));
+    Filter *fil=new AllFilter();
+    List aaa(fil);
+    for(auto ss:(*pp))
+    {
+        aaa.addCommodity(ss);
+        //ss->setDate(ndate);
+    }
 
 //以下为用户交互部分
     std::cout<<std::endl<<std::endl;
@@ -67,6 +75,8 @@ int main()
     CommodityProxy_Console cc(comm);
     manager.addProxy(&cc);
     manager.addProxy(&cc);
+    ListProxy_Console LLL(&aaa);
+    manager.addProxy(&LLL);
     std::string temp;
     ProxyManager::state re;
     while(1)
