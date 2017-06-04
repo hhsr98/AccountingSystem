@@ -10,6 +10,7 @@ AbstractProxy::state CommodityProxy::manipulate(std::string order, AbstractProxy
     {
         if(temp=="-r") return AbstractProxy::go_back;//-r 返回上一级
         if(temp=="-x") return AbstractProxy::quit;//-x 退出系统
+        if(temp=="-f") {show(); return AbstractProxy::done;}
         if(temp=="-e") //修改商品信息
         {
             std::string temp1,temp2;
@@ -25,7 +26,7 @@ AbstractProxy::state CommodityProxy::manipulate(std::string order, AbstractProxy
 					stream<<temp2;
 					stream>>a;
 					com->setQuantity(a);
-					stream.clear(); 
+					stream.clear();
 					return AbstractProxy::done;
 				}
 				if(temp1=="-m")
@@ -49,7 +50,7 @@ AbstractProxy::state CommodityProxy::manipulate(std::string order, AbstractProxy
 					stream<<temp2;
 					stream>>temp;
 					com->setDiscount(temp);
-					stream.clear(); 
+					stream.clear();
 					return AbstractProxy::done;
 				}
 				if(temp1=="-d")//输入格式为年月日时，例如2017070718 为2017年7月7日18点
@@ -64,16 +65,16 @@ AbstractProxy::state CommodityProxy::manipulate(std::string order, AbstractProxy
 					//将string转换成double
 					stream<<y1;
 					stream>>y;
-					stream.clear(); 
+					stream.clear();
 					stream<<m1;
 					stream>>m;
-					stream.clear(); 
+					stream.clear();
 					stream<<d1;
 					stream>>d;
-					stream.clear(); 
+					stream.clear();
 					stream<<h1;
 					stream>>h;
-					stream.clear(); 
+					stream.clear();
 					Date date(y,m,d,h);
 					com->setDate(date);
 					return AbstractProxy::done;
