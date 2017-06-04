@@ -68,7 +68,7 @@ int main()
     comm->setQuantity(20);
     comm->setDate(ndate);
     pp->push_back(comm);
-    a->saveCommodity(*pp);
+
 
 //以下为用户交互部分
     std::cout<<"afafafewa"<<std::endl;
@@ -86,6 +86,7 @@ int main()
         if(re==ProxyManager::success) std::cout<<"successfully done\n";
         else if(re==ProxyManager::fail) std::cout<<"fail\n";
     }
+    a->saveCommodity(comm);
   /*sql::connection db(config);
   db.execute(R"(CREATE TABLE tab_sample (
 		alpha INTEGER PRIMARY KEY,
