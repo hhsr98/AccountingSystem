@@ -48,4 +48,14 @@ Commodity* List::getCommodity(int i)
     }
     return nullptr;
 }
+List* List::getSubList(int i)
+{
+    int k=0;
+    for(auto r:vec_sublist)
+    {
+        if(k==i) return r;
+        k++;
+    }
+    return nullptr;
 
+}

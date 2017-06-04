@@ -53,6 +53,8 @@ public:
 	//返回第i个商品，i从0起计数，若超出则返回nullptr
 	Commodity* getCommodity(int i);
 
+	List* getSubList(int i);
+
 	SingleMoney Sum()const;
 
 	std::set<Commodity*> get_CommodityList ()const;

@@ -7,6 +7,7 @@
 class ListProxy : public AbstractProxy
 {
     virtual CommodityProxy* getCommodityProxy(Commodity *com)=0;
+    virtual ListProxy* getListProxy(List *l)=0;
 protected:
     List *_list;
 public:

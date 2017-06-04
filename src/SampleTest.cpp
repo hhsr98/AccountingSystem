@@ -67,14 +67,20 @@ int main()
         aaa.addCommodity(ss);
         //ss->setDate(ndate);
     }
+    Filter *fil1=new dateFilter(Date(2015,1,10,2),Date(2017,8,1,0));
+    //Filter *fil=new AllFilter();
+    List aaa2(fil1);
+    for(auto ss:(*pp))
+    {
+        aaa2.addCommodity(ss);
+        //ss->setDate(ndate);
+    }
+    aaa.addSublist(&aaa2);
 
 //以下为用户交互部分
     std::cout<<std::endl<<std::endl;
     Commodity *comm=pp->back();
     ProxyManager manager;
-    CommodityProxy_Console cc(comm);
-    manager.addProxy(&cc);
-    manager.addProxy(&cc);
     ListProxy_Console LLL(&aaa);
     manager.addProxy(&LLL);
     std::string temp;
