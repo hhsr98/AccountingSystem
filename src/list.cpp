@@ -40,6 +40,17 @@ set<Commodity*> List::get_CommodityList_All() const
     }
     return new_set;
 }
+set<List*> List::get_Sublist_All() const
+{
+    set<List*> new_set=vec_sublist;
+    for(auto l: vec_sublist)
+    {
+        set<List*> temp=l->get_Sublist_All();
+        for(auto c: temp)
+            new_set.insert(c);
+    }
+    return new_set;
+}
 void List::deleteCommodity(Commodity *com)
 {
     if(vec_commodity.find(com)!=vec_commodity.end())

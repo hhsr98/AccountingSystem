@@ -64,6 +64,8 @@ public:
 	std::set<Commodity*> get_CommodityList_All() const;
 
 	std::set<List*>get_Sublist()const;
+
+	std::set<List*>get_Sublist_All() const;
 };
 
 #endif

@@ -11,6 +11,7 @@ AbstractProxy::state CommodityProxy::manipulate(std::string order, AbstractProxy
         if(temp=="-r") return AbstractProxy::go_back;//-r 返回上一级
         if(temp=="-x") return AbstractProxy::quit;//-x 退出系统
         if(temp=="-f") {show(); return AbstractProxy::done;}
+        if(temp=="-c") {new_proxy=getClassifyProxy(AbstractProxy::RootClassifyList);return AbstractProxy::new_proxy;}
         if(temp=="-e") //修改商品信息
         {
             std::string temp1,temp2;

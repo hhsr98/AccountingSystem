@@ -66,12 +66,24 @@ int main()
         aaa2.addCommodity(ss);
     }
 
-//ÒÔÏÂÎªÓÃ»§½»»¥²¿·Ö
+//ä»¥ä¸‹ä¸ºç”¨æˆ·äº¤äº’éƒ¨åˆ†
+    List aa9(nullptr),b(nullptr),c(nullptr),d(nullptr),e(nullptr);
+    aa9.setListName("a");b.setListName("b");
+    c.setListName("c");d.setListName("d");
+    e.setListName("e");
+    c.addSublist(&e);
+    c.addSublist(&d);
+    aa9.addSublist(&b);
+    aa9.addSublist(&c);
     std::cout<<std::endl<<std::endl;
     Commodity *comm=pp->back();
     ProxyManager manager;
-    AbstractProxy *prox=new ListProxy_Console(&aaa2);
-    manager.addProxy(prox);
+    AbstractProxy::RootClassifyList=&aa9;
+    //AbstractProxy *prox=new ListProxy_Console(&aaa2);
+    AbstractProxy *prox11=new CommodityProxy_Console(comm);
+    //AbstractProxy *prox=new ClassifyProxy_Console(&aa9,comm);
+    manager.addProxy(prox11);
+    //manager.addProxy(prox);
     std::string temp;
     ProxyManager::state re;
     while(1)
