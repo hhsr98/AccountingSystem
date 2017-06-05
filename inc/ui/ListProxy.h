@@ -1,5 +1,5 @@
 #ifndef __LISTPROXY_H
-#define __LISTPROXY)H
+#define __LISTPROXY_H
 
 #include "ui/AbstractProxy.h"
 #include "ui/CommodityProxy.h"

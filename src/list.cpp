@@ -1,6 +1,13 @@
 #include"../inc/list.h"
 using namespace std;
 
+List::List(const Filter *f,const List *faList,bool include_sublist):criteria(),vec_commodity(),vec_sublist()
+{
+    if(include_sublist) vec_commodity=faList->get_CommodityList_All();
+    else vec_commodity=faList->get_CommodityList();
+    setFilter(f);
+}
+
 SingleMoney List::Sum() const
 {
 	int i;
@@ -18,6 +25,18 @@ set<Commodity*> List::get_CommodityList ()const	{
 
 set<List*>List::get_Sublist()const {
 	return vec_sublist;
+}
+
+set<Commodity*> List::get_CommodityList_All() const
+{
+    set<Commodity*> new_set=vec_commodity;
+    for(auto l: vec_sublist)
+    {
+        set<Commodity*> temp=l->get_CommodityList_All();
+        for(auto c: temp)
+            new_set.insert(c);
+    }
+    return new_set;
 }
 void List::deleteCommodity(Commodity *com)
 {

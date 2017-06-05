@@ -19,6 +19,8 @@ private:
 public:
 	List(const Filter* f):criteria(f),vec_commodity(),vec_sublist(){}
 
+	List(const Filter *f,const List *faList,bool include_sublist=true);
+
 	std::string ListName() const
 	{return list_name;}
 
@@ -57,7 +59,9 @@ public:
 
 	SingleMoney Sum()const;
 
-	std::set<Commodity*> get_CommodityList ()const;
+	std::set<Commodity*> get_CommodityList() const;
+
+	std::set<Commodity*> get_CommodityList_All() const;
 
 	std::set<List*>get_Sublist()const;
 };
