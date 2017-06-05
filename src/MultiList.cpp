@@ -57,3 +57,19 @@ void MultiList::show_topay() {//输出如何转账的方案
 const map<vector<string>,double> MultiList::get_how_to_pay()const {
 	return how_to_pay;
 }
+
+const vector<PayingEntry*>MultiList::get_vec_entry()const {
+	return vec_entry;
+}
+
+const map<string,double>MultiList::getperson_topaycopy()const {
+	return person_topaycopy;
+}
+
+const std::string MultiList::get_name()const {
+	return List_name;
+}
+
+const int MultiList::get_num() const {
+	return num_entry;
+}

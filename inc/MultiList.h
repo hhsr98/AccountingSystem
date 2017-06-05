@@ -5,7 +5,6 @@
 #include<cstring>
 #include<map>
 #include"PayingEntry.h"
-using namespace std;
 class MultiList {
 private:
 	string List_name;
@@ -21,6 +20,10 @@ public:
 	void show_topay();//输出如何转账的方案
 	void set_topay();//设置person_topay，设置所有人的应付金额
 	const map<vector<string>,double> get_how_to_pay()const;
+	const vector<PayingEntry*>get_vec_entry()const;
+	const map<string,double>getperson_topaycopy()const;
+	const std::string get_name()const;
+	const int get_num()const;
 };
 
 #endif 
