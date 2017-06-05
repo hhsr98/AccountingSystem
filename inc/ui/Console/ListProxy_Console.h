@@ -3,6 +3,8 @@
 
 #include "ui/ListProxy.h"
 #include "ui/Console/CommodityProxy_Console.h"
+#include "ui/Console/FilterProxy_Console.h"
+
 class ListProxy_Console:public ListProxy
 {
     using ListProxy::_list;
@@ -14,6 +16,7 @@ class ListProxy_Console:public ListProxy
     {
         return new CommodityProxy_Console(com);
     }
+    FilterProxy* getFilterProxy(List *l);
 public:
     using ListProxy::ListProxy;
     void show();

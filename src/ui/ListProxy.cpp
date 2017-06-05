@@ -11,6 +11,7 @@ AbstractProxy::state ListProxy::manipulate(std::string order, AbstractProxy *&ne
         if(temp=="-r") return AbstractProxy::go_back;//-r 返回上一级
         if(temp=="-x") return AbstractProxy::quit;//-x 退出系统
         if(temp=="-f") {show(); return AbstractProxy::done;}
+        if(temp=="-d") {new_proxy=getFilterProxy(_list);return AbstractProxy::new_proxy;}
         if(temp=="-c")
         {
             int i;

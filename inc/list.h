@@ -30,7 +30,7 @@ public:
 	//添加商品至账单中，若符合Filter的条件则添加成功，返回true，添加失败则返回false
 	bool addCommodity(Commodity *com)
 	{
-	    if(criteria==nullptr|| criteria->isValid(com)) {vec_commodity.insert(com);return true;}
+	    if(criteria==nullptr|| criteria->isValid(com)) {vec_commodity.insert(com);com->regObserverList(this); return true;}
 	    else return false;
 	}
 

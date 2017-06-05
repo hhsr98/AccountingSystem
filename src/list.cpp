@@ -1,10 +1,12 @@
-#include"../inc/list.h"
+#include "list.h"
 using namespace std;
 
 List::List(const Filter *f,const List *faList,bool include_sublist):criteria(),vec_commodity(),vec_sublist()
 {
     if(include_sublist) vec_commodity=faList->get_CommodityList_All();
     else vec_commodity=faList->get_CommodityList();
+    for(auto com:vec_commodity)
+        com->regObserverList(this);
     setFilter(f);
 }
 
@@ -41,7 +43,10 @@ set<Commodity*> List::get_CommodityList_All() const
 void List::deleteCommodity(Commodity *com)
 {
     if(vec_commodity.find(com)!=vec_commodity.end())
+    {
+        com->delObserverList(this);
         vec_commodity.erase(com);
+    }
 }
 void List::setFilter(const Filter *f)
 {
@@ -54,6 +59,7 @@ void List::setFilter(const Filter *f)
     }
     for(const auto r:del)
     {
+        r->delObserverList(this);
         vec_commodity.erase(r);
     }
 }

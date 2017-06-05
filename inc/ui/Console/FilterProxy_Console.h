@@ -6,10 +6,7 @@
 
 class FilterProxy_Console :public FilterProxy
 {
-    ListProxy* getListProxy(List *l)
-    {
-        return new ListProxy_Console(l);
-    }
+    ListProxy* getListProxy(List *l);
 public:
     using FilterProxy::FilterProxy;
     void show();

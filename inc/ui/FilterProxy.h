@@ -4,7 +4,9 @@
 #include "ui/AbstractProxy.h"
 #include "ui/ListProxy.h"
 #include "Filter.h"
-#include <memory>
+
+class ListProxy;
+
 class FilterProxy:public AbstractProxy
 {
 protected:

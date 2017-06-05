@@ -1,4 +1,10 @@
 #include "ui/Console/FilterProxy_Console.h"
+#include "ui/Console/ListProxy_Console.h"
+
+ListProxy* FilterProxy_Console::getListProxy(List *l)
+{
+    return new ListProxy_Console(l);
+}
 void FilterProxy_Console::show()
 {
 

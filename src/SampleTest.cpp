@@ -39,9 +39,8 @@
 #include <Commodity.h>
 
 #include "ui/ProxyManager.h"
-#include "ui/Console/CommodityProxy_Console.h"
-#include "ui/Console/ListProxy_Console.h"
-#include "ui/Console/FilterProxy_Console.h"
+#include "ui/Console/Proxy_Console.h"
+
 SQLPP_ALIAS_PROVIDER(left);
 SQLPP_ALIAS_PROVIDER(pragma);
 SQLPP_ALIAS_PROVIDER(sub);
@@ -71,8 +70,8 @@ int main()
     std::cout<<std::endl<<std::endl;
     Commodity *comm=pp->back();
     ProxyManager manager;
-    AbstractProxy *LLL=new FilterProxy_Console(&aaa2);
-    manager.addProxy(LLL);
+    AbstractProxy *prox=new ListProxy_Console(&aaa2);
+    manager.addProxy(prox);
     std::string temp;
     ProxyManager::state re;
     while(1)
