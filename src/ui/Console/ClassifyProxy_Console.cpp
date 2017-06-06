@@ -23,4 +23,5 @@ void ClassifyProxy_Console::showManip()
 {
     std::cout<<"-r 返回上一级\t-x退出系统\t-f刷新\n";
     std::cout<<"-a <序号i> 将商品加入序号为i的类\n";
+    std::cout<<"-l <序号i> <名称> 在分类i下新增子分类\n";
 }

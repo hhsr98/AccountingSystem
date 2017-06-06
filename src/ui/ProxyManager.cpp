@@ -1,5 +1,10 @@
 #include "ui/ProxyManager.h"
-
+void ProxyManager::setRootProxy(AbstractProxy *r)
+{
+    root=r;
+    if(proxy_stack.empty()&&root!=nullptr)
+        addProxy(root);
+}
 void ProxyManager::addProxy(AbstractProxy *proxy)
 {
     if(!proxy_stack.empty()) proxy_stack.back()->unshow();
@@ -14,6 +19,7 @@ void ProxyManager::deleteProxy()
     {
         proxy_stack.back()->unshow();
         proxy_stack.pop_back();
+        if(proxy_stack.empty()&&root!=nullptr) proxy_stack.push_back(root);
         if(!proxy_stack.empty()) {proxy_stack.back()->show();proxy_stack.back()->showManip();}
     }
 

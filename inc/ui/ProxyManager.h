@@ -8,10 +8,13 @@ class ProxyManager
 {
     std::deque<AbstractProxy*> proxy_stack;
     int max_storing_proxy;
+    AbstractProxy *root;
     static const int least_storing_proxy=50;
 public:
-    ProxyManager():proxy_stack(),max_storing_proxy(){max_storing_proxy=least_storing_proxy;}
-    ProxyManager(int max_return): proxy_stack(),max_storing_proxy(max_return){}
+    ProxyManager():proxy_stack(),max_storing_proxy(),root(nullptr){max_storing_proxy=least_storing_proxy;}
+    ProxyManager(int max_return): proxy_stack(),max_storing_proxy(max_return),root(nullptr){}
+
+    void setRootProxy(AbstractProxy *r);
 
     //向栈中添加一Proxy并进行显示
     void addProxy(AbstractProxy *proxy);

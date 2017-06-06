@@ -77,13 +77,11 @@ int main()
     aa9.addSublist(&c);
     std::cout<<std::endl<<std::endl;
     Commodity *comm=pp->back();
-    ProxyManager manager;
+
     AbstractProxy::RootClassifyList=&aa9;
-    //AbstractProxy *prox=new ListProxy_Console(&aaa2);
-    AbstractProxy *prox11=new CommodityProxy_Console(comm);
-    //AbstractProxy *prox=new ClassifyProxy_Console(&aa9,comm);
-    manager.addProxy(prox11);
-    //manager.addProxy(prox);
+    RootProxy_Console root;
+    ProxyManager manager;
+    manager.setRootProxy(&root);
     std::string temp;
     ProxyManager::state re;
     while(1)
