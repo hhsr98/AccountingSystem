@@ -19,6 +19,8 @@ private:
 public:
 	List(const Filter* f):criteria(f),vec_commodity(),vec_sublist(){}
 
+	List(const Filter *f,const List *faList,bool include_sublist=true);
+
 	std::string ListName() const
 	{return list_name;}
 
@@ -28,7 +30,7 @@ public:
 	//添加商品至账单中，若符合Filter的条件则添加成功，返回true，添加失败则返回false
 	bool addCommodity(Commodity *com)
 	{
-	    if(criteria==nullptr|| criteria->isValid(com)) {vec_commodity.insert(com);return true;}
+	    if(criteria==nullptr|| criteria->isValid(com)) {vec_commodity.insert(com);com->regObserverList(this); return true;}
 	    else return false;
 	}
 
@@ -53,11 +55,17 @@ public:
 	//返回第i个商品，i从0起计数，若超出则返回nullptr
 	Commodity* getCommodity(int i);
 
+	List* getSubList(int i);
+
 	SingleMoney Sum()const;
 
-	std::set<Commodity*> get_CommodityList ()const;
+	std::set<Commodity*> get_CommodityList() const;
+
+	std::set<Commodity*> get_CommodityList_All() const;
 
 	std::set<List*>get_Sublist()const;
+
+	std::set<List*>get_Sublist_All() const;
 };
 
 #endif

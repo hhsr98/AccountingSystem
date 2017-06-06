@@ -1,5 +1,9 @@
 #include "ui/Console/CommodityProxy_Console.h"
-
+#include "ui/Console/ClassifyProxy_Console.h"
+ClassifyProxy* CommodityProxy_Console::getClassifyProxy(List *root_list)
+{
+    return new ClassifyProxy_Console(root_list,com);
+}
 void CommodityProxy_Console::show()
 {
     std::cout<<(*com);

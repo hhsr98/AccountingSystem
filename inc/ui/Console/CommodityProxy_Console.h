@@ -5,6 +5,7 @@
 class CommodityProxy_Console:public CommodityProxy
 {
     using CommodityProxy::com;
+    ClassifyProxy* getClassifyProxy(List *root_list);
 public:
     using CommodityProxy::CommodityProxy;
     void show();

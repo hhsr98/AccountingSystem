@@ -39,8 +39,8 @@
 #include <Commodity.h>
 
 #include "ui/ProxyManager.h"
-#include "ui/Console/CommodityProxy_Console.h"
-#include "ui/Console/ListProxy_Console.h"
+#include "ui/Console/Proxy_Console.h"
+
 SQLPP_ALIAS_PROVIDER(left);
 SQLPP_ALIAS_PROVIDER(pragma);
 SQLPP_ALIAS_PROVIDER(sub);
@@ -59,24 +59,31 @@ int main()
         std::cout<<(*ss)<<std::endl;
         //ss->setDate(ndate);
     }
-    //Filter *fil=new dateFilter(Date(2015,1,10,2),Date(2017,8,1,0));
-    Filter *fil=new AllFilter();
-    List aaa(fil);
+    Filter *fil1=new AllFilter();
+    List aaa2(fil1);
     for(auto ss:(*pp))
     {
-        aaa.addCommodity(ss);
-        //ss->setDate(ndate);
+        aaa2.addCommodity(ss);
     }
 
-//ÒÔÏÂÎªÓÃ»§½»»¥²¿·Ö
+//ä»¥ä¸‹ä¸ºç”¨æˆ·äº¤äº’éƒ¨åˆ†
+    List aa9(nullptr),b(nullptr),c(nullptr),d(nullptr),e(nullptr);
+    aa9.setListName("a");b.setListName("b");
+    c.setListName("c");d.setListName("d");
+    e.setListName("e");
+    c.addSublist(&e);
+    c.addSublist(&d);
+    aa9.addSublist(&b);
+    aa9.addSublist(&c);
     std::cout<<std::endl<<std::endl;
     Commodity *comm=pp->back();
     ProxyManager manager;
-    CommodityProxy_Console cc(comm);
-    manager.addProxy(&cc);
-    manager.addProxy(&cc);
-    ListProxy_Console LLL(&aaa);
-    manager.addProxy(&LLL);
+    AbstractProxy::RootClassifyList=&aa9;
+    //AbstractProxy *prox=new ListProxy_Console(&aaa2);
+    AbstractProxy *prox11=new CommodityProxy_Console(comm);
+    //AbstractProxy *prox=new ClassifyProxy_Console(&aa9,comm);
+    manager.addProxy(prox11);
+    //manager.addProxy(prox);
     std::string temp;
     ProxyManager::state re;
     while(1)

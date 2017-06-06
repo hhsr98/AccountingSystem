@@ -3,10 +3,12 @@
 
 
 #include<string>
+#include "list.h"
 
 class AbstractProxy
 {
 public:
+    static List* RootClassifyList;
 
     //显示被代理对象的内容
     virtual void show()=0;
