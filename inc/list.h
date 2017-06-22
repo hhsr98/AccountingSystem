@@ -1,3 +1,14 @@
+/*******************************************************
+名称：list.h
+作者：钱姿
+最后修改：2017-06-21
+内容描述：账单类头文件。账单为一系列满足相应条件的商品
+          的集合，同时还有若干子账单。账单对象的条件不
+          负责判断子账单中的商品。要实现层次化的条件筛
+          选应由用户通过对账单条件的构造来实现。账单对
+          象会负责销毁其指向的Filter对象链，故不要用同
+          一Filter对象构造不同的链并赋予不同的List对象。
+*******************************************************/
 #ifndef LIST_H
 #define LIST_H
 #include "Commodity.h"
@@ -13,7 +24,7 @@ class Commodity;
 class List {
 private:
     std::string list_name;
-    const Filter *criteria;
+    const Filter *criteria; //指针为空则会将任何商品都视为符合条件
 	std::set<Commodity*> vec_commodity;
 	std::set<List*> vec_sublist;
 public:

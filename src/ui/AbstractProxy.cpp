@@ -1,3 +1,9 @@
+/*******************************************************
+名称：AbstractProxy.cpp
+作者：黄松睿
+最后修改：2017-06-21
+内容描述：抽象代理类源文件。
+*******************************************************/
 #include "ui/AbstractProxy.h"
 #include <set>
 List* AbstractProxy::RootClassifyList=nullptr;

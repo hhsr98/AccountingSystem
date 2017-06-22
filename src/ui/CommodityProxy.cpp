@@ -1,7 +1,26 @@
+/*******************************************************
+名称：CommodityProxy.cpp
+作者：钱姿
+最后修改：2017-06-21
+内容描述：商品信息代理类源文件。
+*******************************************************/
 #include "ui/CommodityProxy.h"
 #include<stdio.h>
 #include<sstream>
 using std::istringstream;
+/*
+*order格式：
+*   -r  返回
+*   -x  退出整个系统
+*   -f  刷新显示内容
+*   -c  进行商品分类
+*   -e  修改商品内容
+*       -n <名称>
+*       -q <数量>
+*       -m <金额>
+*       -o <折扣>
+*       -d <日期：yyyymmddhh>
+*/
 AbstractProxy::state CommodityProxy::manipulate(std::string order, AbstractProxy *&new_proxy)
 {
     istringstream is(order);

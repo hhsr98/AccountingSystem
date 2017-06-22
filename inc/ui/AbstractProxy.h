@@ -1,3 +1,11 @@
+/*******************************************************
+名称：AbstractProxy.h
+作者：黄松睿
+最后修改：2017-06-21
+内容描述：抽象代理类头文件。代理类负责对各个对象的显示、
+          操作提示及操作，AbstractProxy为各种代理的抽象
+          接口类。
+*******************************************************/
 #ifndef __ABSTRACTPROXY_H
 #define __ABSTRACTPROXY_H
 
@@ -8,8 +16,10 @@
 class AbstractProxy
 {
 public:
-    static List* RootClassifyList;
-    static List* RootDateList;
+    static List* RootClassifyList;      //商品分类的根目录
+    static List* RootDateList;          //商品按日期查看的根目录
+
+    //将商品按一树形目录进行归类，若一个节点本身符合条件，无子节点或其全部子节点都不符合条件，则将商品归类于该节点。
     static bool AutoClassiy(Commodity *com,List *root);
 
     //显示被代理对象的内容

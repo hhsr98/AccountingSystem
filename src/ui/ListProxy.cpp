@@ -1,7 +1,22 @@
+/*******************************************************
+名称：ListProxy.cpp
+作者：钱姿
+最后修改：2017-06-21
+内容描述：账单代理类源文件。
+*******************************************************/
 #include "ui/ListProxy.h"
 #include<stdio.h>
 #include<sstream>
 using std::istringstream;
+/*
+*order格式：
+*   -r  返回
+*   -x  退出整个系统
+*   -f  刷新显示内容
+*   -d  进行商品筛选
+*   -c  <序号>    查看该序号的商品
+*   -l  <序号>    查看该序号的子账单
+*/
 AbstractProxy::state ListProxy::manipulate(std::string order, AbstractProxy *&new_proxy)
 {
     istringstream is(order);

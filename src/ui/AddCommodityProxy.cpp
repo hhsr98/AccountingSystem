@@ -1,3 +1,9 @@
+/*******************************************************
+名称：AddCommodityProxy.cpp
+作者：钱姿
+最后修改：2017-06-21
+内容描述：添加商品信息代理类源文件。
+*******************************************************/
 #include "ui/AddCommodityProxy.h"
 
 #include<sstream>
@@ -12,6 +18,19 @@ AddCommodityProxy::~AddCommodityProxy()
     if(!is_saved)
         delete com;
 }
+/*
+*order格式：
+*   -r  返回
+*   -x  退出整个系统
+*   -f  刷新显示内容
+*   -s  保存
+*   -e  修改商品内容
+*       -n <名称>
+*       -q <数量>
+*       -m <金额>
+*       -o <折扣>
+*       -d <日期：yyyymmddhh>
+*/
 AbstractProxy::state AddCommodityProxy::manipulate(std::string order, AbstractProxy *&new_proxy)
 {
     istringstream is(order);

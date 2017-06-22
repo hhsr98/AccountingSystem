@@ -1,3 +1,9 @@
+/*******************************************************
+名称：ClassifyProxy.cpp
+作者：钱姿
+最后修改：2017-06-21
+内容描述：商品分类代理类源文件。
+*******************************************************/
 #include "ui/ClassifyProxy.h"
 #include<sstream>
 #include<set>
@@ -19,6 +25,14 @@ void ClassifyProxy::getListNum()
         i++;
     }
 }
+/*
+*order格式：
+*   -r  返回
+*   -x  退出整个系统
+*   -f  刷新显示内容
+*   -a  <序号> 添加商品到该序号的分类下
+*   -l  <序号> <分类名> 在该序号的分类下新建一分类
+*/
 AbstractProxy::state ClassifyProxy::manipulate(std::string order, AbstractProxy *&new_proxy)
 {
     std::istringstream is(order);

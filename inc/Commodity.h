@@ -1,7 +1,7 @@
 /*******************************************************
 名称：Commodity.h
 作者：黄松睿
-最后修改：2017-06-21
+最后修改：2017-06-22
 内容描述：商品信息类的头文件。商品信息类保存商品的名称、
           单价、数量、计量单位、商家、用户评论等信息，提
           供一系列关于这些信息的操作。商品信息类与账单类
@@ -36,32 +36,22 @@ class Commodity
     Remark *pRemark;                //用户评论接口
     std::set<List*> regdit;         //观察者列表中包含该Commodity对象的所有List对象指针
 
+    //当商品信息发生更改，通知各观察者进行相应操作
     void inform_modified();
 public:
 
-    /*
-    *功能：构造器，对除_CommodityIDa外的所有成员进行默认初始化
-    *参数：
-    *   id=-1；商品信息类对象的编号，通常缺省，仅数据库接口应当对其赋值
-    */
+    //id通常为缺省，仅在数据库接口使用时赋值
     Commodity(int id=-1);
 
     ~Commodity();
 
-    /*
-    *功能：将一List对象添加进观察者列表中
-    *参数：
-    *   l：要添加的观察者
-    */
+    //注册一个List对象为观察者
     void regObserverList(List *l);
 
-    /*
-    *功能：将一List对象从观察者列表中删除，若其不存在于列表中，不执行任何操作
-    *参数：
-    *   l：要删除的观察者
-    */
+    //从观察者对象中删除一个List对象，若不在列表中，不执行任何操作
     void delObserverList(List *l);
 
+    //将对象状态设置为未更改，这样数据库接口在保存时不会对其操作
     void set_unmodified()
     {modified=false;}
 
@@ -71,6 +61,7 @@ public:
     int CommodityID() const
     {return _CommodityID;}
 
+    //该接口通常由数据库接口来调用
     void setCommodityID()
     {maxCommodityID++;_CommodityID=maxCommodityID;}
 
@@ -102,6 +93,7 @@ public:
     const SingleMoney UnitPrice() const
     {return _UnitPrice;}
 
+    //设置折扣，范围0-1，设置成功返回true，否则返回false
     bool setDiscount(double discount)
     {
         if(discount>=0&&discount<1)
@@ -112,9 +104,11 @@ public:
     double Discount() const
     {return _Discount;}
 
+    //设置单位，不判断量纲并且不对数量进行换算
     void setUnit(Unit &_unit)
     {modified=true;_Unit=_unit;}
 
+    //单位转换，仅在量纲相同时进行转换并返回true，否则转换失败，返回false
     bool convertToUnit(Unit &_unit)
     {
         if(_unit.getDimension()!=_Unit.getDimension())

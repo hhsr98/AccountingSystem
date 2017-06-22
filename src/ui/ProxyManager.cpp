@@ -1,3 +1,9 @@
+/*******************************************************
+名称：ProxyManager.cpp
+作者：黄松睿
+最后修改：2017-06-21
+内容描述：代理管理类源文件。
+*******************************************************/
 #include "ui/ProxyManager.h"
 void ProxyManager::setRootProxy(AbstractProxy *r)
 {

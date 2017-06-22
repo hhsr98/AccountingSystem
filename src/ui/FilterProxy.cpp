@@ -1,7 +1,24 @@
+/*******************************************************
+名称：FilterProxy.cpp
+作者：黄松睿
+最后修改：2017-06-21
+内容描述：商品筛选代理类源文件。
+*******************************************************/
 #include "ui/FilterProxy.h"
 #include<stdio.h>
 #include<sstream>
 using std::istringstream;
+/*
+*order格式：
+*   -r  返回
+*   -x  退出整个系统
+*   -f  刷新显示内容
+*   -c  根据已有筛选条件生产新账单
+*   -a  添加筛选条件
+*       -d  <开始日期：yyyymmddhh> <截止日期：yyyymmddhh>
+*       -u  <单价下限> <单价上限> <币种>
+*       -t  <总结下限> <总价上限> <币种>
+*/
 AbstractProxy::state FilterProxy::manipulate(std::string order, AbstractProxy *&new_proxy)
 {
     istringstream is(order);
@@ -45,7 +62,7 @@ AbstractProxy::state FilterProxy::manipulate(std::string order, AbstractProxy *&
                 }
                 return AbstractProxy::fail;
             }
-            if(temp1=="-u")//输入格式为年月日时，例如2017070718 为2017年7月7日18点
+            if(temp1=="-u")
             {
                 if(is>>temp2>>temp3>>temp4)
                 {
@@ -54,7 +71,7 @@ AbstractProxy::state FilterProxy::manipulate(std::string order, AbstractProxy *&
                 }
                 return AbstractProxy::fail;
             }
-            if(temp1=="-t")//输入格式为年月日时，例如2017070718 为2017年7月7日18点
+            if(temp1=="-t")
             {
                 if(is>>temp2>>temp3>>temp4)
                 {

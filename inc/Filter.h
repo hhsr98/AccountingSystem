@@ -1,3 +1,13 @@
+/*******************************************************
+名称：Filter.h
+作者：钱姿
+最后修改：2017-06-21
+内容描述：筛选条件类头文件。筛选条件体系采用责任链模式
+          实现。Filter类为其抽象接口类。Filter对象会销
+          毁其指向的下一级Filter对象，故不要将同一Filter
+          对象用于构造多个链。本文件下还定义了子类用于
+          筛选购买日期、购买单价和总价。
+*******************************************************/
 #ifndef __FILTER_H
 #define __FILTER_H
 #include "date.h"
@@ -23,6 +33,7 @@ public:
 	}
 };
 
+//对所有商品都判断符合条件
 class AllFilter:public Filter
 {
     bool isSelfValid(const Commodity *com) const
@@ -31,6 +42,7 @@ class AllFilter:public Filter
     }
 };
 
+//筛选购买日期
 class dateFilter:public Filter {
 private:
 	Date start_time,end_time;
@@ -55,6 +67,7 @@ public:
 	}
 };
 
+//筛选单价
 class priceFilter:public Filter {
 private:
 	SingleMoney start_price,end_price;
@@ -76,6 +89,7 @@ public:
 	}
 };
 
+//筛选总价
 class TotalPriceFilter:public Filter
 {
 	SingleMoney start_price,end_price;
@@ -97,14 +111,4 @@ public:
 	}
 };
 
-/*
-class placeFilter:public Filter {
-private:
-	Shop* ptr_shop;
-public:
-	placeFilter(Shop* pshop);
-	//bool doFilter(Commodity* com);
-	const Shop* get_shop()const;
-};
-*/
 #endif

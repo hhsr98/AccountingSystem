@@ -1,3 +1,10 @@
+/*******************************************************
+名称：ProxyManager.h
+作者：黄松睿
+最后修改：2017-06-21
+内容描述：代理管理类头文件。该类的对象负责管理各代理对
+          象间的切换行为。
+*******************************************************/
 #ifndef __PROXYMANAGER_H
 #define __PROXYMANAGER_H
 
@@ -7,8 +14,8 @@
 class ProxyManager
 {
     std::deque<AbstractProxy*> proxy_stack;
-    int max_storing_proxy;
-    AbstractProxy *root;
+    int max_storing_proxy;      //栈的最大容量
+    AbstractProxy *root;        //指向根代理对象
     static const int least_storing_proxy=50;
 public:
     ProxyManager():proxy_stack(),max_storing_proxy(),root(nullptr){max_storing_proxy=least_storing_proxy;}
