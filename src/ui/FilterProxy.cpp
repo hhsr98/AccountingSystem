@@ -18,7 +18,7 @@ AbstractProxy::state FilterProxy::manipulate(std::string order, AbstractProxy *&
         }
         if(temp=="-a")
         {
-            std::string temp1,temp2,temp3;
+            std::string temp1,temp2,temp3,temp4;
             is>>temp1;
             if(temp1=="-d")//输入格式为年月日时，例如2017070718 为2017年7月7日18点
             {
@@ -41,6 +41,24 @@ AbstractProxy::state FilterProxy::manipulate(std::string order, AbstractProxy *&
                     y=std::stoi(y1);m=std::stoi(m1);d=std::stoi(d1);h=std::stoi(h1);
                     Date date2(y,m,d,h);
                     aFilter=new dateFilter(date1,date2,aFilter);
+                    return AbstractProxy::done;
+                }
+                return AbstractProxy::fail;
+            }
+            if(temp1=="-u")//输入格式为年月日时，例如2017070718 为2017年7月7日18点
+            {
+                if(is>>temp2>>temp3>>temp4)
+                {
+                    aFilter=new priceFilter(std::stoi(temp2),std::stoi(temp3),temp4,aFilter);
+                    return AbstractProxy::done;
+                }
+                return AbstractProxy::fail;
+            }
+            if(temp1=="-t")//输入格式为年月日时，例如2017070718 为2017年7月7日18点
+            {
+                if(is>>temp2>>temp3>>temp4)
+                {
+                    aFilter=new TotalPriceFilter(std::stoi(temp2),std::stoi(temp3),temp4,aFilter);
                     return AbstractProxy::done;
                 }
                 return AbstractProxy::fail;

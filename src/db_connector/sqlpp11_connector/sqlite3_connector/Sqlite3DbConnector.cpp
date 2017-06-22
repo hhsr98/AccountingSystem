@@ -7,6 +7,7 @@ namespace db_connector
         {
             using std::vector;
             using std::map;
+
             DbConnector::DbConnector(char *db_path):config(),db(nullptr),CommodityMap(),ShopMap(),RemarkMap()
             {
                 config.path_to_database=db_path;
@@ -14,7 +15,10 @@ namespace db_connector
                 config.debug=false;
                 db=new sql::connection(config);
             }
+            List* DbConnector::getRootClassifyList()
+            {
 
+            }
             vector<Commodity*>* DbConnector::selectCommodityAll()
             {
                 vector<Commodity*>* ivec=new vector<Commodity*>();

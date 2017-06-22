@@ -12,6 +12,8 @@ namespace db_connector
     class AbstractDbConnector
     {
     public:
+        virtual List* getRootClassifyList()=0;
+
         virtual std::vector<Commodity*>* selectCommodityAll()=0;
         virtual std::vector<Commodity*>* selectCommodity(Filter* criteria)=0;
 

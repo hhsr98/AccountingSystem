@@ -10,15 +10,23 @@
 class User
 {
 protected:
-	vector<Commodity*> vec_Commodity;
+	vector<Commodity*>* vec_Commodity;
 	vector<List*> vec_List;
 	vector<PayingEntry*> vec_PayingEntry;
 	vector<MultiList*> Multilist;
 	Filter* filter;
 public:
+    void showAllVector()
+    {
+
+    }
+    void addCommVector(vector<Commodity*>* p)
+    {
+        vec_Commodity=p;
+    }
 	void addCommodity()
 	{
-		Commodity* commodity = new Commodity(0);
+		Commodity* commodity = new Commodity();
 
 		cout << "商品名:";
 		std::string commodity_name;
@@ -54,12 +62,12 @@ public:
 		Shop* shop = new Shop(shop_name);
 		commodity->setShop(shop);
 
-		vec_Commodity.push_back(commodity);
+		vec_Commodity->push_back(commodity);
 	}
 
 	const vector<Commodity*> getCommodity() const
 	{
-		return vec_Commodity;
+		return *vec_Commodity;
 	}
 
 	void setFilter()
@@ -83,7 +91,7 @@ public:
 		int num;
 		cout << "人数:";
 		cin >> num;
-		PayingEntry* paying_entry=new PayingEntry(vec_Commodity[i], num, false);
+		PayingEntry* paying_entry=new PayingEntry((*vec_Commodity)[i], num, false);
 		vec_PayingEntry.push_back(paying_entry);
 	}
 
@@ -92,9 +100,9 @@ public:
 		string list_name;
 		cout << "账单名称:";
 		cin >> list_name;
-		MultiList* multilist = new MultiList(list_name);
-		for (int i = 0; i < vec_PayingEntry.size(); i++)
-			multilist->add_entry(vec_PayingEntry[i]);
+		//MultiList* multilist = new MultiList(list_name);
+		//for (int i = 0; i < vec_PayingEntry.size(); i++)
+			//multilist->add_entry(vec_PayingEntry[i]);
 	}
 
 	void show(string type, int i)
@@ -102,7 +110,16 @@ public:
 		DisplayImp* display = new CmdImp;
 		if (type == "commodity")
 		{
-			display->show(vec_Commodity[i]);
+		    if(i==-1)
+            {
+                for(auto r: *vec_Commodity)
+                    display->show(r);
+            }
+            else
+            {
+                display->show((*vec_Commodity)[i]);
+            }
+
 		}
 
 		else if (type == "list")
@@ -119,7 +136,7 @@ public:
 		{
 
 		}
-	}	
+	}
 };
 
 #endif

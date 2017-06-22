@@ -5,6 +5,7 @@
 
 class RootProxy_Console : public RootProxy
 {
+    AddCommodityProxy* getAddCommodityProxy();
     ListProxy* getListProxy(List *l);
 public:
     using RootProxy::RootProxy;

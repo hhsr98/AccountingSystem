@@ -52,11 +52,25 @@ int main()
     ExchangeRate ee;
     db_connector::AbstractDbConnector *a=new db_connector::sqlpp11::sqlite3::DbConnector("DataBase.db");
     auto pp=a->selectCommodityAll();
-    pp=a->selectCommodityAll();
-    Date ndate(2017,8,9,23);
+    List *root_date=new List(new AllFilter);
+    for(int i=2013;i<=2017;i++)
+    {
+        Date d(i,1,1,0),d2(i,12,31,23);
+        List* l=new List(new dateFilter(d,d2));
+        l->setListName(std::to_string(i));
+        root_date->addSublist(l);
+        for(int j=1;j<=12;j++)
+        {
+            Date y(i,j,1,0),y2(i,j,31,0);
+            List *ll=new List(new dateFilter(y,y2));
+            ll->setListName(std::to_string(i)+"."+std::to_string(j));
+            l->addSublist(ll);
+        }
+    }
     for(auto ss:(*pp))
     {
         std::cout<<(*ss)<<std::endl;
+        AbstractProxy::AutoClassiy(ss,root_date);
         //ss->setDate(ndate);
     }
     Filter *fil1=new AllFilter();
@@ -68,9 +82,9 @@ int main()
 
 //以下为用户交互部分
     List aa9(nullptr),b(nullptr),c(nullptr),d(nullptr),e(nullptr);
-    aa9.setListName("a");b.setListName("b");
-    c.setListName("c");d.setListName("d");
-    e.setListName("e");
+    aa9.setListName("fruit");b.setListName("apple");
+    c.setListName("banana");d.setListName("imported banana");
+    e.setListName("home-grown banana");
     c.addSublist(&e);
     c.addSublist(&d);
     aa9.addSublist(&b);
@@ -79,6 +93,7 @@ int main()
     Commodity *comm=pp->back();
 
     AbstractProxy::RootClassifyList=&aa9;
+    AbstractProxy::RootDateList=root_date;
     RootProxy_Console root;
     ProxyManager manager;
     manager.setRootProxy(&root);
@@ -92,7 +107,12 @@ int main()
         if(re==ProxyManager::success) std::cout<<"successfully done\n";
         else if(re==ProxyManager::fail) std::cout<<"fail\n";
     }
-    a->saveCommodity(comm);
+
+    std::set<Commodity*> save=AbstractProxy::RootDateList->get_CommodityList_All();
+    for(auto cc: save)
+    {
+        a->saveCommodity(cc);
+    }
   /*sql::connection db(config);
   db.execute(R"(CREATE TABLE tab_sample (
 		alpha INTEGER PRIMARY KEY,

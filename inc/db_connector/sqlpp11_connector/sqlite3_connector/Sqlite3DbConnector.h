@@ -8,8 +8,9 @@
 #include <sqlpp11/sqlpp11.h>
 #include <sqlite3.h>
 #include <vector>
-
 #include <db_connector/sqlpp11_connector/TabCommodity.h>
+#include <db_connector/sqlpp11_connector/TabClassifyList.h>
+#include <db_connector/sqlpp11_connector/TabClassifyList_rel.h>
 
 namespace db_connector
 {
@@ -19,6 +20,8 @@ namespace db_connector
         {
             namespace sql = sqlpp::sqlite3;
             using sqlpp11_connector::TabCommodity;
+            using sqlpp11_connector::TabClassifyListRel;
+            using sqlpp11_connector::TabClassifyList;
             class DbConnector : public AbstractDbConnector
             {
 
@@ -28,13 +31,19 @@ namespace db_connector
                 std::map<int,Commodity*> CommodityMap;
                 std::map<int,Shop*> ShopMap;
                 std::map<int,Remark*> RemarkMap;
+                std::map<int,List*> ClassifyListMap;
 
                 const decltype(TabCommodity{}) tab_commodity=TabCommodity{};
+                const decltype(TabClassifyList{}) tab_classify_list=TabClassifyList{};
+                const decltype(TabClassifyListRel{}) tab_classify_list_rel=TabClassifyListRel{};
+
                 Shop* selectShop(int ShopID);
                 Remark* selectRemark(int RemarkID);
                 Commodity* selectCommodity(int CommodityID);
             public:
                 DbConnector(char *db_path);
+
+                List* getRootClassifyList();
 
                 std::vector<Commodity*>* selectCommodityAll();
                 std::vector<Commodity*>* selectCommodity(Filter *criteria);

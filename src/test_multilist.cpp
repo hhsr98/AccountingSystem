@@ -1,4 +1,4 @@
-/*#include<iostream>
+#include<iostream>
 #include<map>
 #include<cstring>
 #include "../inc/Commodity.h"
@@ -6,7 +6,7 @@
 #include"../inc/PayingEntry.h"
 #include"../inc/MultiList.h"
 using namespace std;
-
+#ifndef DEBUG1
 int main() {
 	//×Ô¶¯¼ÆËãrate
 	Commodity com;
@@ -49,4 +49,5 @@ int main() {
 
 	system("pause");
 	return 0;
-}*/
+}
+#endif // DEBUG1

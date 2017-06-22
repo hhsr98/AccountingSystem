@@ -9,6 +9,8 @@ class AbstractProxy
 {
 public:
     static List* RootClassifyList;
+    static List* RootDateList;
+    static bool AutoClassiy(Commodity *com,List *root);
 
     //显示被代理对象的内容
     virtual void show()=0;

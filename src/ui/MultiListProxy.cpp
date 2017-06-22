@@ -23,11 +23,11 @@ AbstractProxy::state MultiListProxy::manipulate(std::string order, AbstractProxy
         }
 		if(temp=="-s")//-s 解决方案
 		{
-			map<vector<string>,double> to_pay=_list->get_how_to_pay();
+			std::map<std::vector<std::string>,double> to_pay=_list->get_how_to_pay();
 			if(to_pay.size()!=0)
 			{
-			map<vector<string>,double>::iterator iter;
-			for(iter=to_pay.begin();iter!=to_pay.end();iter++) 
+			std::map<std::vector<std::string>,double>::iterator iter;
+			for(iter=to_pay.begin();iter!=to_pay.end();iter++)
 			{
 				if(iter->second>0)
 					cout<<iter->first[0]<<"支付给"<<iter->first[1]<<iter->second<<endl;
@@ -36,22 +36,22 @@ AbstractProxy::state MultiListProxy::manipulate(std::string order, AbstractProxy
 			}
 			return AbstractProxy::done;
 			}
-			else 
+			else
 				return AbstractProxy::fail;
 		}
 		if(temp=="-p")//-p 查询需支付多少或者被支付多少
 		{
-			string name;
+			std::string name;
 			is>>name;
-			map<string,double> to_pay=_list->getperson_topaycopy();
+			std::map<std::string,double> to_pay=_list->getperson_topaycopy();
 			if(to_pay.size()!=0)
 			{
 			if(to_pay[name]<0)
-				cout<<name<<"需要被支付"<<to_pay[name]<<endl;
+				std::cout<<name<<"需要被支付"<<to_pay[name]<<std::endl;
 			if(to_pay[name]>0)
-				cout<<name<<"需要支付"<<to_pay[name]<<endl;
+				std::cout<<name<<"需要支付"<<to_pay[name]<<std::endl;
 			else
-				cout<<name<<"收支平衡"<<endl;
+				std::cout<<name<<"收支平衡"<<std::endl;
 			return AbstractProxy::done;
 			}
 			else return AbstractProxy::fail;
