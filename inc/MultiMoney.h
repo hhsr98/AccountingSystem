@@ -1,13 +1,6 @@
-/********************************
-名称：MultiMoney.h
-作者：尹一帆
-时间：2017-06-22
-描述：包含很多单币种货币的多币种货币类
-版权：自行完成
-*********************************/
 #ifndef MULTIMONEY_H
 #define MULTIMONEY_H
-#include"../inc/SingleMoney.h"
+#include"SingleMoney.h"
 #include<iostream>
 const int N=200;
 
@@ -18,11 +11,15 @@ class MultiMoney
 public:
 	MultiMoney();//构造；
 
+	//SingleMoney converseSingleMoney();
+
 	void converseSingleMoney(std::string type);//所有币种转化为指定单币种；
 
 	void show();//展示输出；
 
-	MultiMoney& operator+(SingleMoney& m);//重载加法；
+	MultiMoney& operator+(SingleMoney& m);//添加一项；
+
+	//MultiMoney operator-(MultiMoney& m);
 
 	MultiMoney& operator*(double x);//右乘；
 
