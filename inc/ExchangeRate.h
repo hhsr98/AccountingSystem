@@ -1,4 +1,10 @@
-//使用SingleMoney前先构建一个公用的ExchangeRate类，该类的汇率、货币、总套数、指定某套汇率均为static；
+/************************************
+名称：EXchangeRate.h
+作者：尹一帆
+时间：2017-06-22
+描述：一个汇率类，包含构造默认汇率、自行添加汇率等操作
+版权：自行完成
+*************************************/
 #ifndef CURRENCY_H
 #define CURRENCY_H
 
@@ -8,22 +14,22 @@ const int _N=200;
 
 class ExchangeRate
 {
-	friend class SingleMoney;
-	static double* Rate[_N];
-	static std::string* CurrencyType[_N];
-	static int num;//汇率套数；
+	friend class SingleMoney;//以便SingleMoney使用汇率；
+	static double* Rate[_N];//存放汇率的数组；
+	static std::string* CurrencyType[_N];//存放币种的数组；
+	static int num;//总汇率套数；
 	static int choice;//选择的汇率套数；
 public:
 
-	ExchangeRate();//初始构造；
+	ExchangeRate();//初始默认构造；
 
-	void addExchangeRate();//输入一套新的汇率；
+	void addExchangeRate();//自行输入一套新的汇率；
 
-	void deleteExchangeRate(int i);//删除某套汇率；
+	void deleteExchangeRate(int i);//删除编号为i的一套汇率；
 
-	void resetExchangeRate(int i,int j);//重设第i套汇率的第i项；
+	void resetExchangeRate(int i,int j);//重设第i套汇率的第j项；
 
-	void resetExchangeRate(int i, std::string s);
+	void resetExchangeRate(int i, std::string s);//重设第i套汇率中的s币种；
 
 	void addExchangeRate(int i);//在第i套汇率中新添一项；
 

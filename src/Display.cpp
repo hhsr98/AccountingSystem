@@ -1,3 +1,10 @@
+/*******************************
+名称：Display.cpp
+作者：尹一帆
+时间：2017-06-22
+描述：Display.h的实现文件
+版权：自行完成
+********************************/
 #include"../inc/Display.h"
 using namespace std;
 
@@ -13,6 +20,15 @@ void CmdImp::show(Commodity* m)
 	delete temp;
 }
 
+/*
+*功能：在cmd下显示输出账单中的商品信息及子账单，并支持子账单的折叠与打开操作；
+*参数：
+*	list：一个const List的指针
+*返回值：
+*	无
+*算法：
+*	无
+*/
 void CmdImp::show(const List* list)
 {
 	int i = 0;
@@ -38,10 +54,9 @@ void CmdImp::show(const List* list)
 		char opr;
 		cout << "请输入要查看的子账单编号：";
 		std::cin >> opr;
-		while (int(opr) - '0' <= list->get_Sublist().size() && opr > '0')
+		while (int(opr) - '0' <= list->get_Sublist().size() && opr > '0')//判断输入是否合法；
 		{
 			operate.push_back(opr);
-			//cout << "Test:" << operate.size() << endl;
 			for (int i = 0; i < list->get_Sublist().size();i++)
 			{
 				int num = 0;//操作计数;
@@ -52,7 +67,6 @@ void CmdImp::show(const List* list)
 						num++;
 					}
 				}
-				//cout << "num:" << num << endl;
 				if (num % 2)//对同一子账单操作奇数次则显示它;
 				{
 					show(list->get_Sublist()[i]);
@@ -74,7 +88,15 @@ void CmdImp::show(List* list)
 	delete temp;
 }
 
-
+/*
+*功能：展示输出一系列母账单，并支持各个母账单的子账单的查看与折叠；
+*参数：
+*	list：一个List指针的vector
+*返回值：
+*	无
+*算法：
+*	无
+*/
 void CmdImp::display(vector<List*> list)
 {
 	for (int k = 0; k != list.size(); k++)
@@ -101,7 +123,7 @@ void CmdImp::display(vector<List*> list)
 	cout << "请输入要查看子账单的母账单序号:";
 	int n = 0;
 	cin >> n;
-	while (n > 0 && n <= list.size())
+	while (n > 0 && n <= list.size())//判断输入是否合法；
 	{
 		show(list[n - 1]);
 		cout << "请输入要查看子账单的母账单序号:";
