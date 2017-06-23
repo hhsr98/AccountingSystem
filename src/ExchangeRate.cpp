@@ -1,4 +1,4 @@
-#include"../inc/ExchangeRate.h"
+ï»¿#include"../inc/ExchangeRate.h"
 using namespace std;
 ExchangeRate::ExchangeRate()
 {
@@ -23,14 +23,14 @@ void ExchangeRate::addExchangeRate()
 		CurrencyType[num][i] = "0";
 	}
 	int n = 0;
-	cout << "ÇëÊä»õ±Ò1:";
+	cout << "è¯·è¾“è´§å¸1:";
 	cin >> CurrencyType[num][n];
 	while (CurrencyType[num][n] != "0")
 	{
-		cout << "ÇëÊäÈë»ãÂÊ" << n + 1 << ":";
+		cout << "è¯·è¾“å…¥æ±‡çŽ‡" << n + 1 << ":";
 		cin >> Rate[num][n];
 		n++;
-		cout << "ÇëÊäÈë»õ±Ò" << n + 1 << ":";
+		cout << "è¯·è¾“å…¥è´§å¸" << n + 1 << ":";
 		cin >> CurrencyType[num][n];
 	}
 	if (CurrencyType[num][0] == "0")
@@ -71,9 +71,9 @@ void ExchangeRate::deleteExchangeRate(int i)
 
 void ExchangeRate::resetExchangeRate(int i,int j)
 {
-	cout << "ÇëÖØÐÂÊäÈë»õ±Ò" << j << ":";
+	cout << "è¯·é‡æ–°è¾“å…¥è´§å¸" << j << ":";
 	cin >> CurrencyType[i][j-1];
-	cout << "ÇëÖØÐÂÊäÈë»ãÂÊ" << j << ":";
+	cout << "è¯·é‡æ–°è¾“å…¥æ±‡çŽ‡" << j << ":";
 	cin >> Rate[i][j - 1];
 }
 
@@ -83,9 +83,9 @@ void ExchangeRate::resetExchangeRate(int i, string s)
 	{
 		if (CurrencyType[i][j] == s)
 		{
-			cout << "ÇëÖØÐÂÊäÈë»õ±Ò" << j+1 << ":";
+			cout << "è¯·é‡æ–°è¾“å…¥è´§å¸" << j+1 << ":";
 			cin >> CurrencyType[i][j];
-			cout << "ÇëÖØÐÂÊäÈë»ãÂÊ" << j+1 << ":";
+			cout << "è¯·é‡æ–°è¾“å…¥æ±‡çŽ‡" << j+1 << ":";
 			cin >> Rate[i][j];
 			return;
 		}
@@ -98,9 +98,9 @@ void ExchangeRate::addExchangeRate(int i)
 	{
 		if (Rate[i][j] == 0)
 		{
-			cout << "ÇëÊäÈë»õ±Ò" << j + 1 << ":";
+			cout << "è¯·è¾“å…¥è´§å¸" << j + 1 << ":";
 			cin >> CurrencyType[i][j];
-			cout << "ÇëÊäÈë»ãÂÊ" << j + 1 << ":";
+			cout << "è¯·è¾“å…¥æ±‡çŽ‡" << j + 1 << ":";
 			cin >> Rate[i][j];
 			return;
 		}
@@ -111,7 +111,7 @@ void ExchangeRate::showExchangeRate(int i)
 {
 	if (i <= 0 || i > num)
 	{
-		cout << "»ãÂÊ·ÃÎÊ²Ù×÷³ö´í£¡" << endl;
+		cout << "æ±‡çŽ‡è®¿é—®æ“ä½œå‡ºé”™ï¼" << endl;
 		return;
 	}
 	for (int j = 0; j < _N; j++)
@@ -124,7 +124,7 @@ void ExchangeRate::showExchangeRate(int i)
 
 void ExchangeRate::showExchangeRate()
 {
-	cout << "Ò»¹²ÓÐ" << num << "Ì×»ãÂÊ" << endl;
+	cout << "ä¸€å…±æœ‰" << num << "å¥—æ±‡çŽ‡" << endl;
 }
 
 ExchangeRate::~ExchangeRate()

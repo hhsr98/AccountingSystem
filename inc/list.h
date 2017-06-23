@@ -1,12 +1,23 @@
+ï»¿/*****************************************************
+
+ åç§°ï¼šlist.h
+
+ ä½œè€…ï¼šé’±å§¿
+
+ å†…å®¹æè¿°ï¼šå®šä¹‰listç±»ï¼Œè¯¥ç±»æ˜¯è´¦å•ç±»ï¼Œæ˜¾ç¤ºå•†å“ä¿¡æ¯
+
+ ç‰ˆæƒï¼šè¿™æ˜¯æˆ‘ä»¬è‡ªè¡Œå®Œæˆçš„ç¨‹åºï¼Œæ²¡æœ‰ä½¿ç”¨å…¶ä½™æ¥æºä»£ç 
+
+ *****************************************************/
 #ifndef LIST_H
 #define LIST_H
 #include "Commodity.h"
 #include "MultiMoney.h"
 #include "Filter.h"
 #include <cstring>
-#include<iostream>
-#include<set>
-#include<vector>
+#include <iostream>
+#include <set>
+#include <vector>
 
 class Filter;
 class Commodity;
@@ -19,53 +30,45 @@ private:
 public:
 	List(const Filter* f):criteria(f),vec_commodity(),vec_sublist(){}
 
-	List(const Filter *f,const List *faList,bool include_sublist=true);
-
 	std::string ListName() const
 	{return list_name;}
 
 	void setListName(std::string name)
 	{list_name=name;}
 
-	//Ìí¼ÓÉÌÆ·ÖÁÕËµ¥ÖĞ£¬Èô·ûºÏFilterµÄÌõ¼şÔòÌí¼Ó³É¹¦£¬·µ»Øtrue£¬Ìí¼ÓÊ§°ÜÔò·µ»Øfalse
+	//æ·»åŠ å•†å“è‡³è´¦å•ä¸­ï¼Œè‹¥ç¬¦åˆFilterçš„æ¡ä»¶åˆ™æ·»åŠ æˆåŠŸï¼Œè¿”å›trueï¼Œæ·»åŠ å¤±è´¥åˆ™è¿”å›false
 	bool addCommodity(Commodity *com)
 	{
-	    if(criteria==nullptr|| criteria->isValid(com)) {vec_commodity.insert(com);com->regObserverList(this); return true;}
+	    if(criteria==nullptr|| criteria->isValid(com)) {vec_commodity.insert(com);return true;}
 	    else return false;
 	}
 
-	//ÈôÉÌÆ·ÔÚÕËµ¥ÖĞ£¬É¾³ıÉÌÆ·£»Èô²»ÔÚ£¬²»Ö´ĞĞÈÎºÎ²Ù×÷
+	//è‹¥å•†å“åœ¨è´¦å•ä¸­ï¼Œåˆ é™¤å•†å“ï¼›è‹¥ä¸åœ¨ï¼Œä¸æ‰§è¡Œä»»ä½•æ“ä½œ
 	void deleteCommodity(Commodity *com);
 
-	//¼ì²éÉÌÆ·ÊÇ·ñ·ûºÏÕËµ¥µÄFilterµÄÒªÇó£¬ÊÇ·µ»Øtrue£¬²»ÊÇ·µ»Øfalse
+	//æ£€æŸ¥å•†å“æ˜¯å¦ç¬¦åˆè´¦å•çš„Filterçš„è¦æ±‚ï¼Œæ˜¯è¿”å›trueï¼Œä¸æ˜¯è¿”å›false
 	bool isValidCommodity(Commodity *com) const
 	{return (criteria==nullptr|| criteria->isValid(com));}
 
-	//ÉèÖÃFilter²¢ÖØĞÂ¼ì²éËùÓĞÉÌÆ·
+	//è®¾ç½®Filterå¹¶é‡æ–°æ£€æŸ¥æ‰€æœ‰å•†å“
 	void setFilter(const Filter *f);
 
-	//·µ»ØFilterÖ¸Õë£¬constÀàĞÍ·ÀÖ¹¶ÔfilterµÄÒâÍâ¸ü¸Ä
+	//è¿”å›FilteræŒ‡é’ˆï¼Œconstç±»å‹é˜²æ­¢å¯¹filterçš„æ„å¤–æ›´æ”¹
 	const Filter* getFilter() const
 	{return criteria;}
 
-	//Ôö¼Ó×ÓÕËµ¥£¬¸¸ÕËµ¥²¢²»¸ºÔğ×ÓÕËµ¥µÄ¼ì²é
+	//å¢åŠ å­è´¦å•ï¼Œçˆ¶è´¦å•å¹¶ä¸è´Ÿè´£å­è´¦å•çš„æ£€æŸ¥
 	void addSublist(List *sub)
 	{vec_sublist.insert(sub);}
 
-	//·µ»ØµÚi¸öÉÌÆ·£¬i´Ó0Æğ¼ÆÊı£¬Èô³¬³öÔò·µ»Ønullptr
+	//è¿”å›ç¬¬iä¸ªå•†å“ï¼Œiä»0èµ·è®¡æ•°ï¼Œè‹¥è¶…å‡ºåˆ™è¿”å›nullptr
 	Commodity* getCommodity(int i);
-
-	List* getSubList(int i);
 
 	SingleMoney Sum()const;
 
-	std::set<Commodity*> get_CommodityList() const;
-
-	std::set<Commodity*> get_CommodityList_All() const;
+	std::set<Commodity*> get_CommodityList ()const;
 
 	std::set<List*>get_Sublist()const;
-
-	std::set<List*>get_Sublist_All() const;
 };
 
 #endif

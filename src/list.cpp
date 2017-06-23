@@ -1,15 +1,18 @@
-#include "list.h"
+/*****************************************************
+
+ 名称：list.cpp
+
+ 作者：钱姿
+
+ 内容描述：实现账单
+
+ 版权：这是我们自行完成的程序，没有使用其余来源代码
+
+ *****************************************************/
+#include"../inc/list.h"
 using namespace std;
 
-List::List(const Filter *f,const List *faList,bool include_sublist):criteria(),vec_commodity(),vec_sublist()
-{
-    if(include_sublist) vec_commodity=faList->get_CommodityList_All();
-    else vec_commodity=faList->get_CommodityList();
-    for(auto com:vec_commodity)
-        com->regObserverList(this);
-    setFilter(f);
-}
-
+//求和
 SingleMoney List::Sum() const
 {
 	int i;
@@ -29,36 +32,14 @@ set<List*>List::get_Sublist()const {
 	return vec_sublist;
 }
 
-set<Commodity*> List::get_CommodityList_All() const
-{
-    set<Commodity*> new_set=vec_commodity;
-    for(auto l: vec_sublist)
-    {
-        set<Commodity*> temp=l->get_CommodityList_All();
-        for(auto c: temp)
-            new_set.insert(c);
-    }
-    return new_set;
-}
-set<List*> List::get_Sublist_All() const
-{
-    set<List*> new_set=vec_sublist;
-    for(auto l: vec_sublist)
-    {
-        set<List*> temp=l->get_Sublist_All();
-        for(auto c: temp)
-            new_set.insert(c);
-    }
-    return new_set;
-}
+//删除商品
 void List::deleteCommodity(Commodity *com)
 {
     if(vec_commodity.find(com)!=vec_commodity.end())
-    {
-        com->delObserverList(this);
         vec_commodity.erase(com);
-    }
 }
+
+//设置筛选
 void List::setFilter(const Filter *f)
 {
     criteria=f;
@@ -70,10 +51,11 @@ void List::setFilter(const Filter *f)
     }
     for(const auto r:del)
     {
-        r->delObserverList(this);
         vec_commodity.erase(r);
     }
 }
+
+//获得商品信息
 Commodity* List::getCommodity(int i)
 {
     int k=0;
@@ -84,14 +66,4 @@ Commodity* List::getCommodity(int i)
     }
     return nullptr;
 }
-List* List::getSubList(int i)
-{
-    int k=0;
-    for(auto r:vec_sublist)
-    {
-        if(k==i) return r;
-        k++;
-    }
-    return nullptr;
 
-}

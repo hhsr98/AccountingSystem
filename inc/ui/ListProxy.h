@@ -1,18 +1,12 @@
 #ifndef __LISTPROXY_H
-#define __LISTPROXY_H
+#define __LISTPROXY)H
 
-#include "ui/AbstractProxy.h"
-#include "ui/CommodityProxy.h"
-#include "ui/FilterProxy.h"
-#include "list.h"
-
-class FilterProxy;
-
+#include "AbstractProxy.h"
+#include "CommodityProxy.h"
+#include "../list.h"
 class ListProxy : public AbstractProxy
 {
     virtual CommodityProxy* getCommodityProxy(Commodity *com)=0;
-    virtual ListProxy* getListProxy(List *l)=0;
-    virtual FilterProxy* getFilterProxy(List *l)=0;
 protected:
     List *_list;
 public:

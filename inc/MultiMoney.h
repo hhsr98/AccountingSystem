@@ -1,4 +1,4 @@
-#ifndef MULTIMONEY_H
+ï»¿#ifndef MULTIMONEY_H
 #define MULTIMONEY_H
 #include"SingleMoney.h"
 #include<iostream>
@@ -9,38 +9,38 @@ class MultiMoney
 	SingleMoney single[N];
 	int num{ 0 };
 public:
-	MultiMoney();//¹¹Ôì£»
+	MultiMoney();//æ„é€ ï¼›
 
 	//SingleMoney converseSingleMoney();
 
-	void converseSingleMoney(std::string type);//ËùÓĞ±ÒÖÖ×ª»¯ÎªÖ¸¶¨µ¥±ÒÖÖ£»
+	void converseSingleMoney(std::string type);//æ‰€æœ‰å¸ç§è½¬åŒ–ä¸ºæŒ‡å®šå•å¸ç§ï¼›
 
-	void show();//Õ¹Ê¾Êä³ö£»
+	void show();//å±•ç¤ºè¾“å‡ºï¼›
 
-	MultiMoney& operator+(SingleMoney& m);//Ìí¼ÓÒ»Ïî£»
+	MultiMoney& operator+(SingleMoney& m);//æ·»åŠ ä¸€é¡¹ï¼›
 
 	//MultiMoney operator-(MultiMoney& m);
 
-	MultiMoney& operator*(double x);//ÓÒ³Ë£»
+	MultiMoney& operator*(double x);//å³ä¹˜ï¼›
 
-	friend MultiMoney& operator*(double x, MultiMoney& m)//×ó³Ë£»
+	friend MultiMoney& operator*(double x, MultiMoney& m)//å·¦ä¹˜ï¼›
 	{
 		return m*x;
 	}
 
 	MultiMoney& operator/(double x);
 
-	MultiMoney& operator+=(SingleMoney& m);//Ìí¼ÓÒ»Ïî£»
+	MultiMoney& operator+=(SingleMoney& m);//æ·»åŠ ä¸€é¡¹ï¼›
 
 	MultiMoney& operator*=(double x);
 
 	MultiMoney& operator/=(double x);
 
-	SingleMoney sumPart(std::string DstCurrency);//¶ÔÄ³ÖÖ»õ±ÒÇóºÍ;
+	SingleMoney sumPart(std::string DstCurrency);//å¯¹æŸç§è´§å¸æ±‚å’Œ;
 
-	SingleMoney sum(std::string DstCurrency);//¶Ô×ÜÌåÇóºÍÎªÄ³±ÒÖÖ;
+	SingleMoney sum(std::string DstCurrency);//å¯¹æ€»ä½“æ±‚å’Œä¸ºæŸå¸ç§;
 
-	~MultiMoney() = default;
+	//~MultiMoney() = default;
 
 };
 

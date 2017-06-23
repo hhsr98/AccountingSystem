@@ -1,7 +1,7 @@
 #ifndef __SQLITE3DBCONNECTOR_H
 #define __SQLITE3DBCONNECTOR_H
 
-#include <db_connector/AbstractDbConnector.h>
+#include "inc/db_connector/AbstractDbConnector.h"
 
 #include <sqlpp11/custom_query.h>
 #include <sqlpp11/sqlite3/sqlite3.h>
@@ -9,7 +9,7 @@
 #include <sqlite3.h>
 #include <vector>
 
-#include <db_connector/sqlpp11_connector/TabCommodity.h>
+#include "inc/db_connector/sqlpp11_connector/TabCommodity.h"
 
 namespace db_connector
 {

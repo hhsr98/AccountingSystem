@@ -9,8 +9,6 @@
 #include "Remark.h"
 #include<iostream>
 #include<string>
-#include<set>
-class List;
 class Commodity
 {
     static int maxCommodityID;
@@ -25,18 +23,12 @@ class Commodity
     double _Discount;
     Date _Date;
     Remark *pRemark;
-    std::set<List*> regdit;
 
-    void inform_modified();
 public:
 
     Commodity(int id=-1);
 
-    ~Commodity();
-
-    void regObserverList(List *l);
-
-    void delObserverList(List *l);
+    ~Commodity()=default;
 
     void set_unmodified()
     {modified=false;}
@@ -55,25 +47,25 @@ public:
     std::string CommodityName() const;
 
     void setShop(Shop *_shop)
-    {modified=true;pShop=_shop;inform_modified();}
+    {modified=true;pShop=_shop;}
 
     const Shop& Shop() const
     {return *pShop;}
 
     void setQuantity(double _quantity)
-    {modified=true;_Quantity=_quantity;inform_modified();}
+    {modified=true;_Quantity=_quantity;}
 
     double Quantity() const
     {return _Quantity;}
 
     void setDate(Date &_date)
-    {modified=true;_Date=_date;inform_modified();}
+    {modified=true;_Date=_date;}
 
     const Date& Date() const
     {return _Date;}
 
     void setUnitPrice(SingleMoney &_total_price,double _quantity=1)
-    {modified=true;_UnitPrice=_total_price/_quantity;inform_modified();}
+    {modified=true;_UnitPrice=_total_price/_quantity;}
 
     const SingleMoney UnitPrice() const
     {return _UnitPrice;}
@@ -81,7 +73,7 @@ public:
     bool setDiscount(double discount)
     {
         if(discount>=0&&discount<1)
-        {modified=true;_Discount=discount;inform_modified();return true;}
+        {modified=true;_Discount=discount;return true;}
         else
         {return false;}
     }
@@ -96,7 +88,7 @@ public:
         if(_unit.getDimension()!=_Unit.getDimension())
             return false;
         else
-        {modified=true;_UnitPrice*=_Unit.convertTo(_unit.getUnit());inform_modified();return true;}
+        {modified=true;_UnitPrice*=_Unit.convertTo(_unit.getUnit());}
     }
 
     const Unit& Unit() const
@@ -109,7 +101,7 @@ public:
     {return _UnitPrice/(1-_Discount);}
 
     void setRemark(Remark *_remark)
-    {modified=true;pRemark=_remark;inform_modified();}
+    {modified=true;pRemark=_remark;}
 
     friend std::ostream& operator<< (std::ostream &os,const Commodity& com);
 

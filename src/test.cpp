@@ -1,4 +1,4 @@
-#include "../inc/date.h"
+/*#include "../inc/date.h"
 #include "../inc/Unit.h"
 #include "../inc/Shop.h"
 <<<<<<< HEAD
@@ -52,7 +52,7 @@ int main()
     comm->setDate(ndate);
     pp->push_back(comm);
     a->saveCommodity(*pp);*/
-
+/*
 =======
 >>>>>>> 70de74d1dd4c02ba53c1b82a4d6bb489bc104262
 	ExchangeRate exchange_rate;
@@ -91,3 +91,4 @@ int main()
 	system("pause");
 	return 0;
 }
+*/

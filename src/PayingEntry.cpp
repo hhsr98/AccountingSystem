@@ -1,18 +1,18 @@
-#include"../inc/PayingEntry.h"
+ï»¿#include"../inc/PayingEntry.h"
 #include<iostream>
 using namespace std;
 PayingEntry::PayingEntry(Commodity* com,int num,bool judge):_com(com), person_num(num),judge(judge){
-	set_map();
+
 }
 
- map<string,double> PayingEntry::person_topay=map<string,double>();//¶¨Òå¾²Ì¬³ÉÔ±±äÁ¿
+ map<string,double> PayingEntry::person_topay=map<string,double>();//å®šä¹‰é™æ€æˆå‘˜å˜é‡
 
- int PayingEntry::num=0;//¶¨Òå¾²Ì¬³ÉÔ±±äÁ¿£¬¼ÇÂ¼Éæ¼°ÈËµÄ×ÜÊı
+ int PayingEntry::num=0;//å®šä¹‰é™æ€æˆå‘˜å˜é‡ï¼Œè®°å½•æ¶‰åŠäººçš„æ€»æ•°
 
 void PayingEntry::set_static(string name) {
 	map<string,double>::iterator iter_r;
 	bool judge1=true;
-	for(iter_r=person_topay.begin();iter_r!=person_topay.end();iter_r++) {//ÅĞ¶ÏÊÇ·ñÒÑ¾­´¢´æ¸ÃÃû×Ö
+	for(iter_r=person_topay.begin();iter_r!=person_topay.end();iter_r++) {//åˆ¤æ–­æ˜¯å¦å·²ç»å‚¨å­˜è¯¥åå­—
 		if (string(iter_r->first)==string(name))
 		{
 			judge1=false;
@@ -21,55 +21,45 @@ void PayingEntry::set_static(string name) {
 	}
 	if(judge1) {
 		person_topay[name];
-		num++;//Éæ¼°µÄ×ÜÈËÊı¼ÓÒ»
+		num++;//æ¶‰åŠçš„æ€»äººæ•°åŠ ä¸€
 	}
 }
 
 
-void PayingEntry::set_map() { //ÉèÖÃ¸¶¿îµÄÈËÒÔ¼°½ğ¶î
+void PayingEntry::set_map(string str1,double price) { //è®¾ç½®ä»˜æ¬¾çš„äººä»¥åŠé‡‘é¢
 
-	string str1;
-	double price;
-	//cout<<"ÇëÊäÈë5¸öÈËÃû"<<endl;
-	while(cin>>str1>>price) { //ÊäÈëÈËÃûÒÔ¼°¶ÔÓ¦µÄ¸¶¿î
-		person_rate[str1];
-		person_price[str1]=price;
-		set_static(str1);
-	}
-	cin.clear();	// ÖØÖÃ cin ÊäÈë×´Ì¬
-	cin.sync();	// Çå³ı cin »º³åÇøÎ´¶ÁÈ¡ĞÅÏ¢
-	total_num=set_total_sum();
+    person_rate[str1];
+    person_price[str1]=price;
+    set_static(str1);
 
     map<string,double>::iterator iter;
 	for(iter=person_rate.begin();iter!=person_rate.end();iter++) {
 		if(!judge)
 		iter->second=setRate(iter->first);
 		else
-		iter->second=is_set(iter->first);
+        iter->second=is_set(iter->first,price);
 	}
 }
 
-double PayingEntry::is_set(string name) {//ÊÖ¶¯ÊäÈëÃ¿ÈËÓ¦¸¶½ğ¶î¼ÆËãrate
-	//cout<<"ÊäÈë"<<name<<"Ó¦¸¶µÄ½ğ¶î"<<endl;
-	double price;
-	cin>>price;
+double PayingEntry::is_set(string name,double price) {//æ‰‹åŠ¨è¾“å…¥æ¯äººåº”ä»˜é‡‘é¢è®¡ç®—rate
+	//cout<<"è¾“å…¥"<<name<<"åº”ä»˜çš„é‡‘é¢"<<endl;
 	price=price-person_price[name];
 	return price/total_num;
 }
 
-double PayingEntry::setRate(string name) { //ÊäÈëÈËÃû£¬·µ»Ø¸ÃÈË¶ÔÓ¦µÄ±ÈÀı
-	double average=total_num/person_num;//Ã¿¸öÈËÓ¦¸¶µÄÊıÄ¿
-	double paying_need=average-person_price[name];//Ã¿¸öÈË×îºóĞèÒª¸¶µÄÊıÄ¿
+double PayingEntry::setRate(string name) { //è¾“å…¥äººåï¼Œè¿”å›è¯¥äººå¯¹åº”çš„æ¯”ä¾‹
+	double average=total_num/person_num;//æ¯ä¸ªäººåº”ä»˜çš„æ•°ç›®
+	double paying_need=average-person_price[name];//æ¯ä¸ªäººæœ€åéœ€è¦ä»˜çš„æ•°ç›®
 	return paying_need/total_num;
 }
 
-double PayingEntry::set_total_sum() {//»ñµÃ¸¶¿îµÄ×Ü½ğ¶î
+void PayingEntry::set_total_sum() {//è·å¾—ä»˜æ¬¾çš„æ€»é‡‘é¢
 	map<string,double>::iterator iter;
 	double sum=0;
 	for(iter=person_price.begin();iter!=person_price.end();iter++) {
 		sum=sum+iter->second;
 	}
-	return sum;
+    this->total_num=num;
 }
 
 
@@ -81,7 +71,7 @@ const double PayingEntry::get_total_num() const {
 	return total_num;
 }
 
-const Commodity* PayingEntry::get_Commodity()const {
+ Commodity* PayingEntry::get_Commodity()const {
 	return _com;
 }
 

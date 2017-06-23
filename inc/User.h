@@ -1,4 +1,4 @@
-#ifndef USER_H
+ï»¿#ifndef USER_H
 #define USER_H
 #include"Filter.h"
 #include"MultiList.h"
@@ -20,12 +20,12 @@ public:
 	{
 		Commodity* commodity = new Commodity(0);
 
-		cout << "ÉÌÆ·Ãû:";
+		cout << "å•†å“å:";
 		std::string commodity_name;
 		cin >> commodity_name;
 		commodity->setCommodityName(commodity_name);
 
-		cout << "ÉÌÆ·µ¥¼Û:";
+		cout << "å•†å“å•ä»·:";
 		double amount;
 		std::string type;
 		cin >> amount >> type;
@@ -35,20 +35,20 @@ public:
 		Date date;
 		commodity->setDate(date);
 
-		cout << "ÉÌÆ·ÕÛ¿Û:";
+		cout << "å•†å“æŠ˜æ‰£:";
 		double discount;
 		cin >> discount;
 		commodity->setDiscount(discount);
 
-		cout << "ÉÌÆ·ÊıÁ¿:";
+		cout << "å•†å“æ•°é‡:";
 		double quantity;
 		cin >> quantity;
 		commodity->setQuantity(quantity);
 
 		Unit unit;
-		commodity->setUnit(unit);//²»Ì«¶®Õâ¸öunit¸ÃÔõÃ´¹¹Ôì...
+		commodity->setUnit(unit);//ä¸å¤ªæ‡‚è¿™ä¸ªunitè¯¥æ€ä¹ˆæ„é€ ...
 
-		cout << "ÉÌµêÃû³Æ:";
+		cout << "å•†åº—åç§°:";
 		std::string shop_name;
 		cin >> shop_name;
 		Shop* shop = new Shop(shop_name);
@@ -64,7 +64,7 @@ public:
 
 	void setFilter()
 	{
-		cout << "×îµÍ½ğ¶îÓë×î¸ß½ğ¶î:";
+		cout << "æœ€ä½é‡‘é¢ä¸æœ€é«˜é‡‘é¢:";
 		double start_money, end_money;
 		cin >> start_money >> end_money;
 		filter = new priceFilter(nullptr, SingleMoney(start_money, "CNY"), SingleMoney(end_money, "CNY"));
@@ -81,7 +81,7 @@ public:
 	void addPayingEntry(int i)
 	{
 		int num;
-		cout << "ÈËÊı:";
+		cout << "äººæ•°:";
 		cin >> num;
 		PayingEntry* paying_entry=new PayingEntry(vec_Commodity[i], num, false);
 		vec_PayingEntry.push_back(paying_entry);
@@ -90,7 +90,7 @@ public:
 	void addMultiList()
 	{
 		string list_name;
-		cout << "ÕËµ¥Ãû³Æ:";
+		cout << "è´¦å•åç§°:";
 		cin >> list_name;
 		MultiList* multilist = new MultiList(list_name);
 		for (int i = 0; i < vec_PayingEntry.size(); i++)

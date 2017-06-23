@@ -1,4 +1,4 @@
-//╡Бйтнд╪Чё╩
+О╩©//Ф╣▀Х╞∙Ф√┤Д╩╤О╪⌡
 /*#include<iostream>
 #include<string>
 #include"../inc/SingleMoney.h"

@@ -1,8 +1,8 @@
 #ifndef __MULTILISTPROXY_H
 #define __MULTILISTPROXY_H
 
-#include "ui/AbstractProxy.h"
-#include "MultiList.h"
+#include "AbstractProxy.h"
+#include "../MultiList.h"
 class PayingEntryProxy;
 class MultiListProxy:public AbstractProxy {
 	virtual PayingEntry* getPayingEntryProxy(PayingEntry* entry)=0;

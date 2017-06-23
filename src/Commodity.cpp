@@ -1,5 +1,4 @@
-#include "Commodity.h"
-#include "list.h"
+#include "../inc/Commodity.h"
 
 int Commodity::maxCommodityID=-1;
 Commodity::Commodity(int id):_CommodityName(),_UnitPrice(),\
@@ -8,27 +7,6 @@ Commodity::Commodity(int id):_CommodityName(),_UnitPrice(),\
 {
     maxCommodityID=id>maxCommodityID?id:maxCommodityID;
 
-}
-Commodity::~Commodity()
-{
-    for(auto l:regdit)
-        l->deleteCommodity(this);
-}
-void Commodity::regObserverList(List *l)
-{
-    regdit.insert(l);
-}
-void Commodity::delObserverList(List *l)
-{
-    if(regdit.find(l)!=regdit.end()) regdit.erase(l);
-}
-void Commodity::inform_modified()
-{
-    for(auto l: regdit)
-        if(  !(l->isValidCommodity(this))  )
-        {
-            l->deleteCommodity(this);
-        }
 }
 void Commodity::setCommodityName(std::string _name)
 {

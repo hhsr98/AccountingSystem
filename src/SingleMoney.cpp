@@ -1,4 +1,4 @@
-//SingleMoney.cpp
+﻿//SingleMoney.cpp
 #include"../inc/SingleMoney.h"
 #include<iostream>
 using std::string;
@@ -85,14 +85,14 @@ bool operator>(const SingleMoney& m,const SingleMoney& n)
 }
 bool operator<= (const SingleMoney& m,const SingleMoney& n)
 {
-    return m.SingleMoneyAmount <= n.converseCurrency(m.CurrencyTypeNow);
+    return m.SingleMoneyAmount <= n.SingleMoneyAmount;
 }
 bool operator>= (const SingleMoney& m,const SingleMoney& n)
 {
     return m.SingleMoneyAmount >= n.converseCurrency(m.CurrencyTypeNow);
 }
 
-/*void SingleMoney::addCurrencyTypeAmount()//һ�μ�һ�֣�
+/*void SingleMoney::addCurrencyTypeAmount()//一次加一种；
 {
 	string CurrencyName;
 	double CurrencyExchangeRate;

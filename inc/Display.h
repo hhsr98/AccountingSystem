@@ -1,4 +1,4 @@
-#ifndef DISPLAY_H
+ï»¿#ifndef DISPLAY_H
 #define DISPLAY_H
 #include<iostream>
 #include<string>
@@ -11,7 +11,7 @@
 #include"Remark.h"
 #include"Commodity.h"
 #include<vector>
-#define sublist_num 100 //×î´ó×ÓÕËµ¥Êı;
+#define sublist_num 100 //æœ€å¤§å­è´¦å•æ•°;
 using namespace std;
 
 class DisplayImp
@@ -50,7 +50,7 @@ public:
 	void show(const List* list);
 	void show(List* list);
 
-	//void operate(char opr);//ÓÃ»§ÊäÈë²Ù×÷;
+	//void operate(char opr);//ç”¨æˆ·è¾“å…¥æ“ä½œ;
 
 	void display(vector<List*> m);
 	//void display(const List* m);

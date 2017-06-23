@@ -1,4 +1,4 @@
-//SingleMoney.h Ö»ÊµÏÖÁËÔ¤Éè¹Ì¶¨»ãÂÊ£¬Ã»ÓĞÊµÊ±»ãÂÊ£»
+ï»¿//SingleMoney.h åªå®ç°äº†é¢„è®¾å›ºå®šæ±‡ç‡ï¼Œæ²¡æœ‰å®æ—¶æ±‡ç‡ï¼›
 #ifndef SingleMoney_H
 #define SingleMoney_H
 #include<string>
@@ -7,8 +7,8 @@
 class SingleMoney
 {
 	friend class MultiMoney;
-	std::string CurrencyTypeNow;//µ±Ç°»õ±ÒÖÖÀà£»
-	double SingleMoneyAmount;//µ±Ç°»õ±Ò½ğ¶î£»
+	std::string CurrencyTypeNow;//å½“å‰è´§å¸ç§ç±»ï¼›
+	double SingleMoneyAmount;//å½“å‰è´§å¸é‡‘é¢ï¼›
 public:
 	SingleMoney(double single_money, std::string currency_type_now);
 
@@ -23,15 +23,15 @@ public:
 	    return SingleMoneyAmount;
 	}
 
-	SingleMoney operator+(const SingleMoney& m) const;//ÖØÔØ¶à±ÒÖÖÏà¼Ó£¬·µ»Ø½á¹ûÎªµ±Ç°»õ±ÒÀàĞÍ£»
+	SingleMoney operator+(const SingleMoney& m) const;//é‡è½½å¤šå¸ç§ç›¸åŠ ï¼Œè¿”å›ç»“æœä¸ºå½“å‰è´§å¸ç±»å‹ï¼›
 
-	SingleMoney operator-(const SingleMoney& m) const;//Ïà¼õ£»
+	SingleMoney operator-(const SingleMoney& m) const;//ç›¸å‡ï¼›
 
-	SingleMoney operator*(double x) const ;//ÓÒ³Ë£»
+	SingleMoney operator*(double x) const ;//å³ä¹˜ï¼›
 
-	friend SingleMoney operator*(double x, SingleMoney& m);//×ó³Ë£¬µ«ÊÇÃ»ÊµÏÖËÄÔòÔËËã£¬Ö»ÓĞÁ¬¼Ó¼õ£»
+	friend SingleMoney operator*(double x, SingleMoney& m);//å·¦ä¹˜ï¼Œä½†æ˜¯æ²¡å®ç°å››åˆ™è¿ç®—ï¼Œåªæœ‰è¿åŠ å‡ï¼›
 
-	SingleMoney operator/(double x) const ;//Ïà³ı£»
+	SingleMoney operator/(double x) const ;//ç›¸é™¤ï¼›
 
 	SingleMoney operator+=(const SingleMoney& m);//+=;
 
@@ -46,15 +46,15 @@ public:
 	friend bool operator<=(const SingleMoney& m,const SingleMoney& n);
 	friend bool operator>=(const SingleMoney& m,const SingleMoney& n);
 
-	//void addCurrencyTypeAmount();//ÓÃ»§Ìí¼Ó»õ±ÒÖÖÀà£»
+	//void addCurrencyTypeAmount();//ç”¨æˆ·æ·»åŠ è´§å¸ç§ç±»ï¼›
 
-	double findRate(std::string name)const;//ÕÒµ½ÏàÓ¦»õ±ÒÖÖÀàµÄ¶ÔÈËÃñ±Ò»ãÂÊ£»
+	double findRate(std::string name)const;//æ‰¾åˆ°ç›¸åº”è´§å¸ç§ç±»çš„å¯¹äººæ°‘å¸æ±‡ç‡ï¼›
 
-	double converseCurrency(std::string DstCurrency)const ;//½«»õ±Ò¶Ò»»ÎªÄ¿±êÀàĞÍ£»
+	double converseCurrency(std::string DstCurrency)const ;//å°†è´§å¸å…‘æ¢ä¸ºç›®æ ‡ç±»å‹ï¼›
 
-	SingleMoney& converseCurrencyPermanent(std::string DstCurrency);//½«»õ±ÒÓÀ¾Ã×ª»»ÎªÄ¿±êÀàĞÍ£»
+	SingleMoney& converseCurrencyPermanent(std::string DstCurrency);//å°†è´§å¸æ°¸ä¹…è½¬æ¢ä¸ºç›®æ ‡ç±»å‹ï¼›
 
-	void showSingleMoney();//Êä³öÕ¹Ê¾µ±Ç°½ğ¶îÓëÖÖÀà£»
+	void showSingleMoney();//è¾“å‡ºå±•ç¤ºå½“å‰é‡‘é¢ä¸ç§ç±»ï¼›
 
 	friend std::ostream& operator<<(std::ostream& os,const SingleMoney& money);
 

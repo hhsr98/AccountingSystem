@@ -1,4 +1,4 @@
-#include"../inc/Display.h"
+ï»¿#include"../inc/Display.h"
 using namespace std;
 
 void CmdImp::show(const Commodity* commodity)
@@ -18,7 +18,7 @@ void CmdImp::show(const List* list)
 	int i = 0;
 	while (i < list->get_CommodityList().size())
 	{
-		show(list->get_CommodityList()[i]);
+//		show(list->get_CommodityList()[i]);
 		i++;
 	}
 
@@ -30,13 +30,13 @@ void CmdImp::show(const List* list)
 	}
 
 	List temp = *list;
-	cout << "sublistÒÔÍâµÄ×Ü¼Û:" << temp.Sum() << endl;
+	cout << "sublistä»¥å¤–çš„æ€»ä»·:" << temp.Sum() << endl;
 
-	if (list->get_Sublist().size() != 0)//ÅĞ¶ÏÊÇ·ñÓĞ×ÓÕËµ¥£»
+	if (list->get_Sublist().size() != 0)//åˆ¤æ–­æ˜¯å¦æœ‰å­è´¦å•ï¼›
 	{
-		vector<char> operate;//¼ÇÂ¼Ò»ÏµÁĞ²Ù×÷;
+		vector<char> operate;//è®°å½•ä¸€ç³»åˆ—æ“ä½œ;
 		char opr;
-		cout << "ÇëÊäÈëÒª²é¿´µÄ×ÓÕËµ¥±àºÅ£º";
+		cout << "è¯·è¾“å…¥è¦æŸ¥çœ‹çš„å­è´¦å•ç¼–å·ï¼š";
 		std::cin >> opr;
 		while (int(opr) - '0' <= list->get_Sublist().size() && opr > '0')
 		{
@@ -44,7 +44,7 @@ void CmdImp::show(const List* list)
 			//cout << "Test:" << operate.size() << endl;
 			for (int i = 0; i < list->get_Sublist().size();i++)
 			{
-				int num = 0;//²Ù×÷¼ÆÊı;
+				int num = 0;//æ“ä½œè®¡æ•°;
 				for (int j = 0; j < operate.size(); j++)
 				{
 					if (int(operate[j]) - '1' == i)
@@ -53,14 +53,14 @@ void CmdImp::show(const List* list)
 					}
 				}
 				//cout << "num:" << num << endl;
-				if (num % 2)//¶ÔÍ¬Ò»×ÓÕËµ¥²Ù×÷ÆæÊı´ÎÔòÏÔÊ¾Ëü;
+				if (num % 2)//å¯¹åŒä¸€å­è´¦å•æ“ä½œå¥‡æ•°æ¬¡åˆ™æ˜¾ç¤ºå®ƒ;
 				{
-					show(list->get_Sublist()[i]);
+//					show(list->get_Sublist()[i]);
 				}
 				else
 					cout << "Sublist" << i + 1 << endl;
 			}
-			cout << "ÇëÊäÈëÒª²é¿´µÄ×ÓÕËµ¥±àºÅ£º";
+			cout << "è¯·è¾“å…¥è¦æŸ¥çœ‹çš„å­è´¦å•ç¼–å·ï¼š";
 			std::cin >> opr;
 		}
 	}
@@ -79,11 +79,11 @@ void CmdImp::display(vector<List*> list)
 {
 	for (int k = 0; k != list.size(); k++)
 	{
-		cout << "Ä¸ÕËµ¥" << k + 1 << endl;
+		cout << "æ¯è´¦å•" << k + 1 << endl;
 		int i = 0;
 		while (i < list[k]->get_CommodityList().size())
 		{
-			show(list[k]->get_CommodityList()[i]);
+//			show(list[k]->get_CommodityList()[i]);
 			i++;
 		}
 
@@ -95,16 +95,16 @@ void CmdImp::display(vector<List*> list)
 		}
 
 		List temp = *list[k];
-		cout << "sublistÒÔÍâµÄ×Ü¼Û:" << temp.Sum() << endl;
+		cout << "sublistä»¥å¤–çš„æ€»ä»·:" << temp.Sum() << endl;
 	}
 
-	cout << "ÇëÊäÈëÒª²é¿´×ÓÕËµ¥µÄÄ¸ÕËµ¥ĞòºÅ:";
+	cout << "è¯·è¾“å…¥è¦æŸ¥çœ‹å­è´¦å•çš„æ¯è´¦å•åºå·:";
 	int n = 0;
 	cin >> n;
 	while (n > 0 && n <= list.size())
 	{
 		show(list[n - 1]);
-		cout << "ÇëÊäÈëÒª²é¿´×ÓÕËµ¥µÄÄ¸ÕËµ¥ĞòºÅ:";
+		cout << "è¯·è¾“å…¥è¦æŸ¥çœ‹å­è´¦å•çš„æ¯è´¦å•åºå·:";
 		cin >> n;
 	}
 	return;

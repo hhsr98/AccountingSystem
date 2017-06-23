@@ -1,18 +1,21 @@
-#include "ui/MultiListProxy.h"
+ï»¿#include "MultiListProxy.h"
 #include<stdio.h>
 #include<sstream>
 using std::istringstream;
 using std::cout;
 using std::endl;
+using std::map;
+using std::vector;
+using std::string;
 AbstractProxy::state MultiListProxy::manipulate(std::string order, AbstractProxy *&new_proxy)
 {
     istringstream is(order);
     std::string temp;
     if(is>>temp)
     {
-        if(temp=="-r") return AbstractProxy::go_back;//-r ·µ»ØÉÏÒ»¼¶
-        if(temp=="-x") return AbstractProxy::quit;//-x ÍË³öÏµÍ³
-        if(temp=="-f") {show(); return AbstractProxy::done;}//Ë¢ÐÂ
+        if(temp=="-r") return AbstractProxy::go_back;//-r è¿”å›žä¸Šä¸€çº§
+        if(temp=="-x") return AbstractProxy::quit;//-x é€€å‡ºç³»ç»Ÿ
+        if(temp=="-f") {show(); return AbstractProxy::done;}//åˆ·æ–°
         if(temp=="-n")
         {
             int i;
@@ -21,25 +24,25 @@ AbstractProxy::state MultiListProxy::manipulate(std::string order, AbstractProxy
 			if(entry!=nullptr) {/*new_proxy=getPayingEntryProxy(entry);return AbstractProxy::new_proxy;*/}
             else return AbstractProxy::fail;
         }
-		if(temp=="-s")//-s ½â¾ö·½°¸
+		if(temp=="-s")//-s è§£å†³æ–¹æ¡ˆ
 		{
-			map<vector<string>,double> to_pay=_list->get_how_to_pay();
+            map<vector<string>,double> to_pay=_list->get_how_to_pay();
 			if(to_pay.size()!=0)
 			{
 			map<vector<string>,double>::iterator iter;
 			for(iter=to_pay.begin();iter!=to_pay.end();iter++) 
 			{
 				if(iter->second>0)
-					cout<<iter->first[0]<<"Ö§¸¶¸ø"<<iter->first[1]<<iter->second<<endl;
+					cout<<iter->first[0]<<"æ”¯ä»˜ç»™"<<iter->first[1]<<iter->second<<endl;
 				if(iter->second<0)
-					cout<<iter->first[1]<<"Ö§¸¶¸ø"<<iter->first[0]<<iter->second<<endl;
+					cout<<iter->first[1]<<"æ”¯ä»˜ç»™"<<iter->first[0]<<iter->second<<endl;
 			}
 			return AbstractProxy::done;
 			}
 			else 
 				return AbstractProxy::fail;
 		}
-		if(temp=="-p")//-p ²éÑ¯ÐèÖ§¸¶¶àÉÙ»òÕß±»Ö§¸¶¶àÉÙ
+		if(temp=="-p")//-p æŸ¥è¯¢éœ€æ”¯ä»˜å¤šå°‘æˆ–è€…è¢«æ”¯ä»˜å¤šå°‘
 		{
 			string name;
 			is>>name;
@@ -47,11 +50,11 @@ AbstractProxy::state MultiListProxy::manipulate(std::string order, AbstractProxy
 			if(to_pay.size()!=0)
 			{
 			if(to_pay[name]<0)
-				cout<<name<<"ÐèÒª±»Ö§¸¶"<<to_pay[name]<<endl;
+				cout<<name<<"éœ€è¦è¢«æ”¯ä»˜"<<to_pay[name]<<endl;
 			if(to_pay[name]>0)
-				cout<<name<<"ÐèÒªÖ§¸¶"<<to_pay[name]<<endl;
+				cout<<name<<"éœ€è¦æ”¯ä»˜"<<to_pay[name]<<endl;
 			else
-				cout<<name<<"ÊÕÖ§Æ½ºâ"<<endl;
+				cout<<name<<"æ”¶æ”¯å¹³è¡¡"<<endl;
 			return AbstractProxy::done;
 			}
 			else return AbstractProxy::fail;

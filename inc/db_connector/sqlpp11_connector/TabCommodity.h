@@ -2,9 +2,9 @@
 #ifndef SQLPP_CONNECTOR_TABCOMMODITY_H
 #define SQLPP_CONNECTOR_TABCOMMODITY_H
 
-#include <sqlpp11/table.h>
-#include <sqlpp11/data_types.h>
-#include <sqlpp11/char_sequence.h>
+#include "sqlpp11/table.h"
+#include "sqlpp11/data_types.h"
+#include "sqlpp11/char_sequence.h"
 
 namespace sqlpp11_connector
 {

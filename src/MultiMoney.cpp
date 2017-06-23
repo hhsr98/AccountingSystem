@@ -1,20 +1,20 @@
-#include"../inc/MultiMoney.h"
+ï»¿#include"../inc/MultiMoney.h"
 using namespace std;
 MultiMoney::MultiMoney()
 {
 	double amount;
 	string type;
-	cout << "ÇëÊäÈë»õ±Ò1½ð¶î£º";
+	cout << "è¯·è¾“å…¥è´§å¸1é‡‘é¢ï¼š";
 	while (cin >> amount)
 	{
 		if (amount <= 0)
 			break;
-		cout << "ÇëÊäÈë»õ±Ò" << num + 1 << "ÀàÐÍ£º";
+		cout << "è¯·è¾“å…¥è´§å¸" << num + 1 << "ç±»åž‹ï¼š";
 		cin >> type;
 		num++;
 		SingleMoney temp(amount, type);
 		single[num] = temp;
-		cout << "ÇëÊäÈë»õ±Ò" << num + 1 << "½ð¶î£º";
+		cout << "è¯·è¾“å…¥è´§å¸" << num + 1 << "é‡‘é¢ï¼š";
 	}
 }
 

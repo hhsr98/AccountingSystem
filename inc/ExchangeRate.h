@@ -1,4 +1,4 @@
-//Ê¹ÓÃSingleMoneyÇ°ÏÈ¹¹½¨Ò»¸ö¹«ÓÃµÄExchangeRateÀà£¬¸ÃÀàµÄ»ãÂÊ¡¢»õ±Ò¡¢×ÜÌ×Êı¡¢Ö¸¶¨Ä³Ì×»ãÂÊ¾ùÎªstatic£»
+ï»¿//ä½¿ç”¨SingleMoneyå‰å…ˆæ„å»ºä¸€ä¸ªå…¬ç”¨çš„ExchangeRateç±»ï¼Œè¯¥ç±»çš„æ±‡ç‡ã€è´§å¸ã€æ€»å¥—æ•°ã€æŒ‡å®šæŸå¥—æ±‡ç‡å‡ä¸ºstaticï¼›
 #ifndef CURRENCY_H
 #define CURRENCY_H
 
@@ -11,27 +11,27 @@ class ExchangeRate
 	friend class SingleMoney;
 	static double* Rate[_N];
 	static std::string* CurrencyType[_N];
-	static int num;//»ãÂÊÌ×Êı£»
-	static int choice;//Ñ¡ÔñµÄ»ãÂÊÌ×Êı£»
+	static int num;//æ±‡ç‡å¥—æ•°ï¼›
+	static int choice;//é€‰æ‹©çš„æ±‡ç‡å¥—æ•°ï¼›
 public:
 
-	ExchangeRate();//³õÊ¼¹¹Ôì£»
+	ExchangeRate();//åˆå§‹æ„é€ ï¼›
 
-	void addExchangeRate();//ÊäÈëÒ»Ì×ĞÂµÄ»ãÂÊ£»
+	void addExchangeRate();//è¾“å…¥ä¸€å¥—æ–°çš„æ±‡ç‡ï¼›
 
-	void deleteExchangeRate(int i);//É¾³ıÄ³Ì×»ãÂÊ£»
+	void deleteExchangeRate(int i);//åˆ é™¤æŸå¥—æ±‡ç‡ï¼›
 
-	void resetExchangeRate(int i,int j);//ÖØÉèµÚiÌ×»ãÂÊµÄµÚiÏî£»
+	void resetExchangeRate(int i,int j);//é‡è®¾ç¬¬iå¥—æ±‡ç‡çš„ç¬¬ié¡¹ï¼›
 
 	void resetExchangeRate(int i, std::string s);
 
-	void addExchangeRate(int i);//ÔÚµÚiÌ×»ãÂÊÖĞĞÂÌíÒ»Ïî£»
+	void addExchangeRate(int i);//åœ¨ç¬¬iå¥—æ±‡ç‡ä¸­æ–°æ·»ä¸€é¡¹ï¼›
 
-	void showExchangeRate(int i);//Õ¹Ê¾Êä³öÄ³Ì×»ãÂÊ£»
+	void showExchangeRate(int i);//å±•ç¤ºè¾“å‡ºæŸå¥—æ±‡ç‡ï¼›
 
-	void showExchangeRate();//Êä³ö×Ü»ãÂÊÌ×Êı£»
+	void showExchangeRate();//è¾“å‡ºæ€»æ±‡ç‡å¥—æ•°ï¼›
 
-	void select(int n);//Ñ¡¶¨Ò»Ì×»ãÂÊÀ´Ê¹ÓÃ£»
+	void select(int n);//é€‰å®šä¸€å¥—æ±‡ç‡æ¥ä½¿ç”¨ï¼›
 
 	~ExchangeRate();
 

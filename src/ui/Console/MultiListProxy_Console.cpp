@@ -1,4 +1,4 @@
-#include "ui/Console/MultiListProxy_Console.h"
+ï»¿#include "MultiListProxy_Console.h"
 void MultiListProxy_Console::show()
 {
 	std::cout<<"MultiList Name:\t"<<_list->get_name()<<std::endl;
@@ -17,8 +17,8 @@ void MultiListProxy_Console::unshow()
 
 void MultiListProxy_Console::showManip()
 {
-    std::cout<<"-r ·µ»ØÉÏÒ»¼¶\t-xÍË³öÏµÍ³\t-fË¢ĞÂ\n";
-    std::cout<<"-n <ĞòºÅi> ½øÈëĞòºÅÎªiµÄ¸¶¿îÌõÄ¿\n";
-	std::cout<<"-s ÏÔÊ¾¸¶¿î·ÖÅä·½°¸\n";
-	std::cout<<"-p <ĞÕÃûA> ÏÔÊ¾²ÎÓëÕßAµÄÖ§¸¶½áÓàÇé¿ö\n";
+    std::cout<<"-r è¿”å›ä¸Šä¸€çº§\t-xé€€å‡ºç³»ç»Ÿ\t-fåˆ·æ–°\n";
+    std::cout<<"-n <åºå·i> è¿›å…¥åºå·ä¸ºiçš„ä»˜æ¬¾æ¡ç›®\n";
+	std::cout<<"-s æ˜¾ç¤ºä»˜æ¬¾åˆ†é…æ–¹æ¡ˆ\n";
+	std::cout<<"-p <å§“åA> æ˜¾ç¤ºå‚ä¸è€…Açš„æ”¯ä»˜ç»“ä½™æƒ…å†µ\n";
 }

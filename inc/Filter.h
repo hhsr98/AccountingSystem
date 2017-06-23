@@ -1,9 +1,20 @@
+/*****************************************************
+
+ 名称：filter.h
+
+ 作者：钱姿
+
+ 内容描述：定义filter类，该类是筛选类
+
+ 版权：这是我们自行完成的程序，没有使用其余来源代码
+
+ *****************************************************/
 #ifndef __FILTER_H
 #define __FILTER_H
 #include "date.h"
 #include "Commodity.h"
 #include "Shop.h"
-#include<vector>
+#include <vector>
 
 class List;
 class Filter
@@ -60,7 +71,9 @@ private:
 	SingleMoney start_price,end_price;
 	bool isSelfValid(const Commodity *com) const
 	{
-	    return (start_price<=com->UnitPrice())&&(end_price>=com->UnitPrice());
+        bool t1=(start_price<=com->UnitPrice());
+        bool t2 =(end_price>=com->UnitPrice());
+        return t1&&t2;
 	}
 public:
 	priceFilter(double _start_price,double _end_price,std::string currency,const Filter *subcriteria=nullptr)\

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2013 - 2016, Roland Bock
  * All rights reserved.
  *
@@ -22,7 +22,7 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
+/*
 //#include "TabSample.h"
 //#include <sqlpp11/custom_query.h>
 //#include <sqlpp11/sqlite3/sqlite3.h>
@@ -34,13 +34,13 @@
 #include <string>
 #include <vector>
 
-#include<db_connector/sqlpp11_connector/sqlite3_connector/Sqlite3DbConnector.h>
+#include<inc/db_connector/sqlpp11_connector/sqlite3_connector/Sqlite3DbConnector.h>
 
-#include <Commodity.h>
+#include <inc/Commodity.h>
 
-#include "ui/ProxyManager.h"
-#include "ui/Console/Proxy_Console.h"
-
+#include "inc/ui/ProxyManager.h"
+#include "inc/ui/Console/CommodityProxy_Console.h"
+#include "inc/ui/Console/ListProxy_Console.h"
 SQLPP_ALIAS_PROVIDER(left);
 SQLPP_ALIAS_PROVIDER(pragma);
 SQLPP_ALIAS_PROVIDER(sub);
@@ -59,31 +59,24 @@ int main()
         std::cout<<(*ss)<<std::endl;
         //ss->setDate(ndate);
     }
-    Filter *fil1=new AllFilter();
-    List aaa2(fil1);
+    //Filter *fil=new dateFilter(Date(2015,1,10,2),Date(2017,8,1,0));
+    Filter *fil=new AllFilter();
+    List aaa(fil);
     for(auto ss:(*pp))
     {
-        aaa2.addCommodity(ss);
+        aaa.addCommodity(ss);
+        //ss->setDate(ndate);
     }
 
 //以下为用户交互部分
-    List aa9(nullptr),b(nullptr),c(nullptr),d(nullptr),e(nullptr);
-    aa9.setListName("a");b.setListName("b");
-    c.setListName("c");d.setListName("d");
-    e.setListName("e");
-    c.addSublist(&e);
-    c.addSublist(&d);
-    aa9.addSublist(&b);
-    aa9.addSublist(&c);
     std::cout<<std::endl<<std::endl;
     Commodity *comm=pp->back();
     ProxyManager manager;
-    AbstractProxy::RootClassifyList=&aa9;
-    //AbstractProxy *prox=new ListProxy_Console(&aaa2);
-    AbstractProxy *prox11=new CommodityProxy_Console(comm);
-    //AbstractProxy *prox=new ClassifyProxy_Console(&aa9,comm);
-    manager.addProxy(prox11);
-    //manager.addProxy(prox);
+    CommodityProxy_Console cc(comm);
+    manager.addProxy(&cc);
+    manager.addProxy(&cc);
+    ListProxy_Console LLL(&aaa);
+    manager.addProxy(&LLL);
     std::string temp;
     ProxyManager::state re;
     while(1)
@@ -278,5 +271,5 @@ int main()
     std::cerr << row.alpha;
   }*/
 
-  return 0;
-}
+  //return 0;
+//}

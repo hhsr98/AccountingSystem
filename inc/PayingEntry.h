@@ -1,32 +1,57 @@
-#ifndef PAYINGENTRY
+ï»¿#ifndef PAYINGENTRY
 #define PAYINGENTRY
 #include "Commodity.h"
 #include <map>
-#include<cstring>
-#include<iostream>
+#include <cstring>
+#include <iostream>
+
 class PayingEntry {
+
 private:
-	Commodity* _com;//ÉÌÆ·ĞÅÏ¢
-	std::map<std::string,double> person_rate;//´æ·ÅÈËÃûÒÔ¼°¶ÔÓ¦µÄ±ÈÀı
-	std::map<std::string,double>person_price;//´æ·ÅÈËÃûÒÔ¼°¶ÔÓ¦µÄÊµ¼Ê¸¶¿î
-	static std::map<std::string,double> person_topay;//¾²Ì¬±äÁ¿£¬´æ·ÅÈËÃûºÍ×îÖÕĞèÒªÖ§¸¶µÄÇ®
-	static int num;//¶àÈËÕËµ¥ÖĞÉæ¼°µÄ×ÜÈËÊı
-	double total_num;//×Ü¸¶¿î
-	int person_num;//Éæ¼°ÈËÊı
-	bool judge;//Ñ¡ÔñÊÇ·ñÊÖ¶¯ÊäÈë±ÈÀı
+
+    Commodity* _com;//å•†å“ä¿¡æ¯
+
+    std::map<std::string,double> person_rate;//å­˜æ”¾äººåä»¥åŠå¯¹åº”çš„æ¯”ä¾‹
+
+    std::map<std::string,double>person_price;//å­˜æ”¾äººåä»¥åŠå¯¹åº”çš„å®é™…ä»˜æ¬¾
+
+    static std::map<std::string,double> person_topay;//é™æ€å˜é‡ï¼Œå­˜æ”¾äººåå’Œæœ€ç»ˆéœ€è¦æ”¯ä»˜çš„é’±
+
+    static int num;//å¤šäººè´¦å•ä¸­æ¶‰åŠçš„æ€»äººæ•°
+
+    double total_num;//æ€»ä»˜æ¬¾
+
+    int person_num;//æ¶‰åŠäººæ•°
+
+    bool judge;//é€‰æ‹©æ˜¯å¦æ‰‹åŠ¨è¾“å…¥æ¯”ä¾‹
+
 public:
-	PayingEntry(Commodity* com,int num,bool judge);
-	void set_map();//ÉèÖÃ person_rate
-	double is_set(std::string name);//ÊÖ¶¯ÊäÈë±ÈÀı
-	double setRate(std::string name);//¼ÆËã±ÈÀı
-	double set_total_sum();//¼ÆËã×Ü¸¶¿î
-	void set_static(std::string name);//ÅĞ¶Ï¸ÃÈËÃûÊÇ·ñÒÑ¾­Â¼Èëperson_topayÖĞ
-	const std::map<std::string,double> get_person_rate_list() const;
-	const std::map<std::string,double> get_person_topay() const;
-	const double get_total_num() const;
-	const Commodity* get_Commodity()const;
-	const int get_person_num()const;
-	const int get_total_person_num()const;
-	const bool get_judge()const;
+
+    PayingEntry(Commodity* com,int num,bool judge);
+
+    void set_map(std::string name,double price);//è®¾ç½® person_rate
+
+    double is_set(std::string name,double price);//æ‰‹åŠ¨è¾“å…¥æ¯”ä¾‹
+
+    double setRate(std::string name);//è®¡ç®—æ¯”ä¾‹
+
+    void set_total_sum();//è®¡ç®—æ€»ä»˜æ¬¾
+
+    void set_static(std::string name);//åˆ¤æ–­è¯¥äººåæ˜¯å¦å·²ç»å½•å…¥person_topayä¸­
+
+    const std::map<std::string,double> get_person_rate_list() const;
+
+    const std::map<std::string,double> get_person_topay() const;
+
+    const double get_total_num() const;
+
+     Commodity* get_Commodity()const;
+
+    const int get_person_num()const;
+
+    const int get_total_person_num()const;
+
+    const bool get_judge()const;
+
 };
 #endif

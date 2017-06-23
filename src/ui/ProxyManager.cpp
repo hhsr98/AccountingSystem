@@ -1,5 +1,4 @@
-#include "ui/ProxyManager.h"
-
+#include "ProxyManager.h"
 void ProxyManager::addProxy(AbstractProxy *proxy)
 {
     if(!proxy_stack.empty()) proxy_stack.back()->unshow();

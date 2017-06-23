@@ -4,9 +4,9 @@
 #include "Filter.h"
 #include <iostream>
 #include<vector>
-#include "Commodity.h"
-#include "Shop.h"
-#include "list.h"
+#include "../Commodity.h"
+#include "../Shop.h"
+#include "../list.h"
 namespace db_connector
 {
     class AbstractDbConnector

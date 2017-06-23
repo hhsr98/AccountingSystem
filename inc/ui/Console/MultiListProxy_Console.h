@@ -1,6 +1,6 @@
 #ifndef __MULTILISTPROXY_CONSOLE_H
 #define __MULTILISTPROXY_CONSOLE_H
-#include"ui/MultiListProxy.h"
+#include"../MultiListProxy.h"
 class PayingEntryProxy_Console;
 class MultiListProxy_Console:public MultiListProxy {
 	

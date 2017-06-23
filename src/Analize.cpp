@@ -16,11 +16,11 @@ void AnalizeVal::setperc(double x) {
 }
 void Analize::addDateStrict(Date a, Date b)
 {
-	this->filter = new dateFilter(this->filter,a,b);
+    //this->filter = new dateFilter(this->filter,a,b);
 }
 void Analize::addPriceStrict(SingleMoney a, SingleMoney b)
 {
-	this->filter = new priceFilter(this->filter, a, b);
+   // this->filter = new priceFilter(this->filter,a,b);
 }
 void Analize::makeList()
 {
@@ -32,7 +32,7 @@ AnalizeByDate::AnalizeByDate(DisplayImp* display, TimeLen* t)
 }
 void AnalizeByDate::startAnalize()
 {
-	static char ts[50];
+    static char t[50];
 	if (*t == TimeLen(0, 1, 0, 0))
 	{
 		/*for (auto i : list->vec_commodity)

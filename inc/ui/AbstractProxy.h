@@ -3,17 +3,15 @@
 
 
 #include<string>
-#include "list.h"
 
 class AbstractProxy
 {
 public:
-    static List* RootClassifyList;
 
     //显示被代理对象的内容
     virtual void show()=0;
 
-    //清楚显示内容
+    //清除显示内容
     virtual void unshow()=0;
 
     //显示可以对该对象执行的操作，包含操作提示

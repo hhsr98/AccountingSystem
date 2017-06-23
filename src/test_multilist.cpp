@@ -1,3 +1,14 @@
+ï»¿/*****************************************************
+
+ åç§°ï¼štest_multilist.cpp
+
+ ä½œè€…ï¼šé’±å§¿
+
+ å†…å®¹æè¿°ï¼šä¸€ä¸ªä½¿ç”¨å¤šäººè´¦å•çš„ç¤ºä¾‹
+
+ ç‰ˆæƒï¼šè¿™æ˜¯æˆ‘ä»¬è‡ªè¡Œå®Œæˆçš„ç¨‹åºï¼Œæ²¡æœ‰ä½¿ç”¨å…¶ä½™æ¥æºä»£ç 
+
+ *****************************************************/
 /*#include<iostream>
 #include<map>
 #include<cstring>
@@ -8,43 +19,43 @@
 using namespace std;
 
 int main() {
-	//×Ô¶¯¼ÆËãrate
+	//è‡ªåŠ¨è®¡ç®—rate
 	Commodity com;
-	string a="Ïã½¶";
+	string a="é¦™è•‰";
 	com.setCommodityName(a);
 	com.setQuantity(3);
 	double b=100;
 	SingleMoney m(b,"CNY");
 	com.setUnitPrice(m);
-	PayingEntry pay(&com,5,0);//ÉèÖÃÓĞ5¸öÈË²ÎÓëµÄ¸¶¿îÌõÄ¿£¬ÇÒ×Ô¶¯¼ÆËãrate£¬´Ë´¦Ğè¼üÈëÈËÃûÒÔ¼°Ëù¸¶½ğ¶î
+	PayingEntry pay(&com,5,0);//è®¾ç½®æœ‰5ä¸ªäººå‚ä¸çš„ä»˜æ¬¾æ¡ç›®ï¼Œä¸”è‡ªåŠ¨è®¡ç®—rateï¼Œæ­¤å¤„éœ€é”®å…¥äººåä»¥åŠæ‰€ä»˜é‡‘é¢
 	MultiList Mul("Qian");
 	Mul.add_entry(&pay);
 	Mul.set_topay();
-	Mul.show_topay();//ÈçºÎ·ÖÅä
+	Mul.show_topay();//å¦‚ä½•åˆ†é…
 	map<vector<string>,double>temp=Mul.get_how_to_pay();
 	map<vector<string>,double>::iterator iter;
 	for(iter=temp.begin();iter!=temp.end();iter++)
 	{
-  		cout<<iter->first[0]<<"Ö§¸¶¸ø"<<iter->first[1]<<iter->second<<endl;
+  		cout<<iter->first[0]<<"æ”¯ä»˜ç»™"<<iter->first[1]<<iter->second<<endl;
 	}
-	//ÊÖ¶¯ÊäÈëÓ¦¸¶½ğ¶î
+	//æ‰‹åŠ¨è¾“å…¥åº”ä»˜é‡‘é¢
 	Commodity com1;
-	string a1="Ôç·¹";
+	string a1="æ—©é¥­";
 	com1.setCommodityName(a1);
 	com1.setQuantity(3);
 	b=100;
 	SingleMoney m1(b,"CNY");
 	com.setUnitPrice(m1);
-	PayingEntry pay1(&com1,5,1);//ÉèÖÃÓĞ5¸öÈË²ÎÓëµÄ¸¶¿îÌõÄ¿£¬ÇÒÊÖ¶¯ÊäÈëÓ¦¸¶½ğ¶î£¬´Ë´¦Ğè¼üÈëÈËÃûÒÔ¼°Ëù¸¶½ğ¶î£¬¶øºó¼üÈëÓ¦¸¶½ğ¶î
+	PayingEntry pay1(&com1,5,1);//è®¾ç½®æœ‰5ä¸ªäººå‚ä¸çš„ä»˜æ¬¾æ¡ç›®ï¼Œä¸”æ‰‹åŠ¨è¾“å…¥åº”ä»˜é‡‘é¢ï¼Œæ­¤å¤„éœ€é”®å…¥äººåä»¥åŠæ‰€ä»˜é‡‘é¢ï¼Œè€Œåé”®å…¥åº”ä»˜é‡‘é¢
 	MultiList Mul1("Qian");
 	Mul1.add_entry(&pay1);
 	Mul1.set_topay();
-	Mul1.show_topay();//ÈçºÎ·ÖÅä
+	Mul1.show_topay();//å¦‚ä½•åˆ†é…
 	map<vector<string>,double>temp1=Mul1.get_how_to_pay();
 	map<vector<string>,double>::iterator iter1;
 	for(iter1=temp1.begin();iter1!=temp1.end();iter1++)
 	{
-  		cout<<iter1->first[0]<<"Ö§¸¶¸ø"<<iter1->first[1]<<iter1->second<<endl;
+  		cout<<iter1->first[0]<<"æ”¯ä»˜ç»™"<<iter1->first[1]<<iter1->second<<endl;
 	}
 
 	system("pause");

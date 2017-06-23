@@ -2,7 +2,7 @@
 #define __PROXYMANAGER_H
 
 #include<deque>
-#include "ui/AbstractProxy.h"
+#include "AbstractProxy.h"
 
 class ProxyManager
 {

@@ -1,37 +1,40 @@
-#include "../inc/MultiList.h"
-MultiList::MultiList(string name):List_name(name),num_entry(0){
+ï»¿#include "../inc/MultiList.h"
+using std::vector;
+using std::string;
+using std::map;
+MultiList::MultiList(std::string name):List_name(name),num_entry(0){
 
 }
 
-void MultiList::add_entry(PayingEntry* payingentry) {//Ìí¼ÓĞÂµÄ¸¶¿îÌõÄ¿£¬½«ÆäµØÖ·´æ·ÅÔÚvec_entryÖĞ
+void MultiList::add_entry(PayingEntry* payingentry) {//æ·»åŠ æ–°çš„ä»˜æ¬¾æ¡ç›®ï¼Œå°†å…¶åœ°å€å­˜æ”¾åœ¨vec_entryä¸­
 	num_entry++;
 	vec_entry.push_back(payingentry);
 } 
 
 
-void MultiList::set_topay() {//ÉèÖÃ´æ·Å¶àÈËÕËµ¥ÖĞÉæ¼°µÄËùÓĞÈËµÄÓ¦¸¶½ğ¶îµÄmap
-	vector<PayingEntry*>::iterator iter;
+void MultiList::set_topay() {//è®¾ç½®å­˜æ”¾å¤šäººè´¦å•ä¸­æ¶‰åŠçš„æ‰€æœ‰äººçš„åº”ä»˜é‡‘é¢çš„map
+    std::vector<PayingEntry*>::iterator iter;
 	person_topay=(*(vec_entry[0])).get_person_topay();
-	person_topaycopy=person_topay;//¿½±´PayingEntryÖĞµÄ¾²Ì¬±äÁ¿
-	num_person=(*(vec_entry[0])).get_total_person_num();//¿½±´PayingEntryÖĞµÄ¾²Ì¬±äÁ¿
-	for(iter=vec_entry.begin();iter!=vec_entry.end();iter++) {//±éÀú´æ·Å¸¶¿îÌõÄ¿µÄvector
+	person_topaycopy=person_topay;//æ‹·è´PayingEntryä¸­çš„é™æ€å˜é‡
+	num_person=(*(vec_entry[0])).get_total_person_num();//æ‹·è´PayingEntryä¸­çš„é™æ€å˜é‡
+	for(iter=vec_entry.begin();iter!=vec_entry.end();iter++) {//éå†å­˜æ”¾ä»˜æ¬¾æ¡ç›®çš„vector
 		map<string,double>::iterator iter1;
-		map<string,double>temp=((*iter)->get_person_rate_list());//»ñÈ¡¸Ã±Ê¸¶¿îÌõÄ¿ÖĞµÄÈËÃû¼°Æä¶ÔÓ¦µÄ±ÈÀı
-		double sum=((*iter)->get_total_num());//»ñÈ¡¸Ã±Ê¸¶¿îÌõÄ¿ÖĞµÄ×Ü½ğ¶î
+		map<string,double>temp=((*iter)->get_person_rate_list());//è·å–è¯¥ç¬”ä»˜æ¬¾æ¡ç›®ä¸­çš„äººååŠå…¶å¯¹åº”çš„æ¯”ä¾‹
+		double sum=((*iter)->get_total_num());//è·å–è¯¥ç¬”ä»˜æ¬¾æ¡ç›®ä¸­çš„æ€»é‡‘é¢
 		for(iter1=temp.begin();iter1!=temp.end();iter1++) {
-			person_topay[iter1->first]+=iter1->second*sum;//½«Ä³¸öÈËÃ¿±ÊpayingEntry¸Ã¸¶µÄ½ğ¶îÏà¼Ó´æÔÚperson_topayÖĞ
+			person_topay[iter1->first]+=iter1->second*sum;//å°†æŸä¸ªäººæ¯ç¬”payingEntryè¯¥ä»˜çš„é‡‘é¢ç›¸åŠ å­˜åœ¨person_topayä¸­
 		}
 	}
 }
 
-double MultiList::get_topay(string name) {//»ñµÃÃ¿¸öÈËĞèÒªÖ§¸¶¶àÉÙ
+double MultiList::get_topay(string name) {//è·å¾—æ¯ä¸ªäººéœ€è¦æ”¯ä»˜å¤šå°‘
 	return person_topaycopy[name];
 }
 
-void MultiList::show_topay() {//Êä³öÈçºÎ×ªÕËµÄ·½°¸
+void MultiList::show_topay() {//è¾“å‡ºå¦‚ä½•è½¬è´¦çš„æ–¹æ¡ˆ
 	map<string,double>::iterator iter,iter_swap;
 	vector<string>temp;
-	for(iter=person_topay.begin();iter!=person_topay.end();iter++) {//±éÀúmap
+	for(iter=person_topay.begin();iter!=person_topay.end();iter++) {//éå†map
 		if(iter->second!=0)
 		{
 			temp.push_back(iter->first);

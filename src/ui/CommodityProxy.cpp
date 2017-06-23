@@ -1,6 +1,6 @@
-#include "ui/CommodityProxy.h"
-#include<stdio.h>
-#include<sstream>
+ï»¿#include "CommodityProxy.h"
+#include <stdio.h>
+#include <sstream>
 using std::istringstream;
 AbstractProxy::state CommodityProxy::manipulate(std::string order, AbstractProxy *&new_proxy)
 {
@@ -8,11 +8,10 @@ AbstractProxy::state CommodityProxy::manipulate(std::string order, AbstractProxy
     std::string temp;
     if(is>>temp)
     {
-        if(temp=="-r") return AbstractProxy::go_back;//-r ·µ»ØÉÏÒ»¼¶
-        if(temp=="-x") return AbstractProxy::quit;//-x ÍË³öÏµÍ³
+        if(temp=="-r") return AbstractProxy::go_back;//-r è¿”å›ä¸Šä¸€çº§
+        if(temp=="-x") return AbstractProxy::quit;//-x é€€å‡ºç³»ç»Ÿ
         if(temp=="-f") {show(); return AbstractProxy::done;}
-        if(temp=="-c") {new_proxy=getClassifyProxy(AbstractProxy::RootClassifyList);return AbstractProxy::new_proxy;}
-        if(temp=="-e") //ĞŞ¸ÄÉÌÆ·ĞÅÏ¢
+        if(temp=="-e") //ä¿®æ”¹å•†å“ä¿¡æ¯
         {
             std::string temp1,temp2;
             if(is>>temp1>>temp2)
@@ -23,7 +22,7 @@ AbstractProxy::state CommodityProxy::manipulate(std::string order, AbstractProxy
 				{
 					double a;
 					std::stringstream stream;
-					//½«string×ª»»³Édouble
+					//å°†stringè½¬æ¢æˆdouble
 					stream<<temp2;
 					stream>>a;
 					com->setQuantity(a);
@@ -34,27 +33,27 @@ AbstractProxy::state CommodityProxy::manipulate(std::string order, AbstractProxy
 				{
 					std::string a,b;
 					double a1;
-					a=temp2.substr(0,temp2.size()-3);//½«Êı×Ö¿½±´µ½aÖĞ
+					a=temp2.substr(0,temp2.size()-3);//å°†æ•°å­—æ‹·è´åˆ°aä¸­
 					std::stringstream stream;
 					stream<<a;
-					stream>>a1;//½«×Ö·û´®×ª»¯ÎªdoubleÀàĞÍ
+					stream>>a1;//å°†å­—ç¬¦ä¸²è½¬åŒ–ä¸ºdoubleç±»å‹
 					b=temp2.substr(temp2.size()-3,3);
-					SingleMoney money(a1,b);//¹¹Ôìµ¥±ÒÖÖ½ğ¶îÀàµÄĞÂ²ÎÊı
-					com->setUnitPrice(money);//ÖØÖÃ
+					SingleMoney money(a1,b);//æ„é€ å•å¸ç§é‡‘é¢ç±»çš„æ–°å‚æ•°
+					com->setUnitPrice(money);//é‡ç½®
 					return AbstractProxy::done;
 				}
 				if(temp1=="-o")
 				{
 					double temp;
 					std::stringstream stream;
-					//½«string×ª»»³Édouble
+					//å°†stringè½¬æ¢æˆdouble
 					stream<<temp2;
 					stream>>temp;
 					com->setDiscount(temp);
 					stream.clear();
 					return AbstractProxy::done;
 				}
-				if(temp1=="-d")//ÊäÈë¸ñÊ½ÎªÄêÔÂÈÕÊ±£¬ÀıÈç2017070718 Îª2017Äê7ÔÂ7ÈÕ18µã
+				if(temp1=="-d")//è¾“å…¥æ ¼å¼ä¸ºå¹´æœˆæ—¥æ—¶ï¼Œä¾‹å¦‚2017070718 ä¸º2017å¹´7æœˆ7æ—¥18ç‚¹
 				{
 					double y,m,d,h;
 					std::string y1,m1,d1,h1;
@@ -63,7 +62,7 @@ AbstractProxy::state CommodityProxy::manipulate(std::string order, AbstractProxy
 					d1=temp2.substr(6,2);
 					h1=temp2.substr(8,2);
 					std::stringstream stream;
-					//½«string×ª»»³Édouble
+					//å°†stringè½¬æ¢æˆdouble
 					stream<<y1;
 					stream>>y;
 					stream.clear();

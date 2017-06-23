@@ -1,29 +1,50 @@
-#ifndef MULTILIST_H
+ï»¿#ifndef MULTILIST_H
 #define MULTILIST_H
-#include<iostream>
-#include<vector>
-#include<cstring>
-#include<map>
-#include"PayingEntry.h"
+#include <iostream>
+#include <vector>
+#include <cstring>
+#include <map>
+#include <string>
+#include "PayingEntry.h"
+
 class MultiList {
+
 private:
-	string List_name;
-	vector<PayingEntry*> vec_entry;//´æ·Å¸¶¿îÌõÄ¿ÀàµÄ¼ÆÊıÖ¸ÕëµÄÏòÁ¿
-	map<string,double>person_topay,person_topaycopy;//´æ·Å¶àÈËÕËµ¥ÖĞÉæ¼°µÄËùÓĞÈËµÄÓ¦¸¶½ğ¶î
-	map<vector<string>,double>how_to_pay;//´æ·ÅÈËA×ª¸øÈËB¶àÉÙÇ®
-	int num_entry;//¸¶¿îÌõÄ¿µÄÊıÄ¿
-	int num_person;//¶àÈËÕËµ¥ÖĞÉæ¼°µÄ×ÜÈËÊı
+
+    std::string List_name;
+
+    std::vector<PayingEntry*> vec_entry;//å­˜æ”¾ä»˜æ¬¾æ¡ç›®ç±»çš„è®¡æ•°æŒ‡é’ˆçš„å‘é‡
+
+    std::map<std::string,double>person_topay,person_topaycopy;//å­˜æ”¾å¤šäººè´¦å•ä¸­æ¶‰åŠçš„æ‰€æœ‰äººçš„åº”ä»˜é‡‘é¢
+
+    std::map<std::vector<std::string>,double>how_to_pay;//å­˜æ”¾äººAè½¬ç»™äººBå¤šå°‘é’±
+
+    int num_entry;//ä»˜æ¬¾æ¡ç›®çš„æ•°ç›®
+
+    int num_person;//å¤šäººè´¦å•ä¸­æ¶‰åŠçš„æ€»äººæ•°
+
 public:
-	MultiList(string name);
-	void add_entry(PayingEntry* payingentry);//ÔÚ¶àÈËÕËµ¥ÖĞÌí¼Ó¸¶¿îÌõÄ¿
-	double get_topay(string name);//»ñÈ¡Ä³¸öÈËµÄÓ¦¸¶½ğ¶î
-	void show_topay();//Êä³öÈçºÎ×ªÕËµÄ·½°¸
-	void set_topay();//ÉèÖÃperson_topay£¬ÉèÖÃËùÓĞÈËµÄÓ¦¸¶½ğ¶î
-	const map<vector<string>,double> get_how_to_pay()const;
-	const vector<PayingEntry*>get_vec_entry()const;
-	const map<string,double>getperson_topaycopy()const;
-	const std::string get_name()const;
-	const int get_num()const;
+
+    MultiList(std::string name);
+
+    void add_entry(PayingEntry* payingentry);//åœ¨å¤šäººè´¦å•ä¸­æ·»åŠ ä»˜æ¬¾æ¡ç›®
+
+    double get_topay(std::string name);//è·å–æŸä¸ªäººçš„åº”ä»˜é‡‘é¢
+
+    void show_topay();//è¾“å‡ºå¦‚ä½•è½¬è´¦çš„æ–¹æ¡ˆ
+
+    void set_topay();//è®¾ç½®person_topayï¼Œè®¾ç½®æ‰€æœ‰äººçš„åº”ä»˜é‡‘é¢
+
+    const std::map<std::vector<std::string>,double> get_how_to_pay()const;
+
+    const std::vector<PayingEntry*>get_vec_entry()const;
+
+    const std::map<std::string,double>getperson_topaycopy()const;
+
+    const std::string get_name()const;
+
+    const int get_num()const;
+
 };
 
 #endif 
