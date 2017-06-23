@@ -1,32 +1,52 @@
-#ifndef PAYINGENTRY
-#define PAYINGENTRY
+#ifndef __PAYINGENTRY_H
+#define __PAYINGENTRY_H
 #include "Commodity.h"
+#include "Person.h"
 #include <map>
 #include<cstring>
 #include<iostream>
 class PayingEntry {
-private:
-	Commodity* _com;//商品信息
-	std::map<std::string,double> person_rate;//存放人名以及对应的比例
-	std::map<std::string,double>person_price;//存放人名以及对应的实际付款
-	static std::map<std::string,double> person_topay;//静态变量，存放人名和最终需要支付的钱
-	static int num;//多人账单中涉及的总人数
-	double total_num;//总付款
-	int person_num;//涉及人数
-	bool judge;//选择是否手动输入比例
 public:
-	PayingEntry(Commodity* com,int num,bool judge);
-	void set_map();//设置 person_rate
-	double is_set(std::string name);//手动输入比例
-	double setRate(std::string name);//计算比例
-	double set_total_sum();//计算总付款
-	void set_static(std::string name);//判断该人名是否已经录入person_topay中
-	const std::map<std::string,double> get_person_rate_list() const;
-	const std::map<std::string,double> get_person_topay() const;
-	const double get_total_num() const;
-	const Commodity* get_Commodity()const;
-	const int get_person_num()const;
-	const int get_total_person_num()const;
-	const bool get_judge()const;
+    enum Mode
+	{
+	    Ratio,
+	    Money
+	};
+private:
+	Commodity* _com;
+	Mode payed_mode,to_pay_mode;
+	std::map<Person*,SingleMoney> payed_money;
+	std::map<Person*,SingleMoney> to_pay_money;
+	std::map<Person*,double> payed_ratio;
+	std::map<Person*,double> to_pay_ratio;
+public:
+	PayingEntry(Commodity* com);
+
+	void setPayedMode(Mode m);
+	void setToPayMode(Mode m);
+
+	Mode PayedMode()
+	{return payed_mode;}
+	Mode ToPayMode()
+	{return to_pay_mode;}
+
+	void setRatioPayed(Person* some,double rate)
+	void setRatioToPay(Person* some,double rate);
+	void setMoneyPayed(Person* some,SingleMoney money);
+	void setMoneyToPay(Person* some,SingleMoney money);
+
+	void clearRatioPayed();
+	void clearMoneyPayed();
+	void clearRatioToPay();
+	void clearMoneyToPay();
+
+	//double getRatioPayed(Person* some);
+	//double getRatioToPay(Person* some);
+    SingleMoney getMoneyPayed(Person* some);
+	SingleMoney getMoneyToPay(Person* some);
+
+	std::map<Person*,SingleMoney> getMoneyPayed();
+	std::map<Person*,SingleMoney> getMoneyToPay();
+
 };
 #endif
