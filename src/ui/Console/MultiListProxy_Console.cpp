@@ -17,8 +17,9 @@ void MultiListProxy_Console::unshow()
 
 void MultiListProxy_Console::showManip()
 {
-    std::cout<<"-r 返回上一级\t-x退出系统\t-f刷新\n";
-    std::cout<<"-n <序号i> 进入序号为i的付款条目\n";
-	std::cout<<"-s 显示付款分配方案\n";
-	std::cout<<"-p <姓名A> 显示参与者A的支付结余情况\n";
+
+    std::cout<<"-r 杩斿洖涓婁竴绾t-x閫�鍑虹郴缁焅t-f鍒锋柊\n";
+    std::cout<<"-n <搴忓彿i> 杩涘叆搴忓彿涓篿鐨勪粯娆炬潯鐩甛n";
+	std::cout<<"-s 鏄剧ず浠樻鍒嗛厤鏂规\n";
+	std::cout<<"-p <濮撳悕A> 鏄剧ず鍙備笌鑰匒鐨勬敮浠樼粨浣欐儏鍐礬n";
 }

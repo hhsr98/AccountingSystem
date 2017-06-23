@@ -19,6 +19,8 @@ private:
 	std::map<Person*,SingleMoney> to_pay_money;
 	std::map<Person*,double> payed_ratio;
 	std::map<Person*,double> to_pay_ratio;
+
+	void convertToMoney(std::map<Person*,double> &rate,std::map<Person*,SingleMoney> &money);
 public:
 	PayingEntry(Commodity* com);
 
@@ -30,7 +32,7 @@ public:
 	Mode ToPayMode()
 	{return to_pay_mode;}
 
-	void setRatioPayed(Person* some,double rate)
+	void setRatioPayed(Person* some,double rate);
 	void setRatioToPay(Person* some,double rate);
 	void setMoneyPayed(Person* some,SingleMoney money);
 	void setMoneyToPay(Person* some,SingleMoney money);

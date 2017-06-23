@@ -12,12 +12,14 @@
 
 #include<string>
 #include "list.h"
+#include "Person.h"
 
 class AbstractProxy
 {
 public:
     static List* RootClassifyList;      //商品分类的根目录
     static List* RootDateList;          //商品按日期查看的根目录
+    static std::set<Person*>* RootPersonList;
 
     //将商品按一树形目录进行归类，若一个节点本身符合条件，无子节点或其全部子节点都不符合条件，则将商品归类于该节点。
     static bool AutoClassiy(Commodity *com,List *root);

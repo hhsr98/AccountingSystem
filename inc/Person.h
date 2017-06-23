@@ -1,18 +1,18 @@
 #ifndef __PERSON_H
 #define __PERSON_H
-
+#include<string>
 class Person
 {
-    string name;
+    std::string name;
 public:
-    Person(string _name):name(_name){}
+    Person(std::string _name):name(_name){}
 
     Person():name("new person"){}
 
-    string Name()
+    std::string Name()
     {return name;}
 
-    void setName(string _name)
+    void setName(std::string _name)
     {name=_name;}
 };
 #endif // __PERSON_H

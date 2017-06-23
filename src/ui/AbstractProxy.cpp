@@ -8,6 +8,7 @@
 #include <set>
 List* AbstractProxy::RootClassifyList=nullptr;
 List* AbstractProxy::RootDateList=nullptr;
+std::set<Person*>* AbstractProxy::RootPersonList=nullptr;
 bool AbstractProxy::AutoClassiy(Commodity *com,List *root)
 {
     bool is_in=true;

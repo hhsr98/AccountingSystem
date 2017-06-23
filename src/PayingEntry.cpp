@@ -1,8 +1,7 @@
 #include "PayingEntry.h"
 
-PayingEntry::PayingEntry(Commodity *com):_com(com),\
-    payed_money(),to_pay_money(),payed_ratio(),to_pay_ratio,\
-    payed_mode(Money),to_pay_mode(Money)
+PayingEntry::PayingEntry(Commodity *com):_com(com),payed_money(),\
+    to_pay_money(),payed_ratio(),to_pay_ratio(),payed_mode(Money),to_pay_mode(Money)
 {
 
 }
@@ -22,7 +21,7 @@ void PayingEntry::setRatioPayed(Person* some,double rate)
 {
     if(payed_mode==Ratio)
     {
-        payed_ratio[some]=rate>0?rate,0;
+        payed_ratio[some]=rate>0?rate:0;
     }
 }
 
@@ -30,7 +29,7 @@ void PayingEntry::setRatioToPay(Person* some,double rate)
 {
     if(payed_mode==Ratio)
     {
-        to_pay_ratio[some]=rate>0?rate,0;
+        to_pay_ratio[some]=rate>0?rate:0;
     }
 }
 void PayingEntry::setMoneyPayed(Person* some,SingleMoney money)
@@ -72,18 +71,62 @@ double PayingEntry::getRatioPayed(Person *some)
     }
 }
 */
+void PayingEntry::convertToMoney(std::map<Person*,double> &rate,std::map<Person*,SingleMoney> &money)
+{
+    double total=0;
+    SingleMoney tot=_com->TotalPrice();
+    for(auto p:rate)
+    {
+        total+=p.second;
+    }
+    for(auto p:rate)
+    {
+        money[p.first]=(p.second/total)*tot;
+    }
+}
 SingleMoney PayingEntry::getMoneyPayed(Person *some)
 {
     if(payed_mode==Ratio)
     {
-        double total=0;
-        for(auto p:payed_ratio)
-        {
-            total+=p->second;
-        }
-        for(auto p:payed_ratio)
-        {
-            payed_money[p->first]=p->second*
-        }
+        convertToMoney(payed_ratio,payed_money);
     }
+    if(payed_money.find(some)==payed_money.end())
+    {
+        return SingleMoney();
+    }
+    else
+    {
+        return payed_money[some];
+    }
+}
+SingleMoney PayingEntry::getMoneyToPay(Person *some)
+{
+    if(to_pay_mode==Ratio)
+    {
+        convertToMoney(to_pay_ratio,to_pay_money);
+    }
+    if(to_pay_money.find(some)==to_pay_money.end())
+    {
+        return SingleMoney();
+    }
+    else
+    {
+        return to_pay_money[some];
+    }
+}
+std::map<Person*,SingleMoney> PayingEntry::getMoneyPayed()
+{
+    if(payed_mode==Ratio)
+    {
+        convertToMoney(payed_ratio,payed_money);
+    }
+    return payed_money;
+}
+std::map<Person*,SingleMoney> PayingEntry::getMoneyToPay()
+{
+    if(to_pay_mode==Ratio)
+    {
+        convertToMoney(to_pay_ratio,to_pay_money);
+    }
+    return to_pay_money;
 }
