@@ -2,11 +2,11 @@
 
 void PayingEntryProxy_Console::show()
 {
-     for(int i=0;i<person_list.size();i++)
-     {
-         std::cout<<"\t"<<i<<"\t"<<person_list[i]->Name()<<std::endl;
-     }
-
+    std::cout<<*_com;
+    for(int i=0;i<person_list.size();i++)
+    {
+        std::cout<<"\t"<<i<<"\t"<<person_list[i]->Name()<<std::endl;
+    }
 }
 void PayingEntryProxy_Console::unshow()
 {
