@@ -1,102 +1,89 @@
-#include"../inc/PayingEntry.h"
-#include<iostream>
-using namespace std;
-PayingEntry::PayingEntry(Commodity* com,int num,bool judge):_com(com), person_num(num),judge(judge){
-	set_map();
+#include "PayingEntry.h"
+
+PayingEntry::PayingEntry(Commodity *com):_com(com),\
+    payed_money(),to_pay_money(),payed_ratio(),to_pay_ratio,\
+    payed_mode(Money),to_pay_mode(Money)
+{
+
+}
+void PayingEntry::setPayedMode(Mode m)
+{
+    payed_mode=m;
+    if(m==Ratio) clearMoneyPayed();
+    else clearRatioPayed();
+}
+void PayingEntry::setToPayMode(Mode m)
+{
+    to_pay_mode=m;
+    if(m==Ratio) clearMoneyToPay();
+    else clearRatioToPay();
+}
+void PayingEntry::setRatioPayed(Person* some,double rate)
+{
+    if(payed_mode==Ratio)
+    {
+        payed_ratio[some]=rate>0?rate,0;
+    }
 }
 
- map<string,double> PayingEntry::person_topay=map<string,double>();//定义静态成员变量
-
- int PayingEntry::num=0;//定义静态成员变量，记录涉及人的总数
-
-void PayingEntry::set_static(string name) {
-	map<string,double>::iterator iter_r;
-	bool judge1=true;
-	for(iter_r=person_topay.begin();iter_r!=person_topay.end();iter_r++) {//判断是否已经储存该名字
-		if (string(iter_r->first)==string(name))
-		{
-			judge1=false;
-		}	
-			break;
-	}
-	if(judge1) {
-		person_topay[name];
-		num++;//涉及的总人数加一
-	}
+void PayingEntry::setRatioToPay(Person* some,double rate)
+{
+    if(payed_mode==Ratio)
+    {
+        to_pay_ratio[some]=rate>0?rate,0;
+    }
 }
-
-
-void PayingEntry::set_map() { //设置付款的人以及金额
-
-	string str1;
-	double price;
-	//cout<<"请输入5个人名"<<endl;
-	while(cin>>str1>>price) { //输入人名以及对应的付款
-		person_rate[str1];
-		person_price[str1]=price;
-		set_static(str1);
-	}
-	cin.clear();	// 重置 cin 输入状态
-	cin.sync();	// 清除 cin 缓冲区未读取信息
-	total_num=set_total_sum();
-
-    map<string,double>::iterator iter;
-	for(iter=person_rate.begin();iter!=person_rate.end();iter++) {
-		if(!judge)
-		iter->second=setRate(iter->first);
-		else
-		iter->second=is_set(iter->first);
-	}
+void PayingEntry::setMoneyPayed(Person* some,SingleMoney money)
+{
+    if(payed_mode==Money)
+    {
+        payed_money[some]=money;
+    }
 }
-
-double PayingEntry::is_set(string name) {//手动输入每人应付金额计算rate
-	//cout<<"输入"<<name<<"应付的金额"<<endl;
-	double price;
-	cin>>price;
-	price=price-person_price[name];
-	return price/total_num;
+void PayingEntry::setMoneyToPay(Person* some,SingleMoney money)
+{
+    if(payed_mode==Money)
+    {
+        to_pay_money[some]=money;
+    }
 }
-
-double PayingEntry::setRate(string name) { //输入人名，返回该人对应的比例
-	double average=total_num/person_num;//每个人应付的数目
-	double paying_need=average-person_price[name];//每个人最后需要付的数目
-	return paying_need/total_num;
+void PayingEntry::clearRatioPayed()
+{
+    payed_ratio.clear();
 }
-
-double PayingEntry::set_total_sum() {//获得付款的总金额
-	map<string,double>::iterator iter;
-	double sum=0;
-	for(iter=person_price.begin();iter!=person_price.end();iter++) {
-		sum=sum+iter->second;
-	}
-	return sum;
+void PayingEntry::clearRatioToPay()
+{
+    to_pay_ratio.clear();
 }
-
-
-const map<string,double> PayingEntry::get_person_rate_list() const {
-	return person_rate;
+void PayingEntry::clearMoneyPayed()
+{
+    payed_money.clear();
 }
-
-const double PayingEntry::get_total_num() const {
-	return total_num;
+void PayingEntry::clearMoneyToPay()
+{
+    to_pay_money.clear();
 }
-
-const Commodity* PayingEntry::get_Commodity()const {
-	return _com;
+/*
+double PayingEntry::getRatioPayed(Person *some)
+{
+    if(payed_mode==Money)
+    {
+        for(auto p:payed_ratio)
+    }
 }
-
-const int PayingEntry::get_person_num()const {
-	return person_num;
-}
-
-const map<string,double> PayingEntry::get_person_topay() const {
-	return person_topay;
-}
-
-const int PayingEntry::get_total_person_num()const {
-	return num;
-}
-
-const bool PayingEntry::get_judge()const {
-	return judge;
+*/
+SingleMoney PayingEntry::getMoneyPayed(Person *some)
+{
+    if(payed_mode==Ratio)
+    {
+        double total=0;
+        for(auto p:payed_ratio)
+        {
+            total+=p->second;
+        }
+        for(auto p:payed_ratio)
+        {
+            payed_money[p->first]=p->second*
+        }
+    }
 }
